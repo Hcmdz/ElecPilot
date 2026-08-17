@@ -134,10 +134,10 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
 
-    debugImplementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1") {
+    debugImplementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0") {
         version { strictly("1.8.1") }
     }
-    debugImplementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1") {
+    debugImplementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0") {
         version { strictly("1.8.1") }
     }
 
