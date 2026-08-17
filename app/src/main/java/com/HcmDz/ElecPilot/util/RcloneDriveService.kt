@@ -310,7 +310,7 @@ object RcloneDriveService {
                 response.close()
                 throw Exception("Microsoft Graph API error: ${response.code}")
             }
-            val body = response.body?.string() ?: throw Exception("Empty response from Microsoft Graph")
+            val body = response.body.string() ?: throw Exception("Empty response from Microsoft Graph")
             response.close()
             val driveJson = org.json.JSONObject(body)
             val driveId = driveJson.getString("id")
