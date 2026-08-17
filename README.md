@@ -324,3 +324,11 @@ Security audit fixes (OWASP MASVS 2.1):
 | 8 | LOW | SharedPreferences `MODE_PRIVATE` explicit usage |
 | 9 | LOW | Error logs stripped of file paths and operation details |
 | 10 | LOW | ProGuard strips `Log.e/w` with exception objects in release |
+
+---
+
+## License
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+This project is licensed under the **GNU General Public License v3.0** — see the [LICENSE](LICENSE) file for details.
