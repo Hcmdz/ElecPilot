@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - ElecPilot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        header { background: #1a1a2e; color: white; padding: 40px 20px; text-align: center; }
+        header h1 { font-size: 28px; margin-bottom: 8px; }
+        header p { opacity: 0.8; font-size: 14px; }
+        nav { background: #16213e; padding: 12px 20px; }
+        nav ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        nav a { color: #a8d8ea; text-decoration: none; font-size: 13px; }
+        nav a:hover { color: white; }
+        main { background: white; padding: 40px 30px; border-radius: 8px; margin-top: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        h2 { color: #1a1a2e; margin: 30px 0 12px; font-size: 20px; border-bottom: 2px solid #e8e8e8; padding-bottom: 8px; }
+        h2:first-child { margin-top: 0; }
+        p, li { font-size: 15px; color: #444; margin-bottom: 10px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .highlight { background: #f0f7ff; padding: 16px; border-radius: 6px; border-left: 4px solid #1a73e8; margin: 16px 0; }
+        .highlight p { margin-bottom: 0; }
+        footer { text-align: center; padding: 30px; color: #888; font-size: 13px; }
+        footer a { color: #1a73e8; text-decoration: none; }
+        a { color: #1a73e8; }
+        @media (max-width: 600px) { main { padding: 20px 16px; } header { padding: 30px 16px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Privacy Policy</h1>
+        <p>Last updated: August 17, 2026 &middot; for App: ElecPilot</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#summary">Summary</a></li>
+            <li><a href="#data-stored">Data Stored</a></li>
+            <li><a href="#voice-search">Voice Search</a></li>
+            <li><a href="#backup">Backup</a></li>
+            <li><a href="#permissions">Permissions</a></li>
+            <li><a href="#third-party">Third-Party</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#rights">Your Rights</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+            <section id="summary">
+                <h2>Summary</h2>
+                <div class="highlight">
+                    <p><strong>ElecPilot is designed to work entirely on your device.</strong> The developer does not collect analytics, run ads, or send your data to any server. All your data stays on your device.</p>
+                </div>
+            </section>
+
+            <section id="data-stored">
+                <h2>Data Stored on Your Device</h2>
+                <p>ElecPilot stores the following data locally in app-private storage on your device:</p>
+                <ul>
+                    <li><strong>Motor starters</strong> &mdash; electrical motor data (workshop, position, power, type, cable specifications)</li>
+                    <li><strong>PLC I/O modules</strong> &mdash; PLC card data (workshop, card, position, designation)</li>
+                    <li><strong>Favorites</strong> &mdash; your starred items</li>
+                    <li><strong>Settings</strong> &mdash; app preferences and configuration</li>
+                </ul>
+                <p>None of this data is sent to the developer or any external server.</p>
+            </section>
+
+            <section id="voice-search">
+                <h2>Voice Search</h2>
+                <p>ElecPilot uses Android's built-in SpeechRecognizer for voice search. This uses your device's system speech recognition service. The app does not record audio, store voice data, or access your microphone directly. Voice input is handled entirely by the Android operating system.</p>
+            </section>
+
+            <section id="backup">
+                <h2>Backup and Restore</h2>
+                <h3>Local Backup</h3>
+                <p>You can export your data as a ZIP file to a folder you choose on your device, including cloud storage connected to your device. That data is handled by Android and the storage provider you select, not sent to a server run by the developer.</p>
+
+                <h3>Cloud Backup</h3>
+                <p>ElecPilot offers optional cloud backup via rclone (Google Drive &amp; OneDrive). When you connect a cloud service:</p>
+                <ul>
+                    <li>An OAuth token is obtained through your cloud provider's authentication flow</li>
+                    <li>The token is encrypted using AES-256-GCM and stored locally on your device</li>
+                    <li>Backup files are uploaded directly to your cloud storage &mdash; the developer never has access to your cloud account or files</li>
+                    <li>You can disconnect and revoke access at any time from the app settings</li>
+                </ul>
+            </section>
+
+            <section id="permissions">
+                <h2>Permissions</h2>
+                <p>ElecPilot requests the following permissions:</p>
+                <ul>
+                    <li><strong>Internet</strong> &mdash; used only for cloud backup via rclone</li>
+                    <li><strong>Access Network State</strong> &mdash; to check connectivity before network calls</li>
+                    <li><strong>Post Notifications</strong> &mdash; for cloud backup status notifications</li>
+                </ul>
+                <p>The app does not request access to your camera, contacts, location, or any other sensitive data.</p>
+            </section>
+
+            <section id="third-party">
+                <h2>Third-Party Services</h2>
+                <p>The only third-party service integrated in ElecPilot is <strong>rclone</strong>, used for optional cloud backup to Google Drive and/or OneDrive. rclone communicates directly with your cloud provider. The developer does not operate any server that processes your data.</p>
+                <p>If you use cloud backup, your cloud provider (Google or Microsoft) may apply their own privacy policies. We encourage you to review them.</p>
+            </section>
+
+            <section id="security">
+                <h2>Security</h2>
+                <ul>
+                    <li>Cloud backup tokens are encrypted using <strong>AES-256-GCM</strong></li>
+                    <li>All data is stored locally in your device's app-private storage</li>
+                    <li>No data is transmitted to the developer's servers (the developer operates no servers)</li>
+                    <li>Network security configuration blocks cleartext (HTTP) traffic</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>No Analytics or Tracking</h2>
+                <p>ElecPilot does not include analytics, advertising, crash-reporting, or telemetry SDKs. The developer does not receive information about how you use the app.</p>
+            </section>
+
+            <section id="rights">
+                <h2>Your Rights</h2>
+                <p>You have full control over your data:</p>
+                <ul>
+                    <li><strong>Access</strong> &mdash; all your data is visible within the app</li>
+                    <li><strong>Deletion</strong> &mdash; you can delete any data from within the app, or uninstall the app to remove all data</li>
+                    <li><strong>Export</strong> &mdash; you can export your data at any time via local backup</li>
+                    <li><strong>Cloud disconnect</strong> &mdash; you can disconnect cloud backup and revoke access at any time</li>
+                </ul>
+                <p>Since all data is stored locally on your device, the developer has no access to your data and cannot delete it on your behalf &mdash; you manage it directly through the app or by uninstalling.</p>
+            </section>
+
+            <section>
+                <h2>Children</h2>
+                <p>The app is not directed at children under 13, and the developer does not operate any service that collects personal information from children.</p>
+            </section>
+
+            <section>
+                <h2>Changes to This Policy</h2>
+                <p>This policy may be updated from time to time. The latest version will be published on this page.</p>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>For privacy questions about ElecPilot, use the <a href="https://github.com/Hcmdz/ElecPilot/issues" target="_blank">GitHub project</a>.</p>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024-2026 HcmDZ &middot; ElecPilot &middot; <a href="../terms/">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

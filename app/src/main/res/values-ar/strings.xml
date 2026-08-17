@@ -1,0 +1,370 @@
+<resources>
+    <string name="app_name">إلكبيلوت</string>
+
+    <!-- Navigation / Tabs -->
+    <string name="tab_departs">المغادرات</string>
+    <string name="tab_plc">PLC I/O</string>
+    <string name="tab_separator">|</string>
+
+    <!-- Drawer / Menu -->
+    <string name="drawer_title">إلكبيلوت</string>
+    <string name="drawer_subtitle">إلكبيلوت - إدارة المغادرات الكهربائية و PLC I/O</string>
+    <string name="menu_import">استيراد متعدد الملفات</string>
+    <string name="menu_export_csv">تصدير CSV متعدد الملفات</string>
+    <string name="menu_export_excel">تصدير Excel متعدد الملفات</string>
+    <string name="menu_statistics">الإحصائيات</string>
+    <string name="menu_clear_all">مسح جميع البيانات</string>
+    <string name="menu_about">حول التطبيق</string>
+    <string name="menu_language">اللغة</string>
+    <string name="menu_backup">النسخ الاحتياطي التلقائي المحلي</string>
+
+    <!-- Language names -->
+    <string name="language_french">Français</string>
+    <string name="language_english">English</string>
+    <string name="language_arabic">العربية</string>
+
+    <!-- General -->
+    <string name="close">إغلاق</string>
+    <string name="cancel_operation">إلغاء</string>
+    <string name="action_refresh">تحديث</string>
+
+    <!-- Search -->
+    <string name="search_hint_departs">بحث في المغادرات</string>
+    <string name="search_hint_plc">بحث في PLC I/O</string>
+    <string name="search_icon_cd">بحث</string>
+    <string name="search_clear_cd">مسح</string>
+    <string name="search_voice_cd">بحث صوتي</string>
+    <string name="search_history_cd">سجل البحث</string>
+    <string name="search_voice_prompt">تحدث للبحث…</string>
+    <string name="search_voice_title">التعرف على الصوت</string>
+    <string name="search_no_results">لا نتائج لـ \"%s\"</string>
+    <string name="search_no_results_filters">لا نتائج مع المرشحات الحالية</string>
+
+    <!-- Filter -->
+    <string name="filter_icon_cd">مرشحات</string>
+    <string name="filter_favorites">★ المفضلة</string>
+    <string name="filter_column_atelier">الورشة</string>
+    <string name="filter_column_types">الأنواع</string>
+    <string name="filter_column_t_departs">نوع المغادرة</string>
+    <string name="filter_power_low">≥ 10 كيلوواط</string>
+    <string name="filter_power_medium">10–50 كيلوواط</string>
+    <string name="filter_power_high">&gt; 50 كيلوواط</string>
+    <string name="filter_title">ترشيح حسب %s</string>
+    <string name="filter_select_all">الكل</string>
+
+    <!-- Action buttons -->
+    <string name="action_import">استيراد</string>
+    <string name="action_export">تصدير</string>
+    <string name="export_choice_title">تنسيق التصدير</string>
+    <string name="export_choice_message">اختر تنسيق التصدير:</string>
+    <string name="action_add">إضافة</string>
+    <string name="action_select">تحديد</string>
+    <string name="action_deselect">إلغاء التحديد</string>
+    <string name="action_select_all">الكل</string>
+    <string name="action_edit">تعديل</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_quit_select">خروج</string>
+    <string name="action_modify">تعديل</string>
+    <string name="action_share">مشاركة</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_register">إضافة</string>
+    <string name="action_apply">تطبيق</string>
+
+    <!-- Selection -->
+    <string name="selection_count">%1$d/%2$d محدد</string>
+
+    <!-- Snackbars -->
+    <string name="snackbar_value_copied">تم نسخ القيمة</string>
+    <string name="snackbar_depart_added">تمت إضافة المغادرة</string>
+    <string name="snackbar_depart_updated">تم تعديل المغادرة</string>
+    <string name="snackbar_depart_deleted">تم حذف المغادرة</string>
+    <string name="snackbar_depart_duplicated">تم نسخ المغادرة</string>
+    <string name="snackbar_plc_added">تمت إضافة PLC</string>
+    <string name="snackbar_plc_updated">تم تعديل PLC</string>
+    <string name="snackbar_plc_deleted">تم حذف PLC</string>
+    <string name="snackbar_export_success_departs">تم تصدير %d مغادرة بنجاح</string>
+    <string name="snackbar_export_success_plc">تم تصدير %d PLC بنجاح</string>
+    <string name="snackbar_export_error">فشل التصدير</string>
+    <string name="snackbar_import_error">فشل الاستيراد</string>
+    <string name="snackbar_favorite_error">فشلت العملية</string>
+    <string name="snackbar_undo">تراجع</string>
+    <string name="snackbar_batch_edit_success">تم تعديل %d مغادرة</string>
+    <string name="snackbar_batch_edit_success_plc">تم تعديل %d PLC</string>
+    <string name="snackbar_batch_delete_success">تم حذف %d مغادرة</string>
+    <string name="snackbar_batch_delete_success_plc">تم حذف %d PLC</string>
+    <string name="snackbar_all_data_deleted">تم حذف جميع البيانات</string>
+    <string name="snackbar_no_data_to_delete">لا توجد بيانات للحذف</string>
+    <string name="snackbar_operation_pending">عملية جارية…</string>
+
+    <!-- Import -->
+    <string name="import_title">تأكيد</string>
+    <string name="import_lines_detected">تم اكتشاف %d سطر</string>
+    <string name="import_plc_confirm_body">في الملف.\n\nسيتم إضافة البيانات الجديدة إلى قاعدة البيانات الحالية. هل تريد المتابعة؟</string>
+    <string name="import_departs_confirm_body">في الملف.\n\nسيتم إضافة البيانات الجديدة إلى قاعدة البيانات الحالية. هل تريد المتابعة؟</string>
+    <string name="import_success_departs">%1$d مغادرة مستوردة (%2$d مكرر تم تجاهله)</string>
+    <string name="import_success_plc">%1$d PLC مستورد (%2$d مكرر تم تجاهله)</string>
+    <string name="import_no_new_departs">لا مغادرات جديدة (%d مكرر)</string>
+    <string name="import_no_new_plc">لا PLC جديد (%d مكرر)</string>
+    <string name="import_no_data">لم يتم العثور على بيانات في الملف</string>
+    <string name="import_summary_combined">استيراد: %1$d مغادرة, %2$d PLC</string>
+    <string name="import_wrong_type_detail">%d ملف(ات) من نوع خاطئ تم تجاهلها</string>
+    <string name="import_errors_detail">%d ملف(ات) خطأ في القراءة</string>
+
+    <!-- Dialog - Delete -->
+    <string name="dialog_confirm_title">تأكيد</string>
+    <string name="dialog_delete_confirm_depart">هل أنت متأكد من حذف هذه المغادرة؟\n\n%s</string>
+    <string name="dialog_delete_confirm_plc">هل أنت متأكد من حذف إدخال PLC هذا؟\n\n%s</string>
+    <string name="dialog_delete_confirm_batch_departs">هل أنت متأكد من حذف هذه المغادرات %d؟\n\nهذا الإجراء لا رجعة فيه.</string>
+    <string name="dialog_delete_confirm_batch_plc">هل أنت متأكد من حذف إدخالات PLC هذه %d؟\n\nهذا الإجراء لا رجعة فيه.</string>
+    <string name="dialog_clear_all_confirm">هل أنت متأكد من حذف جميع بيانات DEPARTS و PLC؟\n\nهذا الإجراء لا رجعة فيه.</string>
+
+    <!-- Dialog - Batch Edit -->
+    <string name="dialog_batch_edit_title">تعديل جماعي</string>
+    <string name="dialog_batch_edit_count">%d مغادرة محددة</string>
+    <string name="dialog_batch_edit_count_plc">%d PLC محدد</string>
+    <string name="dialog_batch_edit_field_label">الحقل المراد تعديله</string>
+    <string name="dialog_batch_edit_new_value">قيمة جديدة</string>
+
+    <!-- Dialog - About -->
+    <string name="dialog_about_title">حول التطبيق</string>
+    <string name="dialog_about_body">إلكبيلوت هو تطبيق مهني لإدارة المغادرات الكهربائية للمحركات ووحدات PLC I/O. يتيح لك استيراد وتصدير والبحث وترشيح وإدارة بيانات معداتك الكهربائية بكفاءة.\n\nمطور باستخدام تقنيات أندرويد الحديثة: Jetpack Compose و Room Database و Material You Design واستيراد/تصدير CSV و Excel. مدعوم بواسطة rclone للنسخ الاحتياطي السحابي.</string>
+    <string name="dialog_about_developer">المطور: HcmDZ</string>
+    <string name="dialog_about_version">الإصدار %s</string>
+    <string name="drawer_developed_by">تم التطوير بواسطة HcmDz</string>
+    <string name="drawer_privacy_policy">سياسة الخصوصية</string>
+    <string name="drawer_terms_of_service">شروط الخدمة</string>
+
+    <!-- Dialog - Language -->
+    <string name="dialog_language_title">اختر اللغة</string>
+
+    <!-- Dialog - Statistics -->
+    <string name="statistics_title">الإحصائيات</string>
+    <string name="statistics_by_atelier">حسب الورشة</string>
+    <string name="statistics_by_type">حسب النوع</string>
+    <string name="statistics_by_type_depart">حسب نوع المغادرة</string>
+    <string name="statistics_by_tgbt">حسب TGBT</string>
+    <string name="statistics_by_dp">حسب DP</string>
+    <string name="statistics_by_carte">حسب البطاقة</string>
+    <string name="statistics_by_position">حسب الموقع</string>
+    <string name="statistics_no_data">لا توجد بيانات</string>
+    <string name="statistics_na">غير متوفر</string>
+    <string name="statistics_more">+ %d أخرى…</string>
+    <string name="statistics_motors">المحركات</string>
+    <string name="statistics_plc">PLC</string>
+
+    <!-- Detail Screen - Motor -->
+    <string name="detail_motor_title">تفاصيل المحرك</string>
+    <string name="detail_plc_title">تفاصيل PLC</string>
+    <string name="detail_back_cd">رجوع</string>
+    <string name="detail_favorite_add_cd">إضافة إلى المفضلة</string>
+    <string name="detail_favorite_remove_cd">إزالة من المفضلة</string>
+    <string name="detail_duplicate_cd">نسخ</string>
+    <string name="detail_share_cd">مشاركة</string>
+    <string name="detail_share_title_motor">مشاركة المحرك</string>
+    <string name="detail_share_title_plc">مشاركة PLC</string>
+    <string name="detail_no_designation">بدون تسمية</string>
+
+
+    <!-- Detail Screen - Sections -->
+    <string name="detail_section_localisation">الموقع</string>
+    <string name="detail_section_electrical">الخصائص الكهربائية</string>
+    <string name="detail_section_type">النوع</string>
+    <string name="detail_section_cable">الكابل</string>
+    <string name="detail_section_identification">التعريف</string>
+
+    <!-- Detail Screen - Fields -->
+    <string name="detail_field_atelier">الورشة</string>
+    <string name="detail_field_tgbt">TGBT</string>
+    <string name="detail_field_position_tgbt">موقع TGBT</string>
+    <string name="detail_field_power">الطاقة</string>
+    <string name="detail_field_depart_type">نوع المغادرة</string>
+    <string name="detail_field_item">العنصر</string>
+    <string name="detail_field_motor_type">نوع المحرك</string>
+    <string name="detail_field_cable">الكابل</string>
+    <string name="detail_field_cable_type">نوع الكابل</string>
+    <string name="detail_field_dp">DP</string>
+    <string name="detail_field_carte">البطاقة</string>
+    <string name="detail_field_position">الموقع</string>
+    <string name="detail_field_designation">التسمية</string>
+
+    <!-- Header -->
+    <string name="header_departs_title">مغادرات الطاقة</string>
+    <string name="header_plc_title">PLC I/O</string>
+    <string name="header_view_list_cd">عرض القائمة</string>
+    <string name="header_view_cards_cd">عرض البطاقات</string>
+    <string name="header_theme_cd">وضع السمة</string>
+    <string name="header_menu_cd">القائمة</string>
+
+    <!-- Empty state -->
+    <string name="empty_no_data_departs">لا توجد بيانات DEPARTS</string>
+    <string name="empty_no_data_plc">لا توجد بيانات PLC</string>
+    <string name="empty_import_hint">استيراد ملف Excel أو CSV</string>
+
+    <!-- Match types -->
+    <string name="match_exact">مطابق</string>
+    <string name="match_normalized">موحد</string>
+    <string name="match_format">تنسيق</string>
+    <string name="match_voice">صوتي</string>
+    <string name="match_substring">جزء من النص</string>
+    <string name="match_approach">تقريبي</string>
+
+    <!-- Export -->
+    <string name="export_filename_departs">departs_export_%s.csv</string>
+    <string name="export_filename_plc">plc_export_%s.csv</string>
+    <string name="export_filename_departs_xlsx">departs_export_%s.xlsx</string>
+    <string name="export_filename_plc_xlsx">plc_export_%s.xlsx</string>
+    <string name="export_multiple_csv_summary">اكتمل تصدير CSV: %1$d مغادرة، %2$d PLC</string>
+    <string name="export_multiple_excel_summary">اكتمل تصدير Excel: %1$d مغادرة، %2$d PLC</string>
+    <string name="import_hint_switch_to_plc">هذا الملف مخصص لعرض PLC. انتقل إلى تبويب PLC لاستيراده.</string>
+    <string name="import_hint_switch_to_departs">هذا الملف مخصص لعرض DEPARTS. انتقل إلى تبويب DEPARTS لاستيراده.</string>
+    <string name="import_error_unknown">نوع ملف غير معروف</string>
+
+    <!-- Voice search -->
+    <string name="voice_tag_reconstructed">الوسم المعاد بناؤه</string>
+    <string name="voice_suggestions">اقتراحات</string>
+    <string name="voice_more_results">+ %d أخرى…</string>
+
+    <!-- Form dialog -->
+    <string name="form_title_add_motor">إضافة مغادرة</string>
+    <string name="form_title_edit_motor">تعديل المغادرة</string>
+    <string name="form_title_add_plc">إضافة إدخال PLC</string>
+    <string name="form_title_edit_plc">تعديل إدخال PLC</string>
+    <string name="form_field_numeric_required">قيمة رقمية مطلوبة</string>
+    <string name="scroll_to_top">العودة إلى الأعلى</string>
+
+    <!-- Column headers (Motor table) -->
+    <string name="col_item">العنصر</string>
+    <string name="col_tgbt">TGBT</string>
+    <string name="col_pos_tgbt">موقع TGBT</string>
+    <string name="col_atelier">الورشة</string>
+    <string name="col_designation">التسمية</string>
+    <string name="col_kw">كيلوواط</string>
+    <string name="col_types">الأنواع</string>
+    <string name="col_t_departs">نوع المغادرة</string>
+    <string name="col_cable">الكابل</string>
+    <string name="col_t_cable">نوع الكابل</string>
+
+    <!-- Column headers (PLC table) -->
+    <string name="col_dp">DP</string>
+    <string name="col_carte">البطاقة</string>
+    <string name="col_pos">الموقع</string>
+    <string name="col_sort_asc">ترتيب تصاعدي</string>
+    <string name="col_sort_desc">ترتيب تنازلي</string>
+
+    <!-- Form fields -->
+    <string name="field_atelier">الورشة</string>
+    <string name="field_tgbt">TGBT</string>
+    <string name="field_position_tgbt">موقع TGBT</string>
+    <string name="field_item">العنصر</string>
+    <string name="field_designation">التسمية</string>
+    <string name="field_power_kw">الطاقة (كيلوواط)</string>
+    <string name="field_types">الأنواع</string>
+    <string name="field_types_departs">أنواع المغادرات</string>
+    <string name="field_cable">الكابل</string>
+    <string name="field_cable_type">نوع الكابل</string>
+    <string name="field_dp">DP</string>
+    <string name="field_carte">البطاقة</string>
+    <string name="field_position">الموقع</string>
+
+    <!-- Backup -->
+    <string name="backup_settings_title">إعدادات النسخ الاحتياطي</string>
+    <string name="backup_enable">تفعيل النسخ الاحتياطي التلقائي</string>
+    <string name="backup_frequency">التكرار</string>
+    <string name="backup_format">التنسيق</string>
+    <string name="backup_modules">الوحدات المطلوب نسخها</string>
+    <string name="backup_module_departs">المغادرات فقط</string>
+    <string name="backup_module_plc">PLC I/O فقط</string>
+    <string name="backup_module_both">الاثنان (ملفات منفصلة)</string>
+    <string name="backup_file_mode">وضع الملف</string>
+    <string name="backup_mode_overwrite">الكتابة فوق</string>
+    <string name="backup_mode_timestamp">بتاريخ ووقت</string>
+    <string name="backup_max_files">الحد الأقصى للملفات: %d</string>
+    <string name="backup_last_backup">آخر نسخة احتياطية: %s</string>
+    <string name="backup_space_used">المساحة المستخدمة: %s</string>
+    <string name="backup_manual">نسخ احتياطي</string>
+    <string name="backup_success">اكتملت النسخة الاحتياطية: %1$d مغادرة، %2$d PLC</string>
+    <string name="backup_error">فشلت النسخة الاحتياوية: %s</string>
+    <string name="backup_location">الموقع</string>
+    <string name="backup_internal_storage">التخزين الداخلي</string>
+    <string name="backup_choose_folder">اختيار مجلد</string>
+    <string name="backup_frequency_on_change">مع كل تعديل</string>
+    <string name="backup_frequency_on_change_hint">يتم تشغيله بعد تأخير 60 ثانية من كل تعديل</string>
+    <string name="backup_freq_hours">%d س</string>
+    <string name="backup_freq_days">%d ي</string>
+    <string name="backup_browse">النسخ الاحتياطية</string>
+    <string name="backup_no_files">لا توجد نسخ احتياطية</string>
+    <string name="backup_delete">حذف</string>
+    <string name="backup_rename">إعادة تسمية</string>
+    <string name="backup_rename_title">إعادة تسمية النسخة الاحتياطية</string>
+    <string name="backup_delete_confirm">حذف هذه النسخة الاحتياطية؟</string>
+    <string name="backup_info">معلومات الملف</string>
+    <string name="backup_info_date">التاريخ</string>
+    <string name="backup_info_size">الحجم</string>
+    <string name="backup_restore">استعادة</string>
+    <string name="backup_restore_confirm">استعادة هذه النسخة الاحتياطية؟\nلن يتم تكرار البيانات الموجودة.</string>
+    <string name="backup_restore_success">تمت الاستعادة: %1$d محركات، %2$d PLC</string>
+    <string name="backup_restore_error">فشلت عملية الاستعادة</string>
+
+    <!-- Backup - Multi-select -->
+    <string name="backup_selected_count">%d محدد</string>
+    <string name="backup_select_all">الكل</string>
+    <string name="backup_deselect_all">لا شيء</string>
+    <string name="backup_delete_selected">حذف</string>
+    <string name="backup_delete_batch_confirm">حذف %d نسخة احتياطية؟\nهذا الإجراء لا رجعة فيه.</string>
+
+    <!-- Cloud Backup -->
+    <string name="menu_cloud_backup">النسخ الاحتياطي السحابي</string>
+    <string name="cloud_provider">مزود السحابة</string>
+    <string name="cloud_backup_settings_title">إعدادات النسخ الاحتياطي السحابي</string>
+    <string name="cloud_backup_enable">تفعيل النسخ الاحتياطي السحابي</string>
+    <string name="cloud_backup_frequency">التكرار</string>
+    <string name="cloud_backup_format">التنسيق</string>
+    <string name="cloud_backup_constraints">القيود</string>
+    <string name="cloud_backup_wifi_only">Wi-Fi فقط</string>
+    <string name="cloud_backup_metered">السماح بالشبكة المحدودة</string>
+    <string name="cloud_backup_charging">عند الشحن فقط</string>
+    <string name="cloud_backup_signed_in">مسجل الدخول كـ %s</string>
+    <string name="cloud_backup_not_signed_in">غير مسجل الدخول</string>
+    <string name="cloud_backup_sign_in_google">تسجيل الدخول بـ Google</string>
+    <string name="cloud_backup_sign_out">تسجيل الخروج</string>
+    <string name="cloud_backup_now">نسخ احتياطي</string>
+    <string name="cloud_backup_browse">النسخ الاحتياطية</string>
+    <string name="cloud_backup_loading">جاري تحميل النسخ الاحتياطية السحابية…</string>
+    <string name="cloud_backup_no_files">لا توجد نسخ احتياطية سحابية</string>
+    <string name="cloud_backup_last_backup">آخر نسخة احتياطية سحابية: %s</string>
+    <string name="cloud_backup_files_uploaded">تم رفع %d ملف(ات)</string>
+    <string name="cloud_backup_status_success">نجاح</string>
+    <string name="cloud_backup_status_failed">فشل</string>
+    <string name="cloud_backup_status_in_progress">جاري…</string>
+    <string name="cloud_backup_success">اكتملت النسخة الاحتياطية السحابية: %1$d مغادرة، %2$d PLC</string>
+    <string name="cloud_backup_error">فشلت النسخة الاحتياطية السحابية</string>
+    <string name="cloud_backup_restore">استعادة من السحابة</string>
+    <string name="cloud_backup_restore_confirm">استعادة هذه النسخة الاحتياطية السحابية؟\nلن يتم تكرار البيانات الموجودة.</string>
+    <string name="cloud_backup_restore_warning">⚠ سيؤدي هذا إلى استبدال جميع البيانات الموجودة بمحتوى النسخة الاحتياطية. لا يمكن التراجع عن هذا الإجراء.</string>
+    <string name="cloud_backup_delete">حذف</string>
+    <string name="cloud_backup_delete_confirm">حذف هذه النسخة الاحتياطية السحابية؟</string>
+    <string name="cloud_backup_selected_count">%d محدد</string>
+    <string name="cloud_backup_select_all">الكل</string>
+    <string name="cloud_backup_deselect_all">لا شيء</string>
+    <string name="cloud_backup_delete_selected">حذف</string>
+    <string name="cloud_backup_delete_batch_confirm">حذف %d نسخة احتياطية سحابية؟\nهذا الإجراء لا رجعة فيه.</string>
+    <string name="cloud_backup_freq_hours">%d س</string>
+    <string name="cloud_backup_freq_days">%d ي</string>
+
+    <!-- Notifications -->
+    <string name="notif_channel_name">النسخ الاحتياطي السحابي</string>
+    <string name="notif_channel_desc">إشعارات عمليات النسخ الاحتياطي السحابي</string>
+    <string name="notif_backup_success_title">اكتملت النسخة الاحتياطية</string>
+    <string name="notif_backup_success_body">تم نسخ %1$d مغادرة و %2$d PLC</string>
+    <string name="notif_backup_error_title">فشل النسخ الاحتياطي</string>
+    <string name="notif_backup_error_body_generic">فشل النسخ الاحتياطي. تحقق من اتصالك.</string>
+    <string name="notif_backup_deleted_title">تم حذف النسخة الاحتياطية</string>
+    <string name="notif_backup_deleted_body">تم حذف %s من السحابة</string>
+    <string name="notif_backup_deleted_batch_body">تم حذف %d نسخة(ات) احتياطية من السحابة</string>
+
+    <!-- Generic error messages (no user-facing details) -->
+    <string name="cloud_operation_error_generic">فشلت العملية السحابية</string>
+    <string name="auth_error_generic">فشلت المصادقة. حاول مرة أخرى.</string>
+    <string name="notif_backup_progress_title">النسخ الاحتياطي السحابي</string>
+    <string name="notif_backup_progress_body">%1$d%% — %2$d كيلوبايت/ثانية</string>
+</resources>

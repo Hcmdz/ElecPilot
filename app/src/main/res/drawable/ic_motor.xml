@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background circle -->
+    <path
+        android:fillColor="#1B3A5C"
+        android:pathData="M54,54m-48,0a48,48 0,1 1,96 0a48,48 0,1 1,-96 0" />
+
+    <!-- Outer ring (motor housing) -->
+    <path
+        android:fillColor="#2A5A8C"
+        android:pathData="M54,30m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0" />
+
+    <!-- Motor housing body -->
+    <path
+        android:fillColor="#3A7ABD"
+        android:pathData="M32,34 L76,34 Q80,34 80,38 L80,70 Q80,74 76,74 L32,74 Q28,74 28,70 L28,38 Q28,34 32,34 Z" />
+
+    <!-- Inner motor body -->
+    <path
+        android:fillColor="#4A8ACD"
+        android:pathData="M34,38 L74,38 Q76,38 76,40 L76,68 Q76,70 74,70 L34,70 Q32,70 32,68 L32,40 Q32,38 34,38 Z" />
+
+    <!-- Rotor circle -->
+    <path
+        android:fillColor="#1B3A5C"
+        android:pathData="M54,54m-12,0a12,12 0,1 1,24 0a12,12 0,1 1,-24 0" />
+
+    <!-- Rotor center -->
+    <path
+        android:fillColor="#4A8ACD"
+        android:pathData="M54,54m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0" />
+
+    <!-- Rotor shaft (horizontal line through center) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:pathData="M42,54 L66,54" />
+
+    <!-- Rotor shaft (vertical line through center) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:pathData="M54,42 L54,66" />
+
+    <!-- Diagonal windings -->
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.8"
+        android:pathData="M38,38 L42,42" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.8"
+        android:pathData="M70,38 L66,42" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.8"
+        android:pathData="M38,70 L42,66" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.8"
+        android:pathData="M70,70 L66,66" />
+
+    <!-- Coil windings (left side) -->
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M38,45 Q34,48 38,51" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M38,52 Q34,55 38,58" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M38,59 Q34,62 38,65" />
+
+    <!-- Coil windings (right side) -->
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M70,45 Q74,48 70,51" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M70,52 Q74,55 70,58" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M70,59 Q74,62 70,65" />
+
+    <!-- Top coil windings -->
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M45,38 Q48,34 51,38" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M52,38 Q55,34 58,38" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M59,38 Q62,34 65,38" />
+
+    <!-- Bottom coil windings -->
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M45,70 Q48,74 51,70" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M52,70 Q55,74 58,70" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M59,70 Q62,74 65,70" />
+
+    <!-- Shaft extension (right) -->
+    <path
+        android:fillColor="#90CAF9"
+        android:pathData="M76,51 L82,51 Q84,51 84,53 L84,55 Q84,57 82,57 L76,57 Z" />
+
+    <!-- Shaft extension (left) -->
+    <path
+        android:fillColor="#90CAF9"
+        android:pathData="M26,51 L32,51 Q24,51 24,53 L24,55 Q24,57 26,57 L32,57 Z" />
+
+    <!-- Power arrow (right) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M86,48 L90,54 L86,60" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M86,48 L90,54 L86,60" />
+
+    <!-- Power arrow (left) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M22,48 L18,54 L22,60" />
+
+    <!-- Connection dots -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M86,54m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M22,54m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+</vector>

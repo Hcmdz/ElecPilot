@@ -1,0 +1,5 @@
+rules:
+  - p/security-audit
+  - p/owasp-top-ten
+  - p/kotlin
+  - p/secrets
