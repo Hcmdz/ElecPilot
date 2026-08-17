@@ -1,0 +1,370 @@
+<resources>
+    <string name="app_name">ElecPilot</string>
+
+    <!-- Navigation / Tabs -->
+    <string name="tab_departs">Départs</string>
+    <string name="tab_plc">PLC I/O</string>
+    <string name="tab_separator">|</string>
+
+    <!-- Drawer / Menu -->
+    <string name="drawer_title">ElecPilot</string>
+    <string name="drawer_subtitle">ElecPilot - Gestion des départs électrique et PLC I/O</string>
+    <string name="menu_import">Importer multifichier</string>
+    <string name="menu_export_csv">Export CSV multifichier</string>
+    <string name="menu_export_excel">Export Excel multifichier</string>
+    <string name="menu_statistics">Statistiques</string>
+    <string name="menu_clear_all">Effacer toutes les données</string>
+    <string name="menu_about">A propos</string>
+    <string name="menu_language">Langue</string>
+    <string name="menu_backup">Sauvegarde auto locale</string>
+
+    <!-- Language names -->
+    <string name="language_french">Français</string>
+    <string name="language_english">English</string>
+    <string name="language_arabic">العربية</string>
+
+    <!-- General -->
+    <string name="close">Fermer</string>
+    <string name="cancel_operation">Annuler</string>
+    <string name="action_refresh">Actualiser</string>
+
+    <!-- Search -->
+    <string name="search_hint_departs">Recherche Départ</string>
+    <string name="search_hint_plc">Recherche PLC I/O</string>
+    <string name="search_icon_cd">Rechercher</string>
+    <string name="search_clear_cd">Effacer</string>
+    <string name="search_voice_cd">Recherche vocale</string>
+    <string name="search_history_cd">Historique de recherche</string>
+    <string name="search_voice_prompt">Parlez pour rechercher…</string>
+    <string name="search_voice_title">Reconnaissance vocale</string>
+    <string name="search_no_results">Aucun résultat pour \"%s\"</string>
+    <string name="search_no_results_filters">Aucun résultat avec les filtres actuels</string>
+
+    <!-- Filter -->
+    <string name="filter_icon_cd">Filtres</string>
+    <string name="filter_favorites">★ Favoris</string>
+    <string name="filter_column_atelier">Atelier</string>
+    <string name="filter_column_types">Types</string>
+    <string name="filter_column_t_departs">T. Départs</string>
+    <string name="filter_power_low">≤ 10 kW</string>
+    <string name="filter_power_medium">10–50 kW</string>
+    <string name="filter_power_high">&gt; 50 kW</string>
+    <string name="filter_title">Filtrer par %s</string>
+    <string name="filter_select_all">Tous</string>
+
+    <!-- Action buttons -->
+    <string name="action_import">Importer</string>
+    <string name="action_export">Exporter</string>
+    <string name="export_choice_title">Format d\'export</string>
+    <string name="export_choice_message">Choisissez le format d\'export :</string>
+    <string name="action_add">Ajouter</string>
+    <string name="action_select">Select.</string>
+    <string name="action_deselect">Desel. tt</string>
+    <string name="action_select_all">Tout</string>
+    <string name="action_edit">Modifier</string>
+    <string name="action_delete">Supp.</string>
+    <string name="action_quit_select">Quitter</string>
+    <string name="action_modify">Modifier</string>
+    <string name="action_share">Partager</string>
+    <string name="action_save">Enregistrer</string>
+    <string name="action_register">Ajouter</string>
+    <string name="action_apply">Appliquer</string>
+
+    <!-- Selection -->
+    <string name="selection_count">%1$d/%2$d sélectionné(s)</string>
+
+    <!-- Snackbars -->
+    <string name="snackbar_value_copied">Valeur copiée</string>
+    <string name="snackbar_depart_added">Départ ajouté</string>
+    <string name="snackbar_depart_updated">Départ modifié</string>
+    <string name="snackbar_depart_deleted">Départ supprimé</string>
+    <string name="snackbar_depart_duplicated">Départ dupliqué</string>
+    <string name="snackbar_plc_added">PLC ajouté</string>
+    <string name="snackbar_plc_updated">PLC modifié</string>
+    <string name="snackbar_plc_deleted">PLC supprimé</string>
+    <string name="snackbar_export_success_departs">%d départs exportés avec succès</string>
+    <string name="snackbar_export_success_plc">%d PLC(s) exportés avec succès</string>
+    <string name="snackbar_export_error">Échec de l\'export</string>
+    <string name="snackbar_import_error">Échec de l\'import</string>
+    <string name="snackbar_favorite_error">Opération échouée</string>
+    <string name="snackbar_undo">Annuler</string>
+    <string name="snackbar_batch_edit_success">%d moteur(s) modifié(s)</string>
+    <string name="snackbar_batch_edit_success_plc">%d PLC(s) modifié(s)</string>
+    <string name="snackbar_batch_delete_success">%d moteur(s) supprimé(s)</string>
+    <string name="snackbar_batch_delete_success_plc">%d PLC(s) supprimé(s)</string>
+    <string name="snackbar_all_data_deleted">Toutes les données supprimées</string>
+    <string name="snackbar_no_data_to_delete">Aucune donnée à supprimer</string>
+    <string name="snackbar_operation_pending">Opération en cours…</string>
+
+    <!-- Import -->
+    <string name="import_title">Confirmation</string>
+    <string name="import_lines_detected">%d ligne(s) détectée(s)</string>
+    <string name="import_plc_confirm_body">dans le fichier.\n\nLes nouvelles données seront ajoutées à la base existante. Voulez-vous continuer ?</string>
+    <string name="import_departs_confirm_body">dans le fichier.\n\nLes nouvelles données seront ajoutées à la base existante. Voulez-vous continuer ?</string>
+    <string name="import_success_departs">%1$d départs ajoutés (%2$d doublons ignorés)</string>
+    <string name="import_success_plc">%1$d PLC ajoutés (%2$d doublons ignorés)</string>
+    <string name="import_no_new_departs">Aucun nouveau départ (%d doublon(s))</string>
+    <string name="import_no_new_plc">Aucun nouveau PLC (%d doublon(s))</string>
+    <string name="import_no_data">Aucune donnée trouvée dans le fichier</string>
+    <string name="import_summary_combined">Import : %1$d départ(s), %2$d PLC(s)</string>
+    <string name="import_wrong_type_detail">%d fichier(s) de mauvais type ignoré(s)</string>
+    <string name="import_errors_detail">%d fichier(s) en erreur de lecture</string>
+
+    <!-- Dialog - Delete -->
+    <string name="dialog_confirm_title">Confirmation</string>
+    <string name="dialog_delete_confirm_depart">Voulez-vous vraiment supprimer ce départ ?\n\n%s</string>
+    <string name="dialog_delete_confirm_plc">Voulez-vous vraiment supprimer cette entrée PLC ?\n\n%s</string>
+    <string name="dialog_delete_confirm_batch_departs">Voulez-vous vraiment supprimer ces %d départs ?\n\nCette action est irréversible.</string>
+    <string name="dialog_delete_confirm_batch_plc">Voulez-vous vraiment supprimer ces %d entrées PLC ?\n\nCette action est irréversible.</string>
+    <string name="dialog_clear_all_confirm">Voulez-vous vraiment supprimer toutes les données DEPARTS et PLC ?\n\nCette action est irréversible.</string>
+
+    <!-- Dialog - Batch Edit -->
+    <string name="dialog_batch_edit_title">Édition groupée</string>
+    <string name="dialog_batch_edit_count">%d moteur(s) sélectionné(s)</string>
+    <string name="dialog_batch_edit_count_plc">%d PLC(s) sélectionné(s)</string>
+    <string name="dialog_batch_edit_field_label">Champ à modifier</string>
+    <string name="dialog_batch_edit_new_value">Nouvelle valeur</string>
+
+    <!-- Dialog - About -->
+    <string name="dialog_about_title">A propos de l\'application</string>
+    <string name="dialog_about_body">ElecPilot est une application professionnelle pour la gestion des départs moteurs électriques et des modules PLC I/O. Elle permet d\'importer, exporter, rechercher, filtrer et gérer efficacement vos données d\'équipement électrique.\n\nDéveloppée avec les technologies Android modernes : Jetpack Compose, Room Database, Material You Design, et import/export CSV/Excel. Propulsé par rclone pour la sauvegarde cloud.</string>
+    <string name="dialog_about_developer">Développeur : HcmDZ</string>
+    <string name="dialog_about_version">Version %s</string>
+    <string name="drawer_developed_by">Développé par HcmDz</string>
+    <string name="drawer_privacy_policy">Politique de confidentialité</string>
+    <string name="drawer_terms_of_service">Conditions d\'utilisation</string>
+
+    <!-- Dialog - Language -->
+    <string name="dialog_language_title">Choisir la langue</string>
+
+    <!-- Dialog - Statistics -->
+    <string name="statistics_title">Statistiques</string>
+    <string name="statistics_by_atelier">Par Atelier</string>
+    <string name="statistics_by_type">Par Type</string>
+    <string name="statistics_by_type_depart">Par Type Départ</string>
+    <string name="statistics_by_tgbt">Par TGBT</string>
+    <string name="statistics_by_dp">Par DP</string>
+    <string name="statistics_by_carte">Par Carte</string>
+    <string name="statistics_by_position">Par Position</string>
+    <string name="statistics_no_data">Aucune donnée</string>
+    <string name="statistics_na">N/D</string>
+    <string name="statistics_more">+ %d autres…</string>
+    <string name="statistics_motors">Moteurs</string>
+    <string name="statistics_plc">PLC</string>
+
+    <!-- Detail Screen - Motor -->
+    <string name="detail_motor_title">Détail du moteur</string>
+    <string name="detail_plc_title">Détail PLC</string>
+    <string name="detail_back_cd">Retour</string>
+    <string name="detail_favorite_add_cd">Ajouter aux favoris</string>
+    <string name="detail_favorite_remove_cd">Retirer des favoris</string>
+    <string name="detail_duplicate_cd">Dupliquer</string>
+    <string name="detail_share_cd">Partager</string>
+    <string name="detail_share_title_motor">Partager le moteur</string>
+    <string name="detail_share_title_plc">Partager le PLC</string>
+    <string name="detail_no_designation">Sans désignation</string>
+
+
+    <!-- Detail Screen - Sections -->
+    <string name="detail_section_localisation">Localisation</string>
+    <string name="detail_section_electrical">Caractéristiques électriques</string>
+    <string name="detail_section_type">Type</string>
+    <string name="detail_section_cable">Câble</string>
+    <string name="detail_section_identification">Identification</string>
+
+    <!-- Detail Screen - Fields -->
+    <string name="detail_field_atelier">Atelier</string>
+    <string name="detail_field_tgbt">TGBT</string>
+    <string name="detail_field_position_tgbt">Position TGBT</string>
+    <string name="detail_field_power">Puissance</string>
+    <string name="detail_field_depart_type">Type de départ</string>
+    <string name="detail_field_item">Item</string>
+    <string name="detail_field_motor_type">Type moteur</string>
+    <string name="detail_field_cable">Câble</string>
+    <string name="detail_field_cable_type">Type de câble</string>
+    <string name="detail_field_dp">DP</string>
+    <string name="detail_field_carte">Carte</string>
+    <string name="detail_field_position">Position</string>
+    <string name="detail_field_designation">Désignation</string>
+
+    <!-- Header -->
+    <string name="header_departs_title">Départs de puissance</string>
+    <string name="header_plc_title">PLC I/O</string>
+    <string name="header_view_list_cd">Vue liste</string>
+    <string name="header_view_cards_cd">Vue cartes</string>
+    <string name="header_theme_cd">Mode thème</string>
+    <string name="header_menu_cd">Menu</string>
+
+    <!-- Empty state -->
+    <string name="empty_no_data_departs">Aucune donnée DEPARTS</string>
+    <string name="empty_no_data_plc">Aucune donnée PLC</string>
+    <string name="empty_import_hint">Importer un fichier Excel ou CSV</string>
+
+    <!-- Match types -->
+    <string name="match_exact">Exact</string>
+    <string name="match_normalized">Normalisé</string>
+    <string name="match_format">Format</string>
+    <string name="match_voice">Vocal</string>
+    <string name="match_substring">Substring</string>
+    <string name="match_approach">Approche</string>
+
+    <!-- Export -->
+    <string name="export_filename_departs">departs_export_%s.csv</string>
+    <string name="export_filename_plc">plc_export_%s.csv</string>
+    <string name="export_filename_departs_xlsx">departs_export_%s.xlsx</string>
+    <string name="export_filename_plc_xlsx">plc_export_%s.xlsx</string>
+    <string name="export_multiple_csv_summary">Export CSV terminé : %1$d départ(s), %2$d PLC(s)</string>
+    <string name="export_multiple_excel_summary">Export Excel terminé : %1$d départ(s), %2$d PLC(s)</string>
+    <string name="import_hint_switch_to_plc">Ce fichier est pour la vue PLC. Passez à l\'onglet PLC pour l\'importer.</string>
+    <string name="import_hint_switch_to_departs">Ce fichier est pour la vue DEPARTS. Passez à l\'onglet DEPARTS pour l\'importer.</string>
+    <string name="import_error_unknown">Type de fichier non reconnu</string>
+
+    <!-- Voice search -->
+    <string name="voice_tag_reconstructed">Tag reconstruit</string>
+    <string name="voice_suggestions">Suggestions</string>
+    <string name="voice_more_results">+ %d autre(s)…</string>
+
+    <!-- Form dialog -->
+    <string name="form_title_add_motor">Ajouter un départ</string>
+    <string name="form_title_edit_motor">Modifier le départ</string>
+    <string name="form_title_add_plc">Ajouter une entrée PLC</string>
+    <string name="form_title_edit_plc">Modifier l\'entrée PLC</string>
+    <string name="form_field_numeric_required">Valeur numérique requise</string>
+    <string name="scroll_to_top">Revenir en haut</string>
+
+    <!-- Column headers (Motor table) -->
+    <string name="col_item">Item</string>
+    <string name="col_tgbt">TGBT</string>
+    <string name="col_pos_tgbt">Pos. TGBT</string>
+    <string name="col_atelier">Atelier</string>
+    <string name="col_designation">Désignation</string>
+    <string name="col_kw">kW</string>
+    <string name="col_types">Types</string>
+    <string name="col_t_departs">T. Départs</string>
+    <string name="col_cable">Câble</string>
+    <string name="col_t_cable">T. Câble</string>
+
+    <!-- Column headers (PLC table) -->
+    <string name="col_dp">DP</string>
+    <string name="col_carte">Carte</string>
+    <string name="col_pos">Pos.</string>
+    <string name="col_sort_asc">Tri croissant</string>
+    <string name="col_sort_desc">Tri décroissant</string>
+
+    <!-- Form fields -->
+    <string name="field_atelier">Atelier</string>
+    <string name="field_tgbt">TGBT</string>
+    <string name="field_position_tgbt">Position TGBT</string>
+    <string name="field_item">Item</string>
+    <string name="field_designation">Désignation</string>
+    <string name="field_power_kw">Puissance (kW)</string>
+    <string name="field_types">Types</string>
+    <string name="field_types_departs">Types Départs</string>
+    <string name="field_cable">Câble</string>
+    <string name="field_cable_type">Type Câble</string>
+    <string name="field_dp">DP</string>
+    <string name="field_carte">Carte</string>
+    <string name="field_position">Position</string>
+
+    <!-- Backup -->
+    <string name="backup_settings_title">Paramètres de sauvegarde</string>
+    <string name="backup_enable">Activer la sauvegarde automatique</string>
+    <string name="backup_frequency">Fréquence</string>
+    <string name="backup_format">Format</string>
+    <string name="backup_modules">Modules à sauvegarder</string>
+    <string name="backup_module_departs">Départs uniquement</string>
+    <string name="backup_module_plc">PLC I/O uniquement</string>
+    <string name="backup_module_both">Les deux (fichiers séparés)</string>
+    <string name="backup_file_mode">Mode fichier</string>
+    <string name="backup_mode_overwrite">Écraser</string>
+    <string name="backup_mode_timestamp">Horodaté</string>
+    <string name="backup_max_files">Max fichiers : %d</string>
+    <string name="backup_last_backup">Dernière sauvegarde : %s</string>
+    <string name="backup_space_used">Espace utilisé : %s</string>
+    <string name="backup_manual">Sauvegarde</string>
+    <string name="backup_success">Sauvegarde terminée : %1$d départs, %2$d PLC(s)</string>
+    <string name="backup_error">Échec de la sauvegarde : %s</string>
+    <string name="backup_location">Emplacement</string>
+    <string name="backup_internal_storage">Stockage interne</string>
+    <string name="backup_choose_folder">Choisir un dossier</string>
+    <string name="backup_frequency_on_change">À chaque modification</string>
+    <string name="backup_frequency_on_change_hint">Se déclenche avec un délai de 60 secondes après chaque modification</string>
+    <string name="backup_freq_hours">%dh</string>
+    <string name="backup_freq_days">%dj</string>
+    <string name="backup_browse">Sauvegardes</string>
+    <string name="backup_no_files">Aucune sauvegarde trouvée</string>
+    <string name="backup_delete">Supprimer</string>
+    <string name="backup_rename">Renommer</string>
+    <string name="backup_rename_title">Renommer la sauvegarde</string>
+    <string name="backup_delete_confirm">Supprimer cette sauvegarde ?</string>
+    <string name="backup_info">Info du fichier</string>
+    <string name="backup_info_date">Date</string>
+    <string name="backup_info_size">Taille</string>
+    <string name="backup_restore">Restaurer</string>
+    <string name="backup_restore_confirm">Restaurer cette sauvegarde ?\nLes données existantes ne seront pas dupliquées.</string>
+    <string name="backup_restore_success">Restauré : %1$d moteurs, %2$d PLC</string>
+    <string name="backup_restore_error">Échec de la restauration</string>
+
+    <!-- Backup - Multi-select -->
+    <string name="backup_selected_count">%d sélectionné(s)</string>
+    <string name="backup_select_all">Tous</string>
+    <string name="backup_deselect_all">Aucun</string>
+    <string name="backup_delete_selected">Supprimer</string>
+    <string name="backup_delete_batch_confirm">Supprimer %d sauvegarde(s) ?\nCette action est irréversible.</string>
+
+    <!-- Cloud Backup -->
+    <string name="menu_cloud_backup">Sauvegarde Cloud</string>
+    <string name="cloud_provider">Fournisseur cloud</string>
+    <string name="cloud_backup_settings_title">Paramètres sauvegarde Cloud</string>
+    <string name="cloud_backup_enable">Activer la sauvegarde cloud</string>
+    <string name="cloud_backup_frequency">Fréquence</string>
+    <string name="cloud_backup_format">Format</string>
+    <string name="cloud_backup_constraints">Contraintes</string>
+    <string name="cloud_backup_wifi_only">Wi-Fi uniquement</string>
+    <string name="cloud_backup_metered">Autoriser le réseau à données mobiles</string>
+    <string name="cloud_backup_charging">Uniquement en charge</string>
+    <string name="cloud_backup_signed_in">Connecté en tant que %s</string>
+    <string name="cloud_backup_not_signed_in">Non connecté</string>
+    <string name="cloud_backup_sign_in_google">Se connecter avec Google</string>
+    <string name="cloud_backup_sign_out">Se déconnecter</string>
+    <string name="cloud_backup_now">Sauvegarder</string>
+    <string name="cloud_backup_browse">Sauvegardes</string>
+    <string name="cloud_backup_loading">Chargement des sauvegardes cloud…</string>
+    <string name="cloud_backup_no_files">Aucune sauvegarde cloud trouvée</string>
+    <string name="cloud_backup_last_backup">Dernière sauvegarde cloud : %s</string>
+    <string name="cloud_backup_files_uploaded">%d fichier(s) uploadé(s)</string>
+    <string name="cloud_backup_status_success">Succès</string>
+    <string name="cloud_backup_status_failed">Échoué</string>
+    <string name="cloud_backup_status_in_progress">En cours…</string>
+    <string name="cloud_backup_success">Sauvegarde cloud terminée : %1$d départs, %2$d PLC(s)</string>
+    <string name="cloud_backup_error">Échec de la sauvegarde cloud</string>
+    <string name="cloud_backup_restore">Restaurer depuis le cloud</string>
+    <string name="cloud_backup_restore_confirm">Restaurer cette sauvegarde cloud ?\nLes données existantes ne seront pas dupliquées.</string>
+    <string name="cloud_backup_restore_warning">⚠ Cela REMPLACERA toutes les données existantes par le contenu de la sauvegarde. Cette action est irréversible.</string>
+    <string name="cloud_backup_delete">Supprimer</string>
+    <string name="cloud_backup_delete_confirm">Supprimer cette sauvegarde cloud ?</string>
+    <string name="cloud_backup_selected_count">%d sélectionné(s)</string>
+    <string name="cloud_backup_select_all">Tous</string>
+    <string name="cloud_backup_deselect_all">Aucun</string>
+    <string name="cloud_backup_delete_selected">Sup</string>
+    <string name="cloud_backup_delete_batch_confirm">Supprimer %d sauvegarde(s) cloud ?\nCette action est irréversible.</string>
+    <string name="cloud_backup_freq_hours">%dh</string>
+    <string name="cloud_backup_freq_days">%dj</string>
+
+    <!-- Notifications -->
+    <string name="notif_channel_name">Sauvegarde Cloud</string>
+    <string name="notif_channel_desc">Notifications pour les opérations de sauvegarde cloud</string>
+    <string name="notif_backup_success_title">Sauvegarde terminée</string>
+    <string name="notif_backup_success_body">%1$d départs, %2$d PLC(s) sauvegardés</string>
+    <string name="notif_backup_error_title">Échec de la sauvegarde</string>
+    <string name="notif_backup_error_body_generic">Échec de la sauvegarde. Vérifiez votre connexion.</string>
+    <string name="notif_backup_deleted_title">Sauvegarde supprimée</string>
+    <string name="notif_backup_deleted_body">%s supprimé du cloud</string>
+    <string name="notif_backup_deleted_batch_body">%d sauvegarde(s) supprimée(s) du cloud</string>
+
+    <!-- Generic error messages (no user-facing details) -->
+    <string name="cloud_operation_error_generic">Opération cloud échouée</string>
+    <string name="auth_error_generic">Échec de l\'authentification. Réessayez.</string>
+    <string name="notif_backup_progress_title">Sauvegarde Cloud</string>
+    <string name="notif_backup_progress_body">%1$d%% — %2$d Ko/s</string>
+</resources>
