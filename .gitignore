@@ -1,0 +1,13 @@
+*.apk
+*.tar.gz
+*.iml
+*.hprof
+build/
+.gradle/
+.idea/
+.kotlin/
+.detekt/
+.agents/
+local.properties
+app/release.keystore
+gradle.properties

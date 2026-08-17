@@ -1,0 +1,109 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "9db20234080e120c5678645bb241733c",
+    "entities": [
+      {
+        "tableName": "motors",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `atelier` TEXT NOT NULL, `positionTGBT` TEXT NOT NULL, `item` TEXT NOT NULL, `designation` TEXT NOT NULL, `puissanceKW` TEXT NOT NULL, `types` TEXT NOT NULL, `typesDeparts` TEXT NOT NULL, `cable` TEXT NOT NULL, `typeCable` TEXT NOT NULL, `tgbt` TEXT NOT NULL, `favorite` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "atelier",
+            "columnName": "atelier",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "positionTGBT",
+            "columnName": "positionTGBT",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "item",
+            "columnName": "item",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "designation",
+            "columnName": "designation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "puissanceKW",
+            "columnName": "puissanceKW",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "types",
+            "columnName": "types",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typesDeparts",
+            "columnName": "typesDeparts",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cable",
+            "columnName": "cable",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeCable",
+            "columnName": "typeCable",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tgbt",
+            "columnName": "tgbt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favorite",
+            "columnName": "favorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_motors_favorite_id",
+            "unique": false,
+            "columnNames": [
+              "favorite",
+              "id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_motors_favorite_id` ON `${TABLE_NAME}` (`favorite`, `id`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9db20234080e120c5678645bb241733c')"
+    ]
+  }
+}
