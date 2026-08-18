@@ -66,17 +66,17 @@ Android application for managing electrical motor starters and PLC I/O modules i
 
 | Category | Library | Version |
 |---|---|---|
-| **UI** | Jetpack Compose + Material 3 | BOM 2026.06.00 |
-| **Async** | Kotlin Coroutines & Flow | 1.10.1 |
+| **UI** | Jetpack Compose + Material 3 | BOM 2026.08.00 |
+| **Async** | Kotlin Coroutines & Flow | 1.11.0 |
 | **Database** | Room | 2.8.4 |
 | **Networking** | OkHttp | 5.4.0 |
 | **Cloud** | rclone (native binary, UPX compressed) | custom build |
 | **Excel** | Apache POI (shadow jar from centic9/poi-on-android) | 5.2.5 |
 | **Scheduling** | WorkManager | 2.10.1 |
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
-| **Browser** | AndroidX Custom Tabs | 1.8.0 |
+| **Browser** | AndroidX Custom Tabs | 1.10.0 |
 | **Security** | AES-256-GCM (Android KeyStore), ProGuard, NSC | — |
-| **Build** | AGP 9.2.1, Kotlin 2.4.10, KSP 2.3.10 | — |
+| **Build** | AGP 9.3.1, Kotlin 2.4.10, KSP 2.3.11 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
 
 ### Security Features (v6.0)
