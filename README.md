@@ -14,6 +14,32 @@ Android application for managing electrical motor starters and PLC I/O modules i
 
 ---
 
+## Screenshots
+
+### Motor Starters
+
+| Light Mode | Dark Mode |
+|---|---|
+| ![Motor list — table view](screenshots/motor-list-table-view-light.png) | ![Motor list — table view](screenshots/motor-list-table-view-dark.png) |
+| ![Motor list — card view](screenshots/motor-list-card-view-light.png) | |
+| ![Motor detail](screenshots/motor-detail-dark.png) | |
+
+### PLC I/O Modules
+
+| Light Mode | Dark Mode |
+|---|---|
+| ![PLC list — table view](screenshots/plc-list-table-view-light.png) | ![PLC list — card view](screenshots/plc-list-card-view-dark.png) |
+| ![PLC list — card view](screenshots/plc-list-card-view-light.png) | |
+| ![PLC detail](screenshots/plc-detail-dark.png) | |
+
+### Settings
+
+| Light Mode | Dark Mode |
+|---|---|
+| ![Settings](screenshots/settings-light.png) | ![Settings](screenshots/settings-dark.png) |
+
+---
+
 ## Key Features
 
 - **Motor starter management** — full CRUD, search, batch edit, statistics
@@ -43,7 +69,7 @@ Android application for managing electrical motor starters and PLC I/O modules i
 | **UI** | Jetpack Compose + Material 3 | BOM 2026.06.00 |
 | **Async** | Kotlin Coroutines & Flow | 1.10.1 |
 | **Database** | Room | 2.8.4 |
-| **Networking** | OkHttp | 4.12.0 |
+| **Networking** | OkHttp | 5.4.0 |
 | **Cloud** | rclone (native binary, UPX compressed) | custom build |
 | **Excel** | Apache POI (shadow jar from centic9/poi-on-android) | 5.2.5 |
 | **Scheduling** | WorkManager | 2.10.1 |
