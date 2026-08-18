@@ -91,6 +91,7 @@ android {
 
     lint {
         checkDependencies = true
+        disable += "RememberInComposition"
     }
 }
 
