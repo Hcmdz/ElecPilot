@@ -23,11 +23,14 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file(providers.gradleProperty("RELEASE_STORE_FILE").getOrElse(""))
-            storePassword = findProperty("RELEASE_STORE_PASSWORD") as? String ?: ""
-            keyAlias = "HcmDz"
-            keyPassword = findProperty("RELEASE_KEY_PASSWORD") as? String ?: ""
-            enableV3Signing = true
+            val storeFilePath = providers.gradleProperty("RELEASE_STORE_FILE").getOrElse("")
+            if (storeFilePath.isNotEmpty()) {
+                storeFile = file(storeFilePath)
+                storePassword = providers.gradleProperty("RELEASE_STORE_PASSWORD").get()
+                keyAlias = "HcmDz"
+                keyPassword = providers.gradleProperty("RELEASE_KEY_PASSWORD").get()
+                enableV3Signing = true
+            }
         }
     }
 
@@ -42,7 +45,10 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = signingConfigs.getByName("release")
+            val releaseSigning = signingConfigs.getByName("release")
+            if (releaseSigning.storeFile != null) {
+                signingConfig = releaseSigning
+            }
             ndk {
                 abiFilters += "arm64-v8a"
             }
