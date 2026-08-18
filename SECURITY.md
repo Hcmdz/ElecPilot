@@ -4,7 +4,7 @@
 
 If you discover a security vulnerability in ElecPilot, please report it responsibly.
 
-**Contact:** [YOUR_SECURITY_EMAIL]
+**Contact:** HcmDz.Dev@gmail.com
 
 Please include:
 - Description of the vulnerability
