@@ -1,70 +1,46 @@
-# Contributing
-
-Thank you for your interest in contributing to ElecPilot!
+# Contributing to ElecPilot
 
 ## Getting Started
 
 1. Fork the repository
 2. Clone your fork
-3. Create a feature branch: `git checkout -b feature/your-feature`
-4. Make your changes
-5. Run tests: `./gradlew test`
-6. Run lint: `./gradlew lint`
-7. Commit your changes
-8. Push to your fork
-9. Submit a pull request
+3. Open in Android Studio (latest stable)
+4. Sync Gradle and build
 
-## Development Setup
-
-### Prerequisites
+## Requirements
 
 - Android Studio latest stable
 - JDK 17+
-- Android SDK (compileSdk 37+)
+- Android SDK 36+ (compileSdk 37)
+- Device or emulator running Android 10+ (minSdk 29)
 
-### Building
+## Build
 
 ```bash
 # Debug build
 ./gradlew assembleDebug
 
-# Release build (requires signing config)
+# Release build (requires signing config in gradle.properties)
 ./gradlew assembleRelease
-
-# Run tests
-./gradlew test
-
-# Run lint
-./gradlew lint
 ```
 
 ## Code Style
 
-- Follow Kotlin coding conventions
-- Compose @Composable functions: PascalCase
+- Kotlin with official conventions
+- Jetpack Compose for UI
+- Material 3 design system
 - Follow existing patterns in the codebase
-- Keep functions focused and small
 
-## Commit Messages
+## Pull Requests
 
-Use [Conventional Commits](https://www.conventionalcommits.org/):
+1. Create a feature branch from `main`
+2. Make your changes
+3. Run `./gradlew lint` and fix any issues
+4. Write clear commit messages
+5. Open a PR with a description of changes
 
-- `feat:` new feature
-- `fix:` bug fix
-- `docs:` documentation changes
-- `refactor:` code refactoring
-- `test:` adding tests
-- `chore:` maintenance tasks
+## Issues
 
-## Pull Request Process
-
-1. Update documentation if needed
-2. Add tests for new functionality
-3. Ensure all tests pass
-4. Ensure lint passes with no errors
-5. Request review from maintainers
-
-## License
-
-By contributing, you agree that your contributions will be licensed under
-the GNU General Public License v3.0.
+- Use the provided issue templates
+- Include device model, Android version, and app version
+- Steps to reproduce for bug reports
