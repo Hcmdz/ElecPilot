@@ -41,11 +41,13 @@ import androidx.compose.material.icons.filled.Backup
 import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.SystemUpdate
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
@@ -95,6 +97,8 @@ import com.HcmDz.ElecPilot.util.CloudBackupResult
 import com.HcmDz.ElecPilot.util.NotificationHelper
 import com.HcmDz.ElecPilot.util.CloudBackupScheduler
 import com.HcmDz.ElecPilot.util.RcloneDriveService
+import com.HcmDz.ElecPilot.util.UpdateManager
+import com.HcmDz.ElecPilot.util.resolveLanguage
 import com.HcmDz.ElecPilot.data.getBackupPreferences
 import com.HcmDz.ElecPilot.data.getCloudBackupPreferences
 import com.HcmDz.ElecPilot.data.saveCloudBackupPreferences
@@ -137,9 +141,10 @@ class MainActivity : ComponentActivity() {
     )
 
     override fun attachBaseContext(newBase: Context) {
-        val lang = newBase.getSharedPreferences("settings", Context.MODE_PRIVATE)
-            .getString("app_language", "en") ?: "en"
-        val locale = Locale.forLanguageTag(lang)
+        val storedLang = newBase.getSharedPreferences("settings", Context.MODE_PRIVATE)
+            .getString("app_language", "system") ?: "system"
+        val resolvedLang = resolveLanguage(storedLang)
+        val locale = Locale.forLanguageTag(resolvedLang)
         Locale.setDefault(locale)
         val config = Configuration(newBase.resources.configuration)
         config.setLocale(locale)
@@ -210,10 +215,13 @@ class MainActivity : ComponentActivity() {
     // === Queue-based launchers for exporting both databases ===
     private val csvExportQueue = mutableListOf<Pair<String, (Uri) -> Unit>>()
     private val excelExportQueue = mutableListOf<Pair<String, (Uri) -> Unit>>()
+    private var csvLauncherActive = false
+    private var excelLauncherActive = false
 
     private val exportCsvQueueLauncher = registerForActivityResult(
         ActivityResultContracts.CreateDocument("text/csv")
     ) { uri: Uri? ->
+        csvLauncherActive = false
         if (uri != null && csvExportQueue.isNotEmpty()) {
             val (_, action) = csvExportQueue.removeAt(0)
             action(uri)
@@ -226,6 +234,7 @@ class MainActivity : ComponentActivity() {
     private val exportExcelQueueLauncher = registerForActivityResult(
         ActivityResultContracts.CreateDocument("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     ) { uri: Uri? ->
+        excelLauncherActive = false
         if (uri != null && excelExportQueue.isNotEmpty()) {
             val (_, action) = excelExportQueue.removeAt(0)
             action(uri)
@@ -236,18 +245,21 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun processCsvQueue() {
-        if (csvExportQueue.isNotEmpty()) {
+        if (csvExportQueue.isNotEmpty() && !csvLauncherActive) {
+            csvLauncherActive = true
             exportCsvQueueLauncher.launch(csvExportQueue.first().first)
         }
     }
 
     private fun processExcelQueue() {
-        if (excelExportQueue.isNotEmpty()) {
+        if (excelExportQueue.isNotEmpty() && !excelLauncherActive) {
+            excelLauncherActive = true
             exportExcelQueueLauncher.launch(excelExportQueue.first().first)
         }
     }
 
     private fun exportCsvBoth() {
+        csvExportQueue.clear()
         val dateStr = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val motorSnapshot = viewModel.getCurrentMotors()
         val plcSnapshot = plcViewModel.getCurrentPlcs()
@@ -295,6 +307,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun exportExcelBoth() {
+        excelExportQueue.clear()
         val dateStr = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val motorSnapshot = viewModel.getCurrentMotors()
         val plcSnapshot = plcViewModel.getCurrentPlcs()
@@ -334,6 +347,48 @@ class MainActivity : ComponentActivity() {
                     runOnUiThread {
                         viewModel.showSnackbar(getString(R.string.snackbar_export_error))
                         plcViewModel.showSnackbar(getString(R.string.snackbar_export_error))
+                    }
+                }
+            }
+        })
+        processExcelQueue()
+    }
+
+    private fun exportTemplateBoth() {
+        excelExportQueue.clear()
+        val storedLang = getSharedPreferences("settings", Context.MODE_PRIVATE).getString("app_language", "system") ?: "system"
+        val lang = resolveLanguage(storedLang)
+        excelExportQueue.add(getString(R.string.template_filename_departs, lang) to { uri ->
+            lifecycleScope.launch(Dispatchers.IO) {
+                try {
+                    contentResolver.openOutputStream(uri)?.use {
+                        ExcelUtil.exportTemplateMotorToExcelStream(it, lang)
+                    } ?: throw Exception("Cannot open output stream")
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    android.util.Log.e("ElecPilot", "Motor template failed", e)
+                    runOnUiThread {
+                        viewModel.showSnackbar(getString(R.string.snackbar_export_error))
+                    }
+                }
+            }
+        })
+        excelExportQueue.add(getString(R.string.template_filename_plc, lang) to { uri ->
+            lifecycleScope.launch(Dispatchers.IO) {
+                try {
+                    contentResolver.openOutputStream(uri)?.use {
+                        ExcelUtil.exportTemplatePlcToExcelStream(it, lang)
+                    } ?: throw Exception("Cannot open output stream")
+                    runOnUiThread {
+                        viewModel.showSnackbar(getString(R.string.snackbar_template_success))
+                    }
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    android.util.Log.e("ElecPilot", "PLC template failed", e)
+                    runOnUiThread {
+                        viewModel.showSnackbar(getString(R.string.snackbar_export_error))
                     }
                 }
             }
@@ -416,6 +471,27 @@ class MainActivity : ComponentActivity() {
                 var showCloudBackupDialog by remember { mutableStateOf(false) }
                 var showCloudBackupBrowser by remember { mutableStateOf(false) }
 
+                var showUpdateDialog by remember { mutableStateOf(false) }
+                var updateInfo by remember { mutableStateOf<UpdateManager.UpdateInfo?>(null) }
+                var updateDownloadProgress by remember { mutableStateOf(-1f) }
+                var showUpdateSnackBar by remember { mutableStateOf("") }
+
+                LaunchedEffect(Unit) {
+                    if (UpdateManager.shouldAutoCheck(applicationContext)) {
+                        when (val result = UpdateManager.checkForUpdate(BuildConfig.VERSION_NAME)) {
+                            is UpdateManager.UpdateResult.Found -> {
+                                updateInfo = result.info
+                                showUpdateDialog = true
+                                UpdateManager.recordCheck(applicationContext)
+                            }
+                            is UpdateManager.UpdateResult.UpToDate -> {
+                                UpdateManager.recordCheck(applicationContext)
+                            }
+                            is UpdateManager.UpdateResult.Error -> { /* silent — no record */ }
+                        }
+                    }
+                }
+
                 ModalNavigationDrawer(
                     drawerState = drawerState,
                     gesturesEnabled = true,
@@ -460,6 +536,14 @@ class MainActivity : ComponentActivity() {
                                     onClick = {
                                         scope.launch { drawerState.close() }
                                         exportExcelBoth()
+                                    }
+                                )
+                                MenuItem(
+                                    icon = Icons.Default.Description,
+                                    text = stringResource(R.string.menu_download_template),
+                                    onClick = {
+                                        scope.launch { drawerState.close() }
+                                        exportTemplateBoth()
                                     }
                                 )
                                 MenuItem(
@@ -673,10 +757,63 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     if (showAboutDialog) {
-                        AboutDialog(onDismiss = { showAboutDialog = false })
+                        AboutDialog(
+                            onDismiss = { showAboutDialog = false },
+                            onCheckUpdate = {
+                                showAboutDialog = false
+                                scope.launch {
+                                    when (val result = UpdateManager.checkForUpdate(BuildConfig.VERSION_NAME)) {
+                                        is UpdateManager.UpdateResult.Found -> {
+                                            updateInfo = result.info
+                                            showUpdateDialog = true
+                                            UpdateManager.recordCheck(applicationContext)
+                                        }
+                                        is UpdateManager.UpdateResult.UpToDate -> {
+                                            showUpdateSnackBar = getString(R.string.update_up_to_date)
+                                            UpdateManager.recordCheck(applicationContext)
+                                        }
+                                        is UpdateManager.UpdateResult.Error -> {
+                                            showUpdateSnackBar = getString(R.string.update_check_failed)
+                                        }
+                                    }
+                                }
+                            }
+                        )
+                    }
+                    if (showUpdateDialog && updateInfo != null) {
+                        UpdateDialog(
+                            info = updateInfo!!,
+                            downloadProgress = updateDownloadProgress,
+                            onDownload = {
+                                updateDownloadProgress = 0f
+                                val job = scope.launch {
+                                    val file = UpdateManager.downloadApk(
+                                        applicationContext,
+                                        updateInfo!!.downloadUrl,
+                                        updateInfo!!.fileName
+                                    ) { progress ->
+                                        updateDownloadProgress = progress
+                                    }
+                                    if (file != null) {
+                                        UpdateManager.installApk(applicationContext, file)
+                                    } else {
+                                        showUpdateSnackBar = getString(R.string.update_download_failed)
+                                    }
+                                    showUpdateDialog = false
+                                    updateDownloadProgress = -1f
+                                    UpdateManager.downloadJob = null
+                                }
+                                UpdateManager.downloadJob = job
+                            },
+                            onDismiss = {
+                                UpdateManager.cancelDownload()
+                                showUpdateDialog = false
+                                updateDownloadProgress = -1f
+                            }
+                        )
                     }
                     if (showLangDialog) {
-                        val currentLang = prefs.getString("app_language", "en") ?: "en"
+                        val currentLang = prefs.getString("app_language", "system") ?: "system"
                         LanguageDialog(
                             currentLang = currentLang,
                             onLanguageSelected = { lang ->
@@ -686,6 +823,16 @@ class MainActivity : ComponentActivity() {
                             },
                             onDismiss = { showLangDialog = false }
                         )
+                    }
+                    LaunchedEffect(showUpdateSnackBar) {
+                        if (showUpdateSnackBar.isNotEmpty()) {
+                            android.widget.Toast.makeText(
+                                applicationContext,
+                                showUpdateSnackBar,
+                                android.widget.Toast.LENGTH_SHORT
+                            ).show()
+                            showUpdateSnackBar = ""
+                        }
                     }
                     if (showStatisticsDialog) {
                         val motors by viewModel.motors.collectAsState()
@@ -1041,6 +1188,8 @@ class MainActivity : ComponentActivity() {
                                     stats.wrongTypeCount++
                                 }
                             }
+                        } catch (e: CancellationException) {
+                            throw e
                         } catch (e: Exception) {
                             android.util.Log.e("ElecPilot", "Error importing file: ${uri.lastPathSegment}", e)
                             stats.errorsCount++
@@ -1173,7 +1322,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun AboutDialog(onDismiss: () -> Unit) {
+private fun AboutDialog(onDismiss: () -> Unit, onCheckUpdate: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
@@ -1200,11 +1349,75 @@ private fun AboutDialog(onDismiss: () -> Unit) {
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.primary
                 )
+                Spacer(modifier = Modifier.height(8.dp))
+                TextButton(onClick = onCheckUpdate) {
+                    Icon(
+                        Icons.Default.SystemUpdate,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(stringResource(R.string.update_check_updates))
+                }
             }
         },
         confirmButton = {
             TextButton(onClick = onDismiss) {
                 Text(stringResource(R.string.close))
+            }
+        }
+    )
+}
+
+@Composable
+private fun UpdateDialog(
+    info: UpdateManager.UpdateInfo,
+    downloadProgress: Float,
+    onDownload: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = { if (downloadProgress < 0f) onDismiss() },
+        title = {
+            Text(
+                text = stringResource(R.string.update_available_title),
+                fontWeight = FontWeight.Bold
+            )
+        },
+        text = {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = stringResource(R.string.update_available_body, info.versionName, info.releaseNotes),
+                    fontSize = 13.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                if (downloadProgress >= 0f) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    LinearProgressIndicator(
+                        progress = { downloadProgress },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = stringResource(R.string.update_downloading, (downloadProgress * 100).toInt()),
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            if (downloadProgress < 0f) {
+                TextButton(onClick = onDownload) {
+                    Text(stringResource(R.string.update_download))
+                }
+            }
+        },
+        dismissButton = {
+            if (downloadProgress < 0f) {
+                TextButton(onClick = onDismiss) {
+                    Text(stringResource(R.string.update_later))
+                }
             }
         }
     )
@@ -1217,8 +1430,9 @@ private fun LanguageDialog(
     onDismiss: () -> Unit
 ) {
     val languages = listOf(
-        "fr" to stringResource(R.string.language_french),
+        "system" to stringResource(R.string.language_system),
         "en" to stringResource(R.string.language_english),
+        "fr" to stringResource(R.string.language_french),
         "ar" to stringResource(R.string.language_arabic)
     )
     AlertDialog(
