@@ -9,7 +9,7 @@
 Android application for managing electrical motor starters and PLC I/O modules in industrial environments.
 
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.1 (versionCode 26)
+- **Version**: 6.2 (versionCode 27)
 - **Author**: HcmDZ &lt;HcmDz.Dev@gmail.com&gt;
 
 ---
@@ -46,8 +46,10 @@ Android application for managing electrical motor starters and PLC I/O modules i
 - **PLC I/O module management** — dedicated database and views
 - **Cloud backup/restore** — Google Drive & OneDrive via rclone (AES-256-GCM encrypted config)
 - **Local backup** — Excel & CSV export/import with scheduled backups
+- **In-app update** — auto-check & download from GitHub Releases
+- **Blank template generation** — ready-to-fill Excel templates for motor starters and PLC I/O
 - **Material You theming** — dynamic color, edge-to-edge
-- **Multilingual** — EN/FR/AR localization
+- **Multilingual** — System/EN/FR/AR localization (auto-detect device language)
 - **Voice search** — speak to filter motor starters
 - **Security hardened** — FLAG_SECURE, encrypted rclone config, WebView URL allowlist, ProGuard log stripping
 
@@ -154,7 +156,9 @@ app/src/main/java/com/HcmDz/ElecPilot/
 │   ├── RcloneDriveService.kt    # rclone CLI wrapper
 │   ├── RcloneAuthActivity.kt    # OAuth WebView flow
 │   ├── CryptoManager.kt         # AES-256-GCM encryption
-│   ├── ExcelUtil.kt             # Apache POI export/import
+│   ├── ExcelUtil.kt             # Apache POI export/import + templates
+│   ├── UpdateManager.kt         # In-app update (GitHub Releases)
+│   ├── ContextUtils.kt          # Locale-aware context helpers
 │   └── NotificationHelper.kt    # Backup notifications
 └── worker/
     ├── BackupWorker.kt          # WorkManager: local backup
@@ -336,7 +340,17 @@ Size reduction techniques applied:
 
 ---
 
-## Changelog (v5.7 → v6.1)
+## Changelog (v5.7 → v6.2)
+
+### v6.2
+
+- **In-app update** — auto-check GitHub Releases, download & install with progress
+- **Blank template generation** — ready-to-fill Excel templates (EN/FR headers)
+- **System language option** — auto-detect device language on first install
+- **Bug fixes** — CancellationException handling, filename sanitization, header validation thresholds, export queue guard
+- **Security audit** — update & template feature hardened (SHA-256 recommendation, path traversal prevention)
+
+### v6.0 → v6.1
 
 Security audit fixes (OWASP MASVS 2.1):
 
