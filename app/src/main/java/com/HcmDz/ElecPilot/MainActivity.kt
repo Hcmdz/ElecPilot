@@ -790,7 +790,8 @@ class MainActivity : ComponentActivity() {
                                     val file = UpdateManager.downloadApk(
                                         applicationContext,
                                         updateInfo!!.downloadUrl,
-                                        updateInfo!!.fileName
+                                        updateInfo!!.fileName,
+                                        updateInfo!!.sha256
                                     ) { progress ->
                                         updateDownloadProgress = progress
                                     }

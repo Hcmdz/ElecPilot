@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
 import java.io.File
+import java.security.MessageDigest
 import java.util.concurrent.TimeUnit
 
 object UpdateManager {
@@ -27,7 +28,8 @@ object UpdateManager {
         val downloadUrl: String,
         val fileName: String,
         val fileSize: Long,
-        val releaseNotes: String
+        val releaseNotes: String,
+        val sha256: String? = null
     )
 
     sealed class UpdateResult {
@@ -90,7 +92,10 @@ object UpdateManager {
                         downloadUrl = apk.getString("browser_download_url"),
                         fileName = apk.getString("name"),
                         fileSize = apk.optLong("size", 0),
-                        releaseNotes = json.optString("body", "")
+                        releaseNotes = json.optString("body", ""),
+                        sha256 = Regex("SHA-256:\\s*([a-fA-F0-9]{64})")
+                            .find(json.optString("body", ""))
+                            ?.groupValues?.get(1)
                     )
                 )
             }
@@ -116,6 +121,7 @@ object UpdateManager {
         context: Context,
         url: String,
         fileName: String,
+        expectedSha256: String? = null,
         onProgress: (Float) -> Unit = {}
     ): File? = withContext(Dispatchers.IO) {
         try {
@@ -129,6 +135,7 @@ object UpdateManager {
                 updateDir.listFiles()?.forEach { it.delete() }
                 val safeName = fileName.replace(Regex("[^a-zA-Z0-9._-]"), "_")
                 val apkFile = File(updateDir, safeName)
+                val digest = MessageDigest.getInstance("SHA-256")
                 body.byteStream().use { input ->
                     apkFile.outputStream().use { output ->
                         val buffer = ByteArray(8192)
@@ -136,6 +143,7 @@ object UpdateManager {
                         var bytesRead: Int
                         while (input.read(buffer).also { bytesRead = it } != -1) {
                             output.write(buffer, 0, bytesRead)
+                            digest.update(buffer, 0, bytesRead)
                             downloaded += bytesRead
                             if (totalSize > 0) {
                                 withContext(Dispatchers.Main) {
@@ -148,6 +156,13 @@ object UpdateManager {
                 if (totalSize > 0 && apkFile.length() != totalSize) {
                     apkFile.delete()
                     return@withContext null
+                }
+                if (expectedSha256 != null) {
+                    val computed = digest.digest().joinToString("") { "%02x".format(it) }
+                    if (!computed.equals(expectedSha256, ignoreCase = true)) {
+                        apkFile.delete()
+                        return@withContext null
+                    }
                 }
                 withContext(Dispatchers.Main) { onProgress(1f) }
                 apkFile
