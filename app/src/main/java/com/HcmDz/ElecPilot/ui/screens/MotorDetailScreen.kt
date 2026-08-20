@@ -61,7 +61,7 @@ fun MotorDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.detail_motor_title), fontSize = 17.sp, fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.detail_depart_title), fontSize = 17.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.detail_back_cd))

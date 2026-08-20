@@ -36,8 +36,7 @@ object ExcelUtil {
                     val headers = (0..headerRow.lastCellNum - 1).mapNotNull { idx ->
                         normalizeHeader(getCellValueAsString(headerRow.getCell(idx)))
                     }
-                    val matched = MOTOR_HEADERS.count { expected -> headers.any { it == expected } }
-                    if (matched < 5) {
+                    if (!matchesMotorHeaders(headers)) {
                         throw Exception("Excel header mismatch: unexpected column format")
                     }
                 }
@@ -87,10 +86,9 @@ object ExcelUtil {
                     if (trimmed.isNotBlank()) {
                         if (skipHeader) {
                             val headers = parseCsvLine(trimmed, delimiter).map { normalizeHeader(it) }
-                            val matched = MOTOR_HEADERS.count { expected -> headers.any { it == expected } }
-                            if (matched < 5) {
-                                throw Exception("CSV header mismatch: unexpected column format")
-                            }
+                            if (!matchesMotorHeaders(headers)) {
+                        throw Exception("Excel header mismatch: unexpected column format")
+                    }
                             skipHeader = false
                         } else {
                             val values = parseCsvLine(trimmed, delimiter)
@@ -259,6 +257,57 @@ object ExcelUtil {
         }
     }
 
+    fun exportTemplateMotorToExcelStream(outputStream: OutputStream, language: String) {
+        val lang = language.lowercase().take(2)
+        val headers = if (lang == "fr") HEADERS else listOf(
+            "Workshop", "MLVS Position", "Item", "Designation",
+            "Power (kW)", "Types", "Departure Types", "Cable",
+            "Cable Type", "MLVS"
+        )
+        XSSFWorkbook().use { workbook ->
+            val sheet = workbook.createSheet("Departs")
+            val headerFont = workbook.createFont().apply { bold = true }
+            val headerStyle = workbook.createCellStyle().apply { setFont(headerFont) }
+            val headerRow = sheet.createRow(0)
+            headers.forEachIndexed { i, h ->
+                headerRow.createCell(i).apply { setCellValue(h); cellStyle = headerStyle }
+            }
+            sheet.setColumnWidth(0, 20 * 256)
+            sheet.setColumnWidth(1, 18 * 256)
+            sheet.setColumnWidth(2, 22 * 256)
+            sheet.setColumnWidth(3, 35 * 256)
+            sheet.setColumnWidth(4, 16 * 256)
+            sheet.setColumnWidth(5, 16 * 256)
+            sheet.setColumnWidth(6, 16 * 256)
+            sheet.setColumnWidth(7, 20 * 256)
+            sheet.setColumnWidth(8, 14 * 256)
+            sheet.setColumnWidth(9, 14 * 256)
+            workbook.write(outputStream)
+        }
+    }
+
+    fun exportTemplatePlcToExcelStream(outputStream: OutputStream, language: String) {
+        val lang = language.lowercase().take(2)
+        val headers = if (lang == "fr") listOf("Atelier", "DP", "Carte", "Position", "Item", "Désignation")
+        else listOf("Workshop", "DP", "Card", "Position", "Item", "Designation")
+        XSSFWorkbook().use { workbook ->
+            val sheet = workbook.createSheet("PLC IO")
+            val headerFont = workbook.createFont().apply { bold = true }
+            val headerStyle = workbook.createCellStyle().apply { setFont(headerFont) }
+            val headerRow = sheet.createRow(0)
+            headers.forEachIndexed { i, h ->
+                headerRow.createCell(i).apply { setCellValue(h); cellStyle = headerStyle }
+            }
+            sheet.setColumnWidth(0, 20 * 256)
+            sheet.setColumnWidth(1, 14 * 256)
+            sheet.setColumnWidth(2, 18 * 256)
+            sheet.setColumnWidth(3, 14 * 256)
+            sheet.setColumnWidth(4, 22 * 256)
+            sheet.setColumnWidth(5, 35 * 256)
+            workbook.write(outputStream)
+        }
+    }
+
     fun importMotorsFromUri(context: Context, uri: Uri, isExcel: Boolean): List<MotorEntity> {
         return if (isExcel) importFromUri(context, uri) else importCsvFromUri(context, uri)
     }
@@ -271,8 +320,23 @@ object ExcelUtil {
         return context.contentResolver.openInputStream(uri)?.use { stream ->
             val magic = ByteArray(4)
             val n = stream.read(magic)
-            n >= 2 && ((magic[0] == 0x50.toByte() && magic[1] == 0x4B.toByte()) ||
-            (magic[0] == 0xD0.toByte() && magic[1] == 0xCF.toByte()))
+            if (n < 2) return@use false
+            // OLE2 compound (old .xls)
+            if (magic[0] == 0xD0.toByte() && magic[1] == 0xCF.toByte()) return@use true
+            // ZIP header — check for OOXML signature
+            if (magic[0] == 0x50.toByte() && magic[1] == 0x4B.toByte()) {
+                // Read more bytes to find [Content_Types].xml inside the ZIP
+                val header = ByteArray(512)
+                System.arraycopy(magic, 0, header, 0, 4)
+                val remaining = stream.read(header, 4, 512 - 4)
+                val totalLen = 4 + remaining
+                val headerStr = String(header, 0, totalLen.coerceAtMost(512), Charsets.US_ASCII)
+                return@use headerStr.contains("[Content_Types].xml") ||
+                    headerStr.contains("xl/") ||
+                    headerStr.contains("word/") ||
+                    headerStr.contains("ppt/")
+            }
+            false
         } ?: false
     }
 
@@ -305,8 +369,7 @@ object ExcelUtil {
                     val headers = (0..headerRow.lastCellNum - 1).mapNotNull { idx ->
                         normalizeHeader(getCellValueAsString(headerRow.getCell(idx)))
                     }
-                    val matched = PLC_HEADERS.count { expected -> headers.any { it == expected } }
-                    if (matched < 3) {
+                    if (!matchesPlcHeaders(headers)) {
                         throw Exception("Excel header mismatch: unexpected column format")
                     }
                 }
@@ -348,10 +411,9 @@ object ExcelUtil {
                     if (trimmed.isNotBlank()) {
                         if (skipHeader) {
                             val headers = parseCsvLine(trimmed, delimiter).map { normalizeHeader(it) }
-                            val matched = PLC_HEADERS.count { expected -> headers.any { it == expected } }
-                            if (matched < 3) {
-                                throw Exception("CSV header mismatch: unexpected column format")
-                            }
+                            if (!matchesPlcHeaders(headers)) {
+                        throw Exception("Excel header mismatch: unexpected column format")
+                    }
                             skipHeader = false
                         } else {
                             val values = parseCsvLine(trimmed, delimiter)
@@ -392,7 +454,25 @@ object ExcelUtil {
     }
 
     private val MOTOR_HEADERS = HEADERS.map { normalizeHeader(it) }.toSet()
+    private val MOTOR_HEADERS_EN = listOf(
+        "Workshop", "MLVS Position", "Item", "Designation",
+        "Power (kW)", "Types", "Departure Types", "Cable",
+        "Cable Type", "MLVS"
+    ).map { normalizeHeader(it) }.toSet()
     private val PLC_HEADERS = listOf("Atelier", "DP", "Carte", "Position", "Item", "Désignation").map { normalizeHeader(it) }.toSet()
+    private val PLC_HEADERS_EN = listOf("Workshop", "DP", "Card", "Position", "Item", "Designation").map { normalizeHeader(it) }.toSet()
+
+    private fun matchesMotorHeaders(headers: List<String>): Boolean {
+        val frMatched = MOTOR_HEADERS.count { expected -> headers.any { it == expected } }
+        val enMatched = MOTOR_HEADERS_EN.count { expected -> headers.any { it == expected } }
+        return frMatched >= 8 || enMatched >= 8
+    }
+
+    private fun matchesPlcHeaders(headers: List<String>): Boolean {
+        val frMatched = PLC_HEADERS.count { expected -> headers.any { it == expected } }
+        val enMatched = PLC_HEADERS_EN.count { expected -> headers.any { it == expected } }
+        return frMatched >= 5 || enMatched >= 5
+    }
 
     enum class FileType { DEPARTS, PLC, UNKNOWN }
 
@@ -434,13 +514,17 @@ object ExcelUtil {
         }
 
         val normalizedHeaders = firstRowHeaders.map { normalizeHeader(it) }
-        val motorScore = MOTOR_HEADERS.count { expected -> normalizedHeaders.any { it.contains(expected) } }
-        val plcScore = PLC_HEADERS.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val motorScoreFr = MOTOR_HEADERS.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val motorScoreEn = MOTOR_HEADERS_EN.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val motorScore = maxOf(motorScoreFr, motorScoreEn)
+        val plcScoreFr = PLC_HEADERS.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val plcScoreEn = PLC_HEADERS_EN.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val plcScore = maxOf(plcScoreFr, plcScoreEn)
         return when {
-            motorScore >= plcScore && motorScore >= 5 -> FileType.DEPARTS
-            plcScore > motorScore && plcScore >= 3 -> FileType.PLC
-            motorScore >= 5 -> FileType.DEPARTS
-            plcScore >= 3 -> FileType.PLC
+            motorScore >= plcScore && motorScore >= 8 -> FileType.DEPARTS
+            plcScore > motorScore && plcScore >= 5 -> FileType.PLC
+            motorScore >= 8 -> FileType.DEPARTS
+            plcScore >= 5 -> FileType.PLC
             else -> FileType.UNKNOWN
         }
     }
@@ -454,9 +538,13 @@ object ExcelUtil {
         return when (cell.cellType) {
             org.apache.poi.ss.usermodel.CellType.STRING -> cell.stringCellValue
             org.apache.poi.ss.usermodel.CellType.NUMERIC -> {
-                val num = cell.numericCellValue
-                if (num == num.toLong().toDouble()) num.toLong().toString()
-                else num.toString()
+                if (org.apache.poi.ss.usermodel.DateUtil.isCellDateFormatted(cell)) {
+                    cell.dateCellValue?.toString() ?: cell.numericCellValue.toString()
+                } else {
+                    val num = cell.numericCellValue
+                    if (num == num.toLong().toDouble()) num.toLong().toString()
+                    else num.toString()
+                }
             }
             org.apache.poi.ss.usermodel.CellType.BOOLEAN -> cell.booleanCellValue.toString()
             org.apache.poi.ss.usermodel.CellType.FORMULA -> {
@@ -507,13 +595,17 @@ object ExcelUtil {
             firstRowHeaders = parseCsvLine(firstLine, csvDelimiter)
         }
         val normalizedHeaders = firstRowHeaders.map { normalizeHeader(it) }
-        val motorScore = MOTOR_HEADERS.count { expected -> normalizedHeaders.any { it.contains(expected) } }
-        val plcScore = PLC_HEADERS.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val motorScoreFr = MOTOR_HEADERS.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val motorScoreEn = MOTOR_HEADERS_EN.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val motorScore = maxOf(motorScoreFr, motorScoreEn)
+        val plcScoreFr = PLC_HEADERS.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val plcScoreEn = PLC_HEADERS_EN.count { expected -> normalizedHeaders.any { it.contains(expected) } }
+        val plcScore = maxOf(plcScoreFr, plcScoreEn)
         return when {
-            motorScore >= plcScore && motorScore >= 5 -> FileType.DEPARTS
-            plcScore > motorScore && plcScore >= 3 -> FileType.PLC
-            motorScore >= 5 -> FileType.DEPARTS
-            plcScore >= 3 -> FileType.PLC
+            motorScore >= plcScore && motorScore >= 8 -> FileType.DEPARTS
+            plcScore > motorScore && plcScore >= 5 -> FileType.PLC
+            motorScore >= 8 -> FileType.DEPARTS
+            plcScore >= 5 -> FileType.PLC
             else -> FileType.UNKNOWN
         }
     }
@@ -545,8 +637,7 @@ object ExcelUtil {
                     val headers = (0..headerRow.lastCellNum - 1).mapNotNull { idx ->
                         normalizeHeader(getCellValueAsString(headerRow.getCell(idx)))
                     }
-                    val matched = MOTOR_HEADERS.count { expected -> headers.any { it == expected } }
-                    if (matched < 5) {
+                    if (!matchesMotorHeaders(headers)) {
                         throw Exception("Excel header mismatch: unexpected column format")
                     }
                 }
@@ -594,10 +685,9 @@ object ExcelUtil {
                     if (trimmed.isNotBlank()) {
                         if (skipHeader) {
                             val headers = parseCsvLine(trimmed, delimiter).map { normalizeHeader(it) }
-                            val matched = MOTOR_HEADERS.count { expected -> headers.any { it == expected } }
-                            if (matched < 5) {
-                                throw Exception("CSV header mismatch: unexpected column format")
-                            }
+                            if (!matchesMotorHeaders(headers)) {
+                        throw Exception("Excel header mismatch: unexpected column format")
+                    }
                             skipHeader = false
                         } else {
                             val values = parseCsvLine(trimmed, delimiter)
@@ -635,8 +725,7 @@ object ExcelUtil {
                     val headers = (0..headerRow.lastCellNum - 1).mapNotNull { idx ->
                         normalizeHeader(getCellValueAsString(headerRow.getCell(idx)))
                     }
-                    val matched = PLC_HEADERS.count { expected -> headers.any { it == expected } }
-                    if (matched < 3) {
+                    if (!matchesPlcHeaders(headers)) {
                         throw Exception("Excel header mismatch: unexpected column format")
                     }
                 }
@@ -676,10 +765,9 @@ object ExcelUtil {
                     if (trimmed.isNotBlank()) {
                         if (skipHeader) {
                             val headers = parseCsvLine(trimmed, delimiter).map { normalizeHeader(it) }
-                            val matched = PLC_HEADERS.count { expected -> headers.any { it == expected } }
-                            if (matched < 3) {
-                                throw Exception("CSV header mismatch: unexpected column format")
-                            }
+                            if (!matchesPlcHeaders(headers)) {
+                        throw Exception("Excel header mismatch: unexpected column format")
+                    }
                             skipHeader = false
                         } else {
                             val values = parseCsvLine(trimmed, delimiter)

@@ -12,6 +12,7 @@
     <string name="menu_import">استيراد متعدد الملفات</string>
     <string name="menu_export_csv">تصدير CSV متعدد الملفات</string>
     <string name="menu_export_excel">تصدير Excel متعدد الملفات</string>
+    <string name="menu_download_template">إنشاء نموذج فارغ</string>
     <string name="menu_statistics">الإحصائيات</string>
     <string name="menu_clear_all">مسح جميع البيانات</string>
     <string name="menu_about">حول التطبيق</string>
@@ -19,6 +20,7 @@
     <string name="menu_backup">النسخ الاحتياطي التلقائي المحلي</string>
 
     <!-- Language names -->
+    <string name="language_system">النظام</string>
     <string name="language_french">Français</string>
     <string name="language_english">English</string>
     <string name="language_arabic">العربية</string>
@@ -85,6 +87,7 @@
     <string name="snackbar_export_success_departs">تم تصدير %d مغادرة بنجاح</string>
     <string name="snackbar_export_success_plc">تم تصدير %d PLC بنجاح</string>
     <string name="snackbar_export_error">فشل التصدير</string>
+    <string name="snackbar_template_success">تم إنشاء النماذج الفارغة</string>
     <string name="snackbar_import_error">فشل الاستيراد</string>
     <string name="snackbar_favorite_error">فشلت العملية</string>
     <string name="snackbar_undo">تراجع</string>
@@ -153,7 +156,7 @@
     <string name="statistics_plc">PLC</string>
 
     <!-- Detail Screen - Motor -->
-    <string name="detail_motor_title">تفاصيل المحرك</string>
+    <string name="detail_depart_title">تفاصيل المغادرة</string>
     <string name="detail_plc_title">تفاصيل PLC</string>
     <string name="detail_back_cd">رجوع</string>
     <string name="detail_favorite_add_cd">إضافة إلى المفضلة</string>
@@ -213,6 +216,8 @@
     <string name="export_filename_plc">plc_export_%s.csv</string>
     <string name="export_filename_departs_xlsx">departs_export_%s.xlsx</string>
     <string name="export_filename_plc_xlsx">plc_export_%s.xlsx</string>
+    <string name="template_filename_departs">departs_template_%s.xlsx</string>
+    <string name="template_filename_plc">plc_template_%s.xlsx</string>
     <string name="export_multiple_csv_summary">اكتمل تصدير CSV: %1$d مغادرة، %2$d PLC</string>
     <string name="export_multiple_excel_summary">اكتمل تصدير Excel: %1$d مغادرة، %2$d PLC</string>
     <string name="import_hint_switch_to_plc">هذا الملف مخصص لعرض PLC. انتقل إلى تبويب PLC لاستيراده.</string>
@@ -367,4 +372,18 @@
     <string name="auth_error_generic">فشلت المصادقة. حاول مرة أخرى.</string>
     <string name="notif_backup_progress_title">النسخ الاحتياطي السحابي</string>
     <string name="notif_backup_progress_body">%1$d%% — %2$d كيلوبايت/ثانية</string>
+
+    <!-- App Update -->
+    <string name="update_available_title">تحديث متاح</string>
+    <string name="update_available_body">الإصدار %1$s متاح.\n\n%2$s</string>
+    <string name="update_download">تنزيل</string>
+    <string name="update_downloading">جاري التنزيل… %1$d%%</string>
+    <string name="update_up_to_date">أنت تستخدم أحدث إصدار</string>
+    <string name="update_check_failed">تعذر التحقق من التحديثات</string>
+    <string name="update_download_failed">فشل التنزيل. حاول مرة أخرى.</string>
+    <string name="update_check_updates">التحقق من التحديثات</string>
+    <string name="update_install_title">تثبيت التحديث</string>
+    <string name="update_install_body">فعّل «مصادر غير معروفة» لتطبيق ElecPilot لتثبيت التحديث.</string>
+    <string name="update_install_settings">فتح الإعدادات</string>
+    <string name="update_later">لاحقاً</string>
 </resources>

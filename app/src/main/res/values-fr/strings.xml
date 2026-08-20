@@ -12,6 +12,7 @@
     <string name="menu_import">Importer multifichier</string>
     <string name="menu_export_csv">Export CSV multifichier</string>
     <string name="menu_export_excel">Export Excel multifichier</string>
+    <string name="menu_download_template">Générer un modèle vierge</string>
     <string name="menu_statistics">Statistiques</string>
     <string name="menu_clear_all">Effacer toutes les données</string>
     <string name="menu_about">A propos</string>
@@ -19,6 +20,7 @@
     <string name="menu_backup">Sauvegarde auto locale</string>
 
     <!-- Language names -->
+    <string name="language_system">Système</string>
     <string name="language_french">Français</string>
     <string name="language_english">English</string>
     <string name="language_arabic">العربية</string>
@@ -85,6 +87,7 @@
     <string name="snackbar_export_success_departs">%d départs exportés avec succès</string>
     <string name="snackbar_export_success_plc">%d PLC(s) exportés avec succès</string>
     <string name="snackbar_export_error">Échec de l\'export</string>
+    <string name="snackbar_template_success">Modèles vierges générés</string>
     <string name="snackbar_import_error">Échec de l\'import</string>
     <string name="snackbar_favorite_error">Opération échouée</string>
     <string name="snackbar_undo">Annuler</string>
@@ -153,7 +156,7 @@
     <string name="statistics_plc">PLC</string>
 
     <!-- Detail Screen - Motor -->
-    <string name="detail_motor_title">Détail du moteur</string>
+    <string name="detail_depart_title">Détail Départ</string>
     <string name="detail_plc_title">Détail PLC</string>
     <string name="detail_back_cd">Retour</string>
     <string name="detail_favorite_add_cd">Ajouter aux favoris</string>
@@ -213,6 +216,8 @@
     <string name="export_filename_plc">plc_export_%s.csv</string>
     <string name="export_filename_departs_xlsx">departs_export_%s.xlsx</string>
     <string name="export_filename_plc_xlsx">plc_export_%s.xlsx</string>
+    <string name="template_filename_departs">departs_template_%s.xlsx</string>
+    <string name="template_filename_plc">plc_template_%s.xlsx</string>
     <string name="export_multiple_csv_summary">Export CSV terminé : %1$d départ(s), %2$d PLC(s)</string>
     <string name="export_multiple_excel_summary">Export Excel terminé : %1$d départ(s), %2$d PLC(s)</string>
     <string name="import_hint_switch_to_plc">Ce fichier est pour la vue PLC. Passez à l\'onglet PLC pour l\'importer.</string>
@@ -367,4 +372,18 @@
     <string name="auth_error_generic">Échec de l\'authentification. Réessayez.</string>
     <string name="notif_backup_progress_title">Sauvegarde Cloud</string>
     <string name="notif_backup_progress_body">%1$d%% — %2$d Ko/s</string>
+
+    <!-- App Update -->
+    <string name="update_available_title">Mise à jour disponible</string>
+    <string name="update_available_body">La version %1$s est disponible.\n\n%2$s</string>
+    <string name="update_download">Télécharger</string>
+    <string name="update_downloading">Téléchargement… %1$d%%</string>
+    <string name="update_up_to_date">Vous êtes à jour</string>
+    <string name="update_check_failed">Impossible de vérifier les mises à jour</string>
+    <string name="update_download_failed">Échec du téléchargement. Réessayez.</string>
+    <string name="update_check_updates">Vérifier les mises à jour</string>
+    <string name="update_install_title">Installer la mise à jour</string>
+    <string name="update_install_body">Activez « Sources inconnues » pour ElecPilot pour installer la mise à jour.</string>
+    <string name="update_install_settings">Ouvrir les paramètres</string>
+    <string name="update_later">Plus tard</string>
 </resources>
