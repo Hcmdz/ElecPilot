@@ -51,6 +51,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
@@ -272,6 +273,9 @@ fun MainScreen(
             )
         } else {
             Box(modifier = Modifier.fillMaxSize()) {
+                if (!hasLoadedOnce) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                } else {
             Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -448,6 +452,7 @@ fun MainScreen(
                     }
                 }
 
+            }
             }
 
             SnackbarHost(
