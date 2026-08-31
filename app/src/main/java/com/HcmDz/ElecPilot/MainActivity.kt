@@ -412,21 +412,33 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private fun persistModule() {
+        getSharedPreferences("settings", Context.MODE_PRIVATE)
+            .edit().putString("active_module", currentModule.name).apply()
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putSerializable("currentModule", currentModule)
+        persistModule()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         RcloneDriveService.init(this)
-        savedInstanceState?.let {
+        if (savedInstanceState != null) {
             currentModule = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it.getSerializable("currentModule", AppModule::class.java) ?: AppModule.DEPARTS
+                savedInstanceState.getSerializable("currentModule", AppModule::class.java) ?: AppModule.DEPARTS
             } else {
                 @Suppress("DEPRECATION")
-                it.getSerializable("currentModule") as? AppModule ?: AppModule.DEPARTS
+                savedInstanceState.getSerializable("currentModule") as? AppModule ?: AppModule.DEPARTS
             }
+        } else {
+            val stored = getSharedPreferences("settings", Context.MODE_PRIVATE)
+                .getString("active_module", null)
+            currentModule = runCatching {
+                AppModule.valueOf(stored ?: AppModule.DEPARTS.name)
+            }.getOrDefault(AppModule.DEPARTS)
         }
         enableEdgeToEdge()
         window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
@@ -679,7 +691,7 @@ class MainActivity : ComponentActivity() {
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.Center
                         ) {
-                            TextButton(onClick = { module = AppModule.DEPARTS; currentModule = AppModule.DEPARTS }) {
+                            TextButton(onClick = { module = AppModule.DEPARTS; currentModule = AppModule.DEPARTS; persistModule() }) {
                                 Text(
                                     text = stringResource(R.string.tab_departs),
                                     fontWeight = if (module == AppModule.DEPARTS) FontWeight.Bold else FontWeight.Normal,
@@ -690,7 +702,7 @@ class MainActivity : ComponentActivity() {
                                 text = stringResource(R.string.tab_separator),
                                 color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.5f)
                             )
-                            TextButton(onClick = { module = AppModule.PLC; currentModule = AppModule.PLC }) {
+                            TextButton(onClick = { module = AppModule.PLC; currentModule = AppModule.PLC; persistModule() }) {
                                 Text(
                                     text = stringResource(R.string.tab_plc),
                                     fontWeight = if (module == AppModule.PLC) FontWeight.Bold else FontWeight.Normal,
