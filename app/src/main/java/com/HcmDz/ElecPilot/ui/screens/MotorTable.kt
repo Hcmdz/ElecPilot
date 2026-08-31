@@ -268,7 +268,7 @@ private fun TableHeader(
                                 .padding(start = 1.dp)
                                 .height(12.dp)
                                 .width(12.dp),
-                            tint = MaterialTheme.colorScheme.primary
+                            tint = White
                         )
                     }
                 }
@@ -503,7 +503,7 @@ private fun ActionButtons(
             modifier = Modifier.width(24.dp).height(24.dp)
         ) {
             Icon(Icons.Default.Edit, stringResource(R.string.action_edit),
-                tint = IndustrialBlue,
+                tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.height(16.dp).width(16.dp))
         }
         IconButton(

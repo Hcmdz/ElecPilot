@@ -1256,7 +1256,7 @@ private fun ActionChip(
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 icon,
-                contentDescription = label,
+                contentDescription = null,
                 modifier = Modifier.size(18.dp)
             )
             Spacer(modifier = Modifier.width(4.dp))

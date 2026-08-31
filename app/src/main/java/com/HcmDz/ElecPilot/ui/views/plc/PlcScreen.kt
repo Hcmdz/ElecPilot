@@ -1152,7 +1152,7 @@ private fun PlcFormDialog(
             }) { Text(if (isAddMode) stringResource(R.string.action_register) else stringResource(R.string.action_save)) }
         },
         dismissButton = {
-            Button(onClick = onDismiss) { Text(stringResource(R.string.close)) }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.close)) }
         }
     )
 }
@@ -1255,7 +1255,7 @@ private fun PlcDetailScreen(
                         Icon(
                             if (plc.favorite) Icons.Default.Star else Icons.Default.StarBorder,
                             contentDescription = if (plc.favorite) stringResource(R.string.detail_favorite_remove_cd) else stringResource(R.string.detail_favorite_add_cd),
-                            tint = if (plc.favorite) Color(0xFFFFD700) else MaterialTheme.colorScheme.onPrimary
+                            tint = if (plc.favorite) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onPrimary
                         )
                     }
                     IconButton(onClick = onDuplicate) {

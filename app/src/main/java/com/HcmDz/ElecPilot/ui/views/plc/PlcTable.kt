@@ -479,7 +479,7 @@ private fun ActionButtons(
             modifier = Modifier.width(24.dp).height(24.dp)
         ) {
             Icon(Icons.Default.Edit, stringResource(R.string.action_edit),
-                tint = IndustrialBlue,
+                tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.height(16.dp).width(16.dp))
         }
         IconButton(
