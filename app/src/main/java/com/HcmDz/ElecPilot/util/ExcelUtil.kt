@@ -216,10 +216,10 @@ object ExcelUtil {
             sheet.setColumnWidth(0, 20 * 256)  // Atelier
             sheet.setColumnWidth(1, 18 * 256)  // Position TGBT
             sheet.setColumnWidth(2, 22 * 256)  // Item
-            sheet.setColumnWidth(3, 35 * 256)  // Désignation
+            sheet.setColumnWidth(3, 35 * 256)  // Designation
             sheet.setColumnWidth(4, 16 * 256)  // Puissance (kW)
             sheet.setColumnWidth(5, 16 * 256)  // Types
-            sheet.setColumnWidth(6, 16 * 256)  // Types Départs
+            sheet.setColumnWidth(6, 16 * 256)  // Departure Types
             sheet.setColumnWidth(7, 20 * 256)  // Câble
             sheet.setColumnWidth(8, 14 * 256)  // Type Câble
             sheet.setColumnWidth(9, 14 * 256)  // TGBT
@@ -252,7 +252,7 @@ object ExcelUtil {
             sheet.setColumnWidth(2, 18 * 256)  // Carte
             sheet.setColumnWidth(3, 14 * 256)  // Position
             sheet.setColumnWidth(4, 22 * 256)  // Item
-            sheet.setColumnWidth(5, 35 * 256)  // Désignation
+            sheet.setColumnWidth(5, 35 * 256)  // Designation
             workbook.write(outputStream)
         }
     }
