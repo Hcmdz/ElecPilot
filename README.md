@@ -9,7 +9,7 @@
 Android application for managing electrical motor starters and PLC I/O modules in industrial environments.
 
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.2 (versionCode 27)
+- **Version**: 6.3 (versionCode 28)
 - **Author**: HcmDZ &lt;HcmDz.Dev@gmail.com&gt;
 
 ---
@@ -340,7 +340,12 @@ Size reduction techniques applied:
 
 ---
 
-## Changelog (v5.7 → v6.2)
+## Changelog (v5.7 → v6.3)
+
+### v6.3
+
+- **No blank screen flash on cold start** — the full screen is gated behind `hasLoadedOnce` so the empty shell (header with "0" counter) is never drawn before the first data load
+- **Persistent last module** — the app reopens on the last active module (Départs / PLC I/O) after a cold restart
 
 ### v6.2
 

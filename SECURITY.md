@@ -4,6 +4,7 @@
 
 | Version | Supported |
 |---|---|
+| 6.3 | Yes |
 | 6.2 | Yes |
 | < 6.0 | No |
 
