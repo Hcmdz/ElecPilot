@@ -60,6 +60,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -267,6 +268,9 @@ fun PlcScreen(
             )
         } else {
             Box(modifier = Modifier.fillMaxSize()) {
+                if (!hasLoadedOnce) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                } else {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -439,6 +443,7 @@ fun PlcScreen(
                         )
                     }
                 }
+            }
             }
 
             SnackbarHost(
