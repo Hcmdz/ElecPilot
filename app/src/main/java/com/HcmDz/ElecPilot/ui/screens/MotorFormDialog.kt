@@ -11,6 +11,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -120,7 +121,7 @@ fun MotorFormDialog(
             ) { Text(if (isEdit) stringResource(R.string.action_save) else stringResource(R.string.action_add)) }
         },
         dismissButton = {
-            Button(onClick = onDismiss) { Text(stringResource(R.string.close)) }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.close)) }
         }
     )
 }
