@@ -74,7 +74,7 @@ object CloudBackupManager {
             }
 
             var fileCount = 0
-            val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.getDefault()).format(Date())
+            val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(Date())
             val isExcel = format == BackupFormat.EXCEL
             val ext = if (isExcel) "xlsx" else "csv"
             val mime = if (isExcel) "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" else "text/csv"
