@@ -14,8 +14,8 @@ android {
         applicationId = "com.HcmDz.ElecPilot"
         minSdk = 29
         targetSdk = 36
-        versionCode = 29
-        versionName = "6.4"
+        versionCode = 30
+        versionName = "6.5"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         ndk {
         }
