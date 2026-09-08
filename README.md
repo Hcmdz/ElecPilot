@@ -9,7 +9,7 @@
 Android application for managing electrical motor starters and PLC I/O modules in industrial environments.
 
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.4 (versionCode 29)
+- **Version**: 6.5 (versionCode 30)
 - **Author**: HcmDZ &lt;HcmDz.Dev@gmail.com&gt;
 
 ---
@@ -143,7 +143,9 @@ app/src/main/java/com/HcmDz/ElecPilot/
 ├── data/
 │   ├── db/                      # Room databases (Motor + PLC)
 │   ├── repository/              # Data repositories
-│   └── BackupPreferences.kt     # Backup settings models
+│   ├── BackupPreferences.kt     # Local backup settings models
+│   ├── CloudBackupPreferences.kt # Cloud backup settings models
+│   └── CloudBackupFileInfo.kt   # Cloud file metadata
 ├── ui/
 │   ├── screens/                 # Compose screens (Main, MotorDetail, dialogs)
 │   ├── viewmodel/               # ViewModels
@@ -159,7 +161,9 @@ app/src/main/java/com/HcmDz/ElecPilot/
 │   ├── ExcelUtil.kt             # Apache POI export/import + templates
 │   ├── UpdateManager.kt         # In-app update (GitHub Releases)
 │   ├── ContextUtils.kt          # Locale-aware context helpers
-│   └── NotificationHelper.kt    # Backup notifications
+│   ├── NotificationHelper.kt    # Backup notifications
+│   ├── BackupScheduler.kt       # WorkManager: local backup schedule
+│   └── CloudBackupScheduler.kt  # WorkManager: cloud backup schedule
 └── worker/
     ├── BackupWorker.kt          # WorkManager: local backup
     └── CloudBackupWorker.kt     # WorkManager: cloud backup
@@ -340,9 +344,9 @@ Size reduction techniques applied:
 
 ---
 
-## Changelog (v5.7 → v6.4)
+## Changelog (v5.7 → v6.5)
 
-### v6.4
+### v6.5
 
 - **Cancellation-safe background work** — `CancellationException` rethrown in cloud/local backup, update check and import paths (no more false failure notification or retry after cancel)
 - **Snapshot writes on Main** — backup dialogs assign UI state back on the main thread
