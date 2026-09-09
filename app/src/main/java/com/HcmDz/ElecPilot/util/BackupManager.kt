@@ -11,6 +11,7 @@ import com.HcmDz.ElecPilot.data.db.MotorEntity
 import com.HcmDz.ElecPilot.data.db.PlcEntity
 import com.HcmDz.ElecPilot.data.getBackupPreferences
 import com.HcmDz.ElecPilot.data.saveBackupPreferences
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -116,6 +117,8 @@ object BackupManager {
             } else {
                 BackupResult.Success(motorCount, plcCount)
             }
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             android.util.Log.e("BackupManager", "Backup failed", e)
             BackupResult.Error("Backup failed")

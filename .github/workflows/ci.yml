@@ -24,6 +24,14 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4.4.2
 
+      - name: Configure Gradle JVM memory
+        run: |
+          mkdir -p ~/.gradle
+          cat > ~/.gradle/gradle.properties <<'EOF'
+          org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8
+          org.gradle.daemon.idletimeout=600000
+          EOF
+
       - name: Run tests
         run: ./gradlew testDebugUnitTest
 

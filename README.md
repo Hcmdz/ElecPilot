@@ -9,7 +9,7 @@
 Android application for managing electrical motor starters and PLC I/O modules in industrial environments.
 
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.3 (versionCode 28)
+- **Version**: 6.5 (versionCode 30)
 - **Author**: HcmDZ &lt;HcmDz.Dev@gmail.com&gt;
 
 ---
@@ -71,14 +71,14 @@ Android application for managing electrical motor starters and PLC I/O modules i
 | **UI** | Jetpack Compose + Material 3 | BOM 2026.08.00 |
 | **Async** | Kotlin Coroutines & Flow | 1.11.0 |
 | **Database** | Room | 2.8.4 |
-| **Networking** | OkHttp | 5.4.0 |
+| **Networking** | OkHttp | 5.5.0 |
 | **Cloud** | rclone (native binary, UPX compressed) | custom build |
 | **Excel** | Apache POI (shadow jar from centic9/poi-on-android) | 5.2.5 |
-| **Scheduling** | WorkManager | 2.10.1 |
+| **Scheduling** | WorkManager | 2.11.2 |
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
 | **Browser** | AndroidX Custom Tabs | 1.10.0 |
 | **Security** | AES-256-GCM (Android KeyStore), ProGuard, NSC | — |
-| **Build** | AGP 9.3.1, Kotlin 2.4.10, KSP 2.3.11 | — |
+| **Build** | AGP 9.4.0, Kotlin 2.4.10, KSP 2.3.11 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
 
 ### Security Features (v6.0)
@@ -143,7 +143,9 @@ app/src/main/java/com/HcmDz/ElecPilot/
 ├── data/
 │   ├── db/                      # Room databases (Motor + PLC)
 │   ├── repository/              # Data repositories
-│   └── BackupPreferences.kt     # Backup settings models
+│   ├── BackupPreferences.kt     # Local backup settings models
+│   ├── CloudBackupPreferences.kt # Cloud backup settings models
+│   └── CloudBackupFileInfo.kt   # Cloud file metadata
 ├── ui/
 │   ├── screens/                 # Compose screens (Main, MotorDetail, dialogs)
 │   ├── viewmodel/               # ViewModels
@@ -159,7 +161,9 @@ app/src/main/java/com/HcmDz/ElecPilot/
 │   ├── ExcelUtil.kt             # Apache POI export/import + templates
 │   ├── UpdateManager.kt         # In-app update (GitHub Releases)
 │   ├── ContextUtils.kt          # Locale-aware context helpers
-│   └── NotificationHelper.kt    # Backup notifications
+│   ├── NotificationHelper.kt    # Backup notifications
+│   ├── BackupScheduler.kt       # WorkManager: local backup schedule
+│   └── CloudBackupScheduler.kt  # WorkManager: cloud backup schedule
 └── worker/
     ├── BackupWorker.kt          # WorkManager: local backup
     └── CloudBackupWorker.kt     # WorkManager: cloud backup
@@ -340,7 +344,15 @@ Size reduction techniques applied:
 
 ---
 
-## Changelog (v5.7 → v6.3)
+## Changelog (v5.7 → v6.5)
+
+### v6.5
+
+- **Cancellation-safe background work** — `CancellationException` rethrown in cloud/local backup, update check and import paths (no more false failure notification or retry after cancel)
+- **Snapshot writes on Main** — backup dialogs assign UI state back on the main thread
+- **ASCII backup filenames** — export/cloud timestamps use `Locale.US` (no more non-Latin digits under Arabic locale)
+- **PLC card polish** — favorite star size aligned with motor cards (18.dp)
+- **Build** — AGP 9.4.0, OkHttp 5.5.0, WorkManager 2.11.2
 
 ### v6.3
 
