@@ -78,9 +78,10 @@ fun BackupBrowserDialog(
     val loadFiles: () -> Unit = {
         scope.launch {
             isLoading = true
-            withContext(Dispatchers.IO) {
-                files = BackupManager.getBackupFilesList(context)
+            val loaded = withContext(Dispatchers.IO) {
+                BackupManager.getBackupFilesList(context)
             }
+            files = loaded
             isLoading = false
         }
     }

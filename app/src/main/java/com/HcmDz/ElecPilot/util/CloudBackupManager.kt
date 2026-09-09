@@ -8,6 +8,7 @@ import com.HcmDz.ElecPilot.data.db.MotorEntity
 import com.HcmDz.ElecPilot.data.db.PlcDatabase
 import com.HcmDz.ElecPilot.data.db.PlcEntity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
@@ -73,7 +74,7 @@ object CloudBackupManager {
             }
 
             var fileCount = 0
-            val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.getDefault()).format(Date())
+            val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(Date())
             val isExcel = format == BackupFormat.EXCEL
             val ext = if (isExcel) "xlsx" else "csv"
             val mime = if (isExcel) "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" else "text/csv"
@@ -123,6 +124,8 @@ object CloudBackupManager {
 
             clearCache()
             CloudBackupResult.Success(fileCount, motors.size, plcList.size)
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             android.util.Log.e("CloudBackup", "Backup failed", e)
             CloudBackupResult.Error(e.message ?: "Cloud backup failed")
@@ -195,6 +198,8 @@ object CloudBackupManager {
             } finally {
                 tempFile.delete()
             }
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             android.util.Log.e("CloudRestore", "Restore failed", e)
             CloudRestoreResult.Error(e.message ?: "Cloud restore failed")

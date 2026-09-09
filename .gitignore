@@ -8,6 +8,7 @@ build/
 .kotlin/
 .detekt/
 .agents/
+AGENTS.md
 local.properties
 app/release.keystore
 gradle.properties

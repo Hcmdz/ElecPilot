@@ -261,7 +261,7 @@ class MainActivity : ComponentActivity() {
 
     private fun exportCsvBoth() {
         csvExportQueue.clear()
-        val dateStr = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val dateStr = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
         val motorSnapshot = viewModel.getCurrentMotors()
         val plcSnapshot = plcViewModel.getCurrentPlcs()
 
@@ -309,7 +309,7 @@ class MainActivity : ComponentActivity() {
 
     private fun exportExcelBoth() {
         excelExportQueue.clear()
-        val dateStr = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val dateStr = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
         val motorSnapshot = viewModel.getCurrentMotors()
         val plcSnapshot = plcViewModel.getCurrentPlcs()
 
@@ -398,7 +398,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun exportFileName(): String {
-        val df = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+        val df = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
         return when (currentModule) {
             AppModule.DEPARTS -> getString(R.string.export_filename_departs, df.format(Date()))
             AppModule.PLC -> getString(R.string.export_filename_plc, df.format(Date()))
@@ -406,7 +406,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun exportFileNameXlsx(): String {
-        val df = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+        val df = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
         return when (currentModule) {
             AppModule.DEPARTS -> getString(R.string.export_filename_departs_xlsx, df.format(Date()))
             AppModule.PLC -> getString(R.string.export_filename_plc_xlsx, df.format(Date()))
