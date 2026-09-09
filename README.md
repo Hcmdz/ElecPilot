@@ -384,6 +384,13 @@ Security audit fixes (OWASP MASVS 2.1):
 
 ---
 
+## Legal
+
+- [Terms of Service](https://hcmdz.github.io/ElecPilot/terms/)
+- [Privacy Policy](https://hcmdz.github.io/ElecPilot/privacy/)
+
+---
+
 ## License
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
