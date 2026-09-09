@@ -102,8 +102,12 @@ fun CloudBackupSettingsDialog(
             notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
         kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
-            isSignedIn = RcloneDriveService.isSignedIn(context)
-            accountEmail = RcloneDriveService.getAccountEmail(context)
+            val (signedIn, email) = RcloneDriveService.isSignedIn(context) to
+                RcloneDriveService.getAccountEmail(context)
+            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
+                isSignedIn = signedIn
+                accountEmail = email
+            }
         }
     }
     var showRemoteSetup by remember { mutableStateOf(false) }

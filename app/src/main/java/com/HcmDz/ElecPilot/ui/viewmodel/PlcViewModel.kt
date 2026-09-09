@@ -20,6 +20,7 @@ import com.HcmDz.ElecPilot.util.VoiceSearchEngine
 import com.HcmDz.ElecPilot.util.VoiceSearchResult
 import com.HcmDz.ElecPilot.util.localizedContext
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -239,6 +240,8 @@ class PlcViewModel(application: Application) : AndroidViewModel(application) {
                 }
                 _pendingImportPlc.value = null
                 _searchQuery.value = ""
+            } catch (e: CancellationException) {
+                throw e
             } catch (e: Exception) {
                 android.util.Log.e("ElecPilot", "Import failed", e)
                 showSnackbar(localizedContext(getApplication()).getString(R.string.snackbar_import_error))

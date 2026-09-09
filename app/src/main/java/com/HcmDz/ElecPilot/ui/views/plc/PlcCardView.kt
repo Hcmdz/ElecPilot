@@ -253,7 +253,7 @@ fun PlcCardView(
                                     imageVector = if (plc.favorite) Icons.Default.Star else Icons.Default.StarBorder,
                                     contentDescription = stringResource(if (plc.favorite) R.string.detail_favorite_remove_cd else R.string.detail_favorite_add_cd),
                                     tint = if (plc.favorite) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.size(20.dp)
+                                    modifier = Modifier.size(18.dp)
                                 )
                             }
                             IconButton(

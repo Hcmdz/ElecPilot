@@ -99,6 +99,8 @@ object UpdateManager {
                     )
                 )
             }
+        } catch (e: CancellationException) {
+            throw e
         } catch (_: Exception) {
             UpdateResult.Error
         }
