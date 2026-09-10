@@ -12,3 +12,14 @@ AGENTS.md
 local.properties
 app/release.keystore
 gradle.properties
+
+# Secrets & credentials (never commit — audit 2026-09-10)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+*.mobileprovision
+*.log
