@@ -3,11 +3,13 @@ package com.HcmDz.ElecPilot.util
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.core.content.FileProvider
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
@@ -29,7 +31,8 @@ object UpdateManager {
         val fileName: String,
         val fileSize: Long,
         val releaseNotes: String,
-        val sha256: String? = null
+        val sha256: String? = null,
+        val sha256Url: String? = null
     )
 
     sealed class UpdateResult {
@@ -46,12 +49,41 @@ object UpdateManager {
         downloadJob = null
     }
 
+    // Pinning covers api.github.com (release metadata: version, URLs, size).
+    // APK bytes are covered by SHA-256 instead, so CDN hosts stay on default
+    // trust on purpose. Backup pin = issuing intermediate; rotation procedure:
+    // refresh both pins from the live chain before the old leaf expires.
+    private val certificatePinner = CertificatePinner.Builder()
+        .add("api.github.com", "sha256/S2LUIbq4yUg5w+MYbj5LZOWAZAzaeNGJ9rTTc4GjvBQ=")
+        .add("api.github.com", "sha256/ZSagvDzjltLkewXEBuDxIzpW/dpVw1Juvvmd0hhkzdY=")
+        .build()
+
     private val client = OkHttpClient.Builder()
+        .certificatePinner(certificatePinner)
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .followRedirects(true)
         .followSslRedirects(true)
         .build()
+
+    fun updateDir(context: Context): File = File(context.cacheDir, "updates")
+
+    fun isUpdateFile(updateDir: File, file: File): Boolean {
+        val dir = updateDir.canonicalPath
+        val target = file.canonicalPath
+        return target.startsWith(dir + File.separatorChar)
+    }
+
+    fun parseSha256Asset(text: String, apkName: String): String? {
+        val hash = Regex("[a-fA-F0-9]{64}")
+        var fallback: String? = null
+        for (line in text.lineSequence()) {
+            val match = hash.find(line)?.value ?: continue
+            if (line.contains(apkName)) return match
+            if (fallback == null) fallback = match
+        }
+        return fallback
+    }
 
     private fun prefs(context: Context): SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -81,21 +113,26 @@ object UpdateManager {
                 val remoteVersion = tagName.removePrefix("v")
                 if (!isVersionNewer(currentVersionName, remoteVersion)) return@withContext UpdateResult.UpToDate
                 val assets = json.optJSONArray("assets") ?: return@withContext UpdateResult.UpToDate
-                val apk = (0 until assets.length())
-                    .map { assets.getJSONObject(it) }
+                val entries = (0 until assets.length()).map { assets.getJSONObject(it) }
+                val apk = entries
                     .firstOrNull { it.optString("name", "").endsWith(".apk") }
                     ?: return@withContext UpdateResult.UpToDate
+                val apkName = apk.getString("name")
+                val sha256Asset = entries
+                    .firstOrNull { it.optString("name", "") == "$apkName.sha256" }
+                    ?.optString("browser_download_url", null)
                 UpdateResult.Found(
                     UpdateInfo(
                         versionTag = tagName,
                         versionName = remoteVersion,
                         downloadUrl = apk.getString("browser_download_url"),
-                        fileName = apk.getString("name"),
+                        fileName = apkName,
                         fileSize = apk.optLong("size", 0),
                         releaseNotes = json.optString("body", ""),
                         sha256 = Regex("SHA-256:\\s*([a-fA-F0-9]{64})")
                             .find(json.optString("body", ""))
-                            ?.groupValues?.get(1)
+                            ?.groupValues?.get(1),
+                        sha256Url = sha256Asset
                     )
                 )
             }
@@ -124,6 +161,7 @@ object UpdateManager {
         url: String,
         fileName: String,
         expectedSha256: String? = null,
+        sha256Url: String? = null,
         onProgress: (Float) -> Unit = {}
     ): File? = withContext(Dispatchers.IO) {
         try {
@@ -133,7 +171,7 @@ object UpdateManager {
                 if (!it.isSuccessful) return@withContext null
                 val body = it.body
                 val totalSize = body.contentLength()
-                val updateDir = File(context.cacheDir, "updates").apply { mkdirs() }
+                val updateDir = updateDir(context).apply { mkdirs() }
                 updateDir.listFiles()?.forEach { it.delete() }
                 val safeName = fileName.replace(Regex("[^a-zA-Z0-9._-]"), "_")
                 val apkFile = File(updateDir, safeName)
@@ -159,12 +197,21 @@ object UpdateManager {
                     apkFile.delete()
                     return@withContext null
                 }
-                if (expectedSha256 != null) {
-                    val computed = digest.digest().joinToString("") { "%02x".format(it) }
-                    if (!computed.equals(expectedSha256, ignoreCase = true)) {
+                // Fail closed: no trusted hash, no install. Notes hash comes
+                // over the pinned channel, so it wins; the .sha256 asset is
+                // the fallback when notes carry no hash.
+                val trustedSha256 = expectedSha256
+                    ?: sha256Url?.let { fetchSha256Asset(it, safeName) }
+                    ?: run {
+                        Log.w("UpdateManager", "no trusted SHA-256 for $safeName, update refused")
                         apkFile.delete()
                         return@withContext null
                     }
+                val computed = digest.digest().joinToString("") { "%02x".format(it) }
+                if (!computed.equals(trustedSha256, ignoreCase = true)) {
+                    Log.w("UpdateManager", "SHA-256 mismatch for $safeName, update refused")
+                    apkFile.delete()
+                    return@withContext null
                 }
                 withContext(Dispatchers.Main) { onProgress(1f) }
                 apkFile
@@ -176,8 +223,17 @@ object UpdateManager {
         }
     }
 
-    fun installApk(context: Context, apkFile: File) {
-        if (!apkFile.exists()) return
+    private fun fetchSha256Asset(assetUrl: String, apkName: String): String? {
+        val request = Request.Builder().url(assetUrl).build()
+        client.newCall(request).execute().use {
+            if (!it.isSuccessful) return null
+            return parseSha256Asset(it.body.string(), apkName)
+        }
+    }
+
+    fun installApk(context: Context, apkFile: File): Boolean {
+        if (!apkFile.exists()) return false
+        if (!isUpdateFile(updateDir(context), apkFile)) return false
         val uri = FileProvider.getUriForFile(
             context,
             "${context.packageName}.fileprovider",
@@ -188,5 +244,6 @@ object UpdateManager {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
         }
         context.startActivity(intent)
+        return true
     }
 }

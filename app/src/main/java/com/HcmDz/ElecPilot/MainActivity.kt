@@ -805,15 +805,19 @@ class MainActivity : ComponentActivity() {
                                         applicationContext,
                                         updateInfo!!.downloadUrl,
                                         updateInfo!!.fileName,
-                                        updateInfo!!.sha256
+                                        updateInfo!!.sha256,
+                                        updateInfo!!.sha256Url
                                     ) { progress ->
                                         updateDownloadProgress = progress
                                     }
-                                    if (file != null) {
-                                        UpdateManager.installApk(applicationContext, file)
+                                    if (file != null && UpdateManager.installApk(applicationContext, file)) {
+                                        // installed, dialog closes below
+                                    } else if (file != null) {
+                                        showUpdateSnackBar = getString(R.string.update_verify_failed)
                                     } else {
                                         showUpdateSnackBar = getString(R.string.update_download_failed)
                                     }
+                                    showUpdateDialog = false
                                     showUpdateDialog = false
                                     updateDownloadProgress = -1f
                                     UpdateManager.downloadJob = null
