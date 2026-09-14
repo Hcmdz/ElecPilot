@@ -381,6 +381,7 @@
     <string name="update_up_to_date">You\'re up to date</string>
     <string name="update_check_failed">Could not check for updates</string>
     <string name="update_download_failed">Download failed. Please try again.</string>
+    <string name="update_verify_failed">Update verification failed. Please try again.</string>
     <string name="update_check_updates">Check for updates</string>
     <string name="update_install_title">Install Update</string>
     <string name="update_install_body">Enable \"Install from unknown sources\" for ElecPilot to install the update.</string>
