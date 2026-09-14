@@ -48,6 +48,9 @@ object NotificationHelper {
     private fun createAppIntent(context: Context): PendingIntent {
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            // Pin the package: explicit component + immutable + same-app target,
+            // so no other app can intercept or mutate this PendingIntent.
+            setPackage(context.packageName)
         }
         return PendingIntent.getActivity(
             context, 0, intent,
