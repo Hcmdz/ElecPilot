@@ -20,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
             db.execSQL("ALTER TABLE motors ADD COLUMN favorite INTEGER NOT NULL DEFAULT 0")
         }
 
-        // ponytail: v2 and v3 schemas are identical (pure version bump), so the migration is a no-op
+        // debt: v2 and v3 schemas are identical (pure version bump), so the migration is a no-op
         internal val MIGRATION_2_3 = Migration(2, 3) { db -> }
 
         fun getInstance(context: Context): AppDatabase {

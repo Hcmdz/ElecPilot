@@ -1,5 +1,6 @@
 [versions]
 agp = "9.4.0"
+# debt: ceiling CodeQL bundle 2.27.0 < Kotlin 2.4.20 ; drop pin when CodeQL supports it (see PR #15)
 kotlin = "2.4.10"
 ksp = "2.3.12"
 composeBom = "2026.08.00"
