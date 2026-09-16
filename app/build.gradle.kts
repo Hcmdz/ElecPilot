@@ -8,7 +8,7 @@ android {
     namespace = "com.HcmDz.ElecPilot"
     compileSdk = 37
     base.archivesName = "ElecPilot"
-    buildToolsVersion = "36.1.0"
+    buildToolsVersion = "37.0.0"
 
     defaultConfig {
         applicationId = "com.HcmDz.ElecPilot"
