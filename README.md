@@ -68,11 +68,11 @@ Android application for managing electrical motor starters and PLC I/O modules i
 
 | Category | Library | Version |
 |---|---|---|
-| **UI** | Jetpack Compose + Material 3 | BOM 2026.08.00 |
+| **UI** | Jetpack Compose + Material 3 | BOM 2026.09.00 |
 | **Activity** | Activity Compose | 1.13.0 |
 | **Lifecycle** | Lifecycle Runtime Compose | 2.11.0 |
 | **Async** | Kotlin Coroutines & Flow | 1.11.0 |
-| **Database** | Room | 2.8.4 |
+| **Database** | Room | 2.8.5 |
 | **Networking** | OkHttp | 5.5.0 |
 | **Cloud** | rclone (native binary, UPX compressed) | custom build |
 | **Excel** | Apache POI (shadow jar from centic9/poi-on-android) | 5.2.5 |
@@ -83,7 +83,7 @@ Android application for managing electrical motor starters and PLC I/O modules i
 | **Build** | AGP 9.4.0, Kotlin 2.4.10, KSP 2.3.12 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
 | **Quality** | Detekt CLI | 1.23.8 |
-| **Testing** | JUnit4, Room Testing, Coroutines Test | 4.13.2 / 2.8.4 / 1.11.0 |
+| **Testing** | JUnit4, Room Testing, Coroutines Test | 4.13.2 / 2.8.5 / 1.11.0 |
 
 ### Security Features (v6.0)
 
@@ -399,6 +399,13 @@ Security audit fixes (OWASP MASVS 2.1):
 | 8 | LOW | SharedPreferences `MODE_PRIVATE` explicit usage |
 | 9 | LOW | Error logs stripped of file paths and operation details |
 | 10 | LOW | ProGuard strips `Log.e/w` with exception objects in release |
+
+---
+
+## Legal
+
+- [Terms of Service](https://hcmdz.github.io/ElecPilot/terms/)
+- [Privacy Policy](https://hcmdz.github.io/ElecPilot/privacy/)
 
 ---
 

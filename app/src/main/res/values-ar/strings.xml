@@ -381,6 +381,7 @@
     <string name="update_up_to_date">أنت تستخدم أحدث إصدار</string>
     <string name="update_check_failed">تعذر التحقق من التحديثات</string>
     <string name="update_download_failed">فشل التنزيل. حاول مرة أخرى.</string>
+    <string name="update_verify_failed">فشل التحقق من التحديث. حاول مرة أخرى.</string>
     <string name="update_check_updates">التحقق من التحديثات</string>
     <string name="update_install_title">تثبيت التحديث</string>
     <string name="update_install_body">فعّل «مصادر غير معروفة» لتطبيق ElecPilot لتثبيت التحديث.</string>
