@@ -32,6 +32,14 @@ jobs:
           org.gradle.daemon.idletimeout=600000
           EOF
 
+      - name: Configure Gradle JVM memory
+        run: |
+          mkdir -p ~/.gradle
+          cat > ~/.gradle/gradle.properties <<'EOF'
+          org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8
+          org.gradle.daemon.idletimeout=600000
+          EOF
+
       - name: Run tests
         run: ./gradlew testDebugUnitTest
 

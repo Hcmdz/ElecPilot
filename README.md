@@ -68,9 +68,11 @@ Android application for managing electrical motor starters and PLC I/O modules i
 
 | Category | Library | Version |
 |---|---|---|
-| **UI** | Jetpack Compose + Material 3 | BOM 2026.08.00 |
+| **UI** | Jetpack Compose + Material 3 | BOM 2026.09.00 |
+| **Activity** | Activity Compose | 1.13.0 |
+| **Lifecycle** | Lifecycle Runtime Compose | 2.11.0 |
 | **Async** | Kotlin Coroutines & Flow | 1.11.0 |
-| **Database** | Room | 2.8.4 |
+| **Database** | Room | 2.8.5 |
 | **Networking** | OkHttp | 5.5.0 |
 | **Cloud** | rclone (native binary, UPX compressed) | custom build |
 | **Excel** | Apache POI (shadow jar from centic9/poi-on-android) | 5.2.5 |
@@ -78,8 +80,10 @@ Android application for managing electrical motor starters and PLC I/O modules i
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
 | **Browser** | AndroidX Custom Tabs | 1.10.0 |
 | **Security** | AES-256-GCM (Android KeyStore), ProGuard, NSC | — |
-| **Build** | AGP 9.4.0, Kotlin 2.4.10, KSP 2.3.11 | — |
+| **Build** | AGP 9.4.0, Kotlin 2.4.10, KSP 2.3.12 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
+| **Quality** | Detekt CLI | 1.23.8 |
+| **Testing** | JUnit4, Room Testing, Coroutines Test | 4.13.2 / 2.8.5 / 1.11.0 |
 
 ### Security Features (v6.0)
 
@@ -92,6 +96,19 @@ Android application for managing electrical motor starters and PLC I/O modules i
 | **Network security** | Cleartext blocked (NSC), localhost exception only for rclone OAuth |
 | **Backup disabled** | `allowBackup="false"` |
 | **MTE** | `memtagMode="sync"` enabled in manifest |
+
+### Permissions
+
+- `INTERNET`, `ACCESS_NETWORK_STATE` — cloud backup (rclone) and update check
+- `POST_NOTIFICATIONS` — backup progress and update status
+- `REQUEST_INSTALL_PACKAGES` — in-app update install
+
+Entry points: `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `FileProvider` (`${applicationId}.fileprovider`).
+
+### CI & Quality
+
+- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, Dependabot
+- Detekt: `./gradlew detekt` (config `config/detekt/detekt.yml`)
 
 ---
 
@@ -317,6 +334,7 @@ The release APK is signed with a keystore. To build a release APK:
 
 ```properties
 RELEASE_STORE_FILE=/path/to/your/release.keystore
+RELEASE_KEY_ALIAS=[REDACTED]
 RELEASE_STORE_PASSWORD=your_store_password
 RELEASE_KEY_PASSWORD=your_key_password
 ```
@@ -396,3 +414,8 @@ Security audit fixes (OWASP MASVS 2.1):
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This project is licensed under the **GNU General Public License v3.0** — see the [LICENSE](LICENSE) file for details.
+
+## Related Docs
+
+- [Contributing](CONTRIBUTING.md) · [Third-Party Components](THIRD_PARTY.md) · [Security](SECURITY.md)
+- [Privacy Policy](docs/privacy/) · [Terms](docs/terms/)

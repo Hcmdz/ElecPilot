@@ -8,7 +8,7 @@ android {
     namespace = "com.HcmDz.ElecPilot"
     compileSdk = 37
     base.archivesName = "ElecPilot"
-    buildToolsVersion = "36.1.0"
+    buildToolsVersion = "37.0.0"
 
     defaultConfig {
         applicationId = "com.HcmDz.ElecPilot"
@@ -27,7 +27,7 @@ android {
             if (storeFilePath.isNotEmpty()) {
                 storeFile = file(storeFilePath)
                 storePassword = providers.gradleProperty("RELEASE_STORE_PASSWORD").get()
-                keyAlias = "HcmDz"
+                keyAlias = providers.gradleProperty("RELEASE_KEY_ALIAS").getOrElse("")
                 keyPassword = providers.gradleProperty("RELEASE_KEY_PASSWORD").get()
                 enableV3Signing = true
             }
