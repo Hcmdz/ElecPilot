@@ -381,6 +381,7 @@
     <string name="update_up_to_date">Vous êtes à jour</string>
     <string name="update_check_failed">Impossible de vérifier les mises à jour</string>
     <string name="update_download_failed">Échec du téléchargement. Réessayez.</string>
+    <string name="update_verify_failed">Échec de la vérification de la mise à jour. Réessayez.</string>
     <string name="update_check_updates">Vérifier les mises à jour</string>
     <string name="update_install_title">Installer la mise à jour</string>
     <string name="update_install_body">Activez « Sources inconnues » pour ElecPilot pour installer la mise à jour.</string>
