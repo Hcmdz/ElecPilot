@@ -32,7 +32,7 @@
 <body>
     <header>
         <h1>Privacy Policy</h1>
-        <p>Last updated: August 17, 2026 &middot; for App: ElecPilot</p>
+        <p>Last updated: September 17, 2026 &middot; for App: ElecPilot</p>
     </header>
     <nav>
         <ul>
@@ -76,7 +76,7 @@
             <section id="backup">
                 <h2>Backup and Restore</h2>
                 <h3>Local Backup</h3>
-                <p>You can export your data as a ZIP file to a folder you choose on your device, including cloud storage connected to your device. That data is handled by Android and the storage provider you select, not sent to a server run by the developer.</p>
+                <p>You can export your data as Excel (.xlsx) or CSV (.csv) files to a folder you choose on your device, including cloud storage connected to your device. That data is handled by Android and the storage provider you select, not sent to a server run by the developer.</p>
 
                 <h3>Cloud Backup</h3>
                 <p>ElecPilot offers optional cloud backup via rclone (Google Drive &amp; OneDrive). When you connect a cloud service:</p>
@@ -92,9 +92,10 @@
                 <h2>Permissions</h2>
                 <p>ElecPilot requests the following permissions:</p>
                 <ul>
-                    <li><strong>Internet</strong> &mdash; used only for cloud backup via rclone</li>
+                    <li><strong>Internet</strong> &mdash; for optional cloud backup via rclone, and for checking/downloading app updates from GitHub Releases</li>
                     <li><strong>Access Network State</strong> &mdash; to check connectivity before network calls</li>
                     <li><strong>Post Notifications</strong> &mdash; for cloud backup status notifications</li>
+                    <li><strong>Request Install Packages</strong> &mdash; needed only to install in-app updates that you explicitly accept</li>
                 </ul>
                 <p>The app does not request access to your camera, contacts, location, or any other sensitive data.</p>
             </section>
@@ -102,6 +103,7 @@
             <section id="third-party">
                 <h2>Third-Party Services</h2>
                 <p>The only third-party service integrated in ElecPilot is <strong>rclone</strong>, used for optional cloud backup to Google Drive and/or OneDrive. rclone communicates directly with your cloud provider. The developer does not operate any server that processes your data.</p>
+                <p>ElecPilot also contacts the <strong>GitHub API</strong> to check for app updates (comparing the latest release on GitHub with your installed version). This version check sends no personal data. If you accept an update, the new APK is downloaded directly from GitHub Releases.</p>
                 <p>If you use cloud backup, your cloud provider (Google or Microsoft) may apply their own privacy policies. We encourage you to review them.</p>
             </section>
 
