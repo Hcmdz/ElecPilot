@@ -5,8 +5,12 @@
 [![MinSDK](https://img.shields.io/badge/MinSDK-29-orange.svg)](#)
 [![TargetSDK](https://img.shields.io/badge/TargetSDK-36-blue.svg)](#)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Release](https://img.shields.io/github/v/release/Hcmdz/ElecPilot)](https://github.com/Hcmdz/ElecPilot/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/Hcmdz/ElecPilot/total)](https://github.com/Hcmdz/ElecPilot/releases)
 
 Android application for managing electrical motor starters and PLC I/O modules in industrial environments.
+
+In the field, motor data lives on paper or scattered spreadsheets — lost, outdated, unsearchable. ElecPilot is the offline-first field notebook: every starter and PLC module recorded once, found in seconds, backed up encrypted.
 
 - **Package**: `com.HcmDz.ElecPilot`
 - **Version**: 6.5.1 (versionCode 31)
@@ -17,6 +21,8 @@ Android application for managing electrical motor starters and PLC I/O modules i
 ## 📦 Downloads
 
 Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`, ~21 MB, `arm64-v8a`).
+
+[![Download](https://img.shields.io/badge/Download-Latest_Release-green.svg?logo=android)](https://github.com/Hcmdz/ElecPilot/releases/latest)
 
 - Requires Android 9+ (API 29) with **arm64-v8a**; allow *Install unknown apps* for your browser when prompted.
 - Verify integrity: `sha256sum -c ElecPilot-release.apk.sha256` (sidecar next to the APK).
@@ -30,37 +36,44 @@ Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/r
 
 | Light Mode | Dark Mode |
 |---|---|
-| ![Motor list — table view](screenshots/motor-list-table-view-light.png) | ![Motor list — table view](screenshots/motor-list-table-view-dark.png) |
-| ![Motor list — card view](screenshots/motor-list-card-view-light.png) | |
-| ![Motor detail](screenshots/motor-detail-dark.png) | |
+| [![Motor list — table view](screenshots/motor-list-table-view-light.png)](screenshots/motor-list-table-view-light.png) | [![Motor list — table view](screenshots/motor-list-table-view-dark.png)](screenshots/motor-list-table-view-dark.png) |
+| [![Motor list — card view](screenshots/motor-list-card-view-light.png)](screenshots/motor-list-card-view-light.png) | |
+| [![Motor detail](screenshots/motor-detail-dark.png)](screenshots/motor-detail-dark.png) | |
 
 ### PLC I/O Modules
 
 | Light Mode | Dark Mode |
 |---|---|
-| ![PLC list — table view](screenshots/plc-list-table-view-light.png) | ![PLC list — card view](screenshots/plc-list-card-view-dark.png) |
-| ![PLC list — card view](screenshots/plc-list-card-view-light.png) | |
-| ![PLC detail](screenshots/plc-detail-dark.png) | |
+| [![PLC list — table view](screenshots/plc-list-table-view-light.png)](screenshots/plc-list-table-view-light.png) | [![PLC list — card view](screenshots/plc-list-card-view-dark.png)](screenshots/plc-list-card-view-dark.png) |
+| [![PLC list — card view](screenshots/plc-list-card-view-light.png)](screenshots/plc-list-card-view-light.png) | |
+| [![PLC detail](screenshots/plc-detail-dark.png)](screenshots/plc-detail-dark.png) | |
 
 ### Settings
 
 | Light Mode | Dark Mode |
 |---|---|
-| ![Settings](screenshots/settings-light.png) | ![Settings](screenshots/settings-dark.png) |
+| [![Settings](screenshots/settings-light.png)](screenshots/settings-light.png) | [![Settings](screenshots/settings-dark.png)](screenshots/settings-dark.png) |
 
 ---
 
 ## Key Features
 
+### Motor Starters
 - **Motor starter management** — full CRUD, search, batch edit, statistics
+- **Voice search** — speak to filter motor starters
+- **Blank template generation** — ready-to-fill Excel templates for motor starters and PLC I/O
+
+### PLC I/O Modules
 - **PLC I/O module management** — dedicated database and views
+
+### Backup & Sync
 - **Cloud backup/restore** — Google Drive & OneDrive via rclone (AES-256-GCM encrypted config)
 - **Local backup** — Excel & CSV export/import with scheduled backups
+
+### App
 - **In-app update** — auto-check & download from GitHub Releases
-- **Blank template generation** — ready-to-fill Excel templates for motor starters and PLC I/O
 - **Material You theming** — dynamic color, edge-to-edge
 - **Multilingual** — System/EN/FR/AR localization (auto-detect device language)
-- **Voice search** — speak to filter motor starters
 - **Security hardened** — FLAG_SECURE, encrypted rclone config, WebView URL allowlist, ProGuard log stripping
 
 ---
