@@ -335,7 +335,7 @@ The release APK is signed with a keystore. To build a release APK:
 
 ```properties
 RELEASE_STORE_FILE=/path/to/your/release.keystore
-RELEASE_KEY_ALIAS=[REDACTED]
+RELEASE_KEY_ALIAS=ALIAS
 RELEASE_STORE_PASSWORD=your_store_password
 RELEASE_KEY_PASSWORD=your_key_password
 ```
