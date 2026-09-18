@@ -131,6 +131,7 @@ dependencies {
 
     // Tests
     testImplementation(libs.junit)
+    testImplementation(libs.json) // real org.json: android.jar stubs throw in JVM unit tests
     testImplementation(libs.coroutines.test)
     testImplementation(libs.core.testing)
 
