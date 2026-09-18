@@ -129,8 +129,6 @@ dependencies {
     // Cloud Backup (rclone)
     implementation(libs.okhttp)
 
-    implementation(libs.browser)
-
     // Tests
     testImplementation(libs.junit)
     testImplementation(libs.coroutines.test)
