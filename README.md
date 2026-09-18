@@ -9,7 +9,7 @@
 Android application for managing electrical motor starters and PLC I/O modules in industrial environments.
 
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.5 (versionCode 30)
+- **Version**: 6.5.1 (versionCode 31)
 - **Author**: HcmDZ &lt;HcmDz.Dev@gmail.com&gt;
 
 ---
