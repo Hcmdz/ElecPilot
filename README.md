@@ -248,59 +248,26 @@ The app bundles a custom-built rclone binary (`librclone.so`) with only the back
 
 **Important**: After rebuilding the rclone binary, you MUST compress it with UPX before copying it into the project. Without UPX, the APK will be ~17 MB larger.
 
-#### Step 1: Build for arm64
+Rebuilds are scripted — do not run manual `go build` commands (they would
+produce a full, untrimmed binary). The single entry point is:
 
 ```bash
-export GOROOT=/tmp/go && export PATH=$GOROOT/bin:$PATH
-export ANDROID_NDK_HOME=$ANDROID_SDK_HOME/ndk/26.1.10909125
-export PATH=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
-
-cd /tmp/rclone
-GOOS=android GOARCH=arm64 CGO_ENABLED=1 \
-  CC=aarch64-linux-android34-clang \
-  CXX=aarch64-linux-android34-clang++ \
-  go build -ldflags="-s -w" -trimpath -o /tmp/librclone_arm64.so .
+./tools/rclone/build-librclone.sh [--version vX.Y.Z]
 ```
 
-#### Step 2: Compress with UPX
+The script clones the pinned tag (see `tools/rclone/pinned-version.txt`),
+builds the trimmed module (`tools/rclone/main.go`: backends
+`local`/`drive`/`onedrive`, contract commands in
+`tools/rclone/contract.md`) for `arm64-v8a` + `x86_64` (clang
+`android29`, see `tools/rclone/toolchain.lock`), UPX-compresses the release
+ABI, runs the contract smoke test, copies the binaries into
+`app/src/main/jniLibs/`, and syncs the version into `THIRD_PARTY.md`.
 
-```bash
-/tmp/upx-4.2.4-amd64_linux/upx --best /tmp/librclone_arm64.so
-```
+Prerequisites: Go (see `toolchain.lock`), Android NDK, UPX. In CI the
+`.github/workflows/rclone.yml` workflow does the same monthly and opens a
+bump PR — merging it requires the device OAuth gate in `contract.md`.
 
-This compresses the binary from ~23 MB to ~6.7 MB (71% reduction).
-
-#### Step 3: Copy into the project
-
-```bash
-cp /tmp/librclone_arm64.so app/src/main/jniLibs/arm64-v8a/librclone.so
-```
-
-#### Step 4: Build the APK
-
-```bash
-cd ElecPilot
-./gradlew clean assembleRelease
-```
-
-### Rebuild for emulator (x86_64)
-
-To test on the x86_64 emulator, build for amd64 and add `"x86_64"` to `abiFilters` in `app/build.gradle.kts`:
-
-```bash
-GOOS=android GOARCH=amd64 CGO_ENABLED=1 \
-  CC=x86_64-linux-android34-clang \
-  CXX=x86_64-linux-android34-clang++ \
-  go build -ldflags="-s -w" -trimpath -o /tmp/librclone_x86_64.so .
-```
-
-Then add `"x86_64"` to `abiFilters` in `app/build.gradle.kts`:
-
-```kotlin
-abiFilters += listOf("arm64-v8a", "x86_64")
-```
-
-> **Note**: Release builds only target `arm64-v8a`. The debug build includes both `arm64-v8a` and `x86_64` for emulator testing.
+> **Note**: Release builds only target `arm64-v8a`. The debug build includes both `arm64-v8a` and `x86_64` for emulator testing. The `x86_64` binary is intentionally NOT UPX-compressed.
 
 ---
 
