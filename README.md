@@ -14,6 +14,16 @@ Android application for managing electrical motor starters and PLC I/O modules i
 
 ---
 
+## 📦 Downloads
+
+Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`, ~21 MB, `arm64-v8a`).
+
+- Requires Android 9+ (API 29) with **arm64-v8a**; allow *Install unknown apps* for your browser when prompted.
+- Verify integrity: `sha256sum -c ElecPilot-release.apk.sha256` (sidecar next to the APK).
+- ⚠️ Coming from ≤ 6.5: manual reinstall required (new signing key since 6.5.1 — back up, uninstall, install, restore).
+
+---
+
 ## Screenshots
 
 ### Motor Starters
