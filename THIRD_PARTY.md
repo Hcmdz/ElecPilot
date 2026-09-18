@@ -17,7 +17,7 @@ This project includes third-party software components with their respective lice
 ### rclone
 
 - **Project:** [rclone/rclone](https://github.com/rclone/rclone)
-- **Version:** 1.70.3
+- **Version:** 1.75.1
 - **License:** MIT License
 - **SPDX:** `MIT`
 - **File:** `app/src/main/jniLibs/arm64-v8a/librclone.so`
