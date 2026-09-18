@@ -7,6 +7,9 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Release](https://img.shields.io/github/v/release/Hcmdz/ElecPilot)](https://github.com/Hcmdz/ElecPilot/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/Hcmdz/ElecPilot/total)](https://github.com/Hcmdz/ElecPilot/releases)
+[![Stars](https://img.shields.io/github/stars/Hcmdz/ElecPilot)](https://github.com/Hcmdz/ElecPilot/stargazers)
+[![Forks](https://img.shields.io/github/forks/Hcmdz/ElecPilot)](https://github.com/Hcmdz/ElecPilot/network/members)
+[![Compose M3](https://img.shields.io/badge/Jetpack_Compose-Material_3-4285F4.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 
 Android application for managing electrical motor starters and PLC I/O modules in industrial environments.
 
@@ -32,6 +35,8 @@ Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/r
 
 ## Screenshots
 
+Find any starter in seconds, light or dark — lists, details, and settings at a glance.
+
 ### Motor Starters
 
 | Light Mode | Dark Mode |
@@ -42,6 +47,8 @@ Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/r
 
 ### PLC I/O Modules
 
+Every module on record — table or card view, with full detail per module.
+
 | Light Mode | Dark Mode |
 |---|---|
 | [![PLC list — table view](screenshots/plc-list-table-view-light.png)](screenshots/plc-list-table-view-light.png) | [![PLC list — card view](screenshots/plc-list-card-view-dark.png)](screenshots/plc-list-card-view-dark.png) |
@@ -49,6 +56,8 @@ Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/r
 | [![PLC detail](screenshots/plc-detail-dark.png)](screenshots/plc-detail-dark.png) | |
 
 ### Settings
+
+Backup, language, and updates — everything configurable in one place.
 
 | Light Mode | Dark Mode |
 |---|---|
@@ -59,22 +68,22 @@ Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/r
 ## Key Features
 
 ### Motor Starters
-- **Motor starter management** — full CRUD, search, batch edit, statistics
-- **Voice search** — speak to filter motor starters
-- **Blank template generation** — ready-to-fill Excel templates for motor starters and PLC I/O
+- **Every starter on record.** Full CRUD, search, batch edit, statistics.
+- **Hands-free lookup.** Speak to filter motor starters with voice search.
+- **Start from a clean sheet.** Ready-to-fill Excel templates for motor starters and PLC I/O.
 
 ### PLC I/O Modules
-- **PLC I/O module management** — dedicated database and views
+- **Every module on record.** Dedicated database and views for PLC I/O modules.
 
 ### Backup & Sync
-- **Cloud backup/restore** — Google Drive & OneDrive via rclone (AES-256-GCM encrypted config)
-- **Local backup** — Excel & CSV export/import with scheduled backups
+- **Your data survives the phone.** Cloud backup/restore via Google Drive & OneDrive with rclone (AES-256-GCM encrypted config).
+- **Paper trail on demand.** Local backup with Excel & CSV export/import and scheduled backups.
 
 ### App
-- **In-app update** — auto-check & download from GitHub Releases
-- **Material You theming** — dynamic color, edge-to-edge
-- **Multilingual** — System/EN/FR/AR localization (auto-detect device language)
-- **Security hardened** — FLAG_SECURE, encrypted rclone config, WebView URL allowlist, ProGuard log stripping
+- **Always up to date.** In-app update with auto-check & download from GitHub Releases.
+- **Looks at home.** Material You theming with dynamic color, edge-to-edge.
+- **Speaks your language.** System/EN/FR/AR localization with auto-detect of the device language.
+- **Hardened by default.** FLAG_SECURE, encrypted rclone config, WebView URL allowlist, ProGuard log stripping.
 
 ---
 
@@ -409,3 +418,7 @@ This project is licensed under the **GNU General Public License v3.0** — see t
 
 - [Contributing](CONTRIBUTING.md) · [Third-Party Components](THIRD_PARTY.md) · [Security](SECURITY.md)
 - [Privacy Policy](docs/privacy/) · [Terms](docs/terms/)
+
+---
+
+Made with ❤️ by HcmDZ
