@@ -5,12 +5,28 @@
 [![MinSDK](https://img.shields.io/badge/MinSDK-29-orange.svg)](#)
 [![TargetSDK](https://img.shields.io/badge/TargetSDK-36-blue.svg)](#)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Release](https://img.shields.io/github/v/release/Hcmdz/ElecPilot)](https://github.com/Hcmdz/ElecPilot/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/Hcmdz/ElecPilot/total)](https://github.com/Hcmdz/ElecPilot/releases)
 
 Android application for managing electrical motor starters and PLC I/O modules in industrial environments.
 
+In the field, motor data lives on paper or scattered spreadsheets — lost, outdated, unsearchable. ElecPilot is the offline-first field notebook: every starter and PLC module recorded once, found in seconds, backed up encrypted.
+
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.5 (versionCode 30)
+- **Version**: 6.5.1 (versionCode 31)
 - **Author**: HcmDZ &lt;HcmDz.Dev@gmail.com&gt;
+
+---
+
+## 📦 Downloads
+
+Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`, ~21 MB, `arm64-v8a`).
+
+[![Download](https://img.shields.io/badge/Download-Latest_Release-green.svg?logo=android)](https://github.com/Hcmdz/ElecPilot/releases/latest)
+
+- Requires Android 9+ (API 29) with **arm64-v8a**; allow *Install unknown apps* for your browser when prompted.
+- Verify integrity: `sha256sum -c ElecPilot-release.apk.sha256` (sidecar next to the APK).
+- ⚠️ Coming from ≤ 6.5: manual reinstall required (new signing key since 6.5.1 — back up, uninstall, install, restore).
 
 ---
 
@@ -20,37 +36,44 @@ Android application for managing electrical motor starters and PLC I/O modules i
 
 | Light Mode | Dark Mode |
 |---|---|
-| ![Motor list — table view](screenshots/motor-list-table-view-light.png) | ![Motor list — table view](screenshots/motor-list-table-view-dark.png) |
-| ![Motor list — card view](screenshots/motor-list-card-view-light.png) | |
-| ![Motor detail](screenshots/motor-detail-dark.png) | |
+| [![Motor list — table view](screenshots/motor-list-table-view-light.png)](screenshots/motor-list-table-view-light.png) | [![Motor list — table view](screenshots/motor-list-table-view-dark.png)](screenshots/motor-list-table-view-dark.png) |
+| [![Motor list — card view](screenshots/motor-list-card-view-light.png)](screenshots/motor-list-card-view-light.png) | |
+| [![Motor detail](screenshots/motor-detail-dark.png)](screenshots/motor-detail-dark.png) | |
 
 ### PLC I/O Modules
 
 | Light Mode | Dark Mode |
 |---|---|
-| ![PLC list — table view](screenshots/plc-list-table-view-light.png) | ![PLC list — card view](screenshots/plc-list-card-view-dark.png) |
-| ![PLC list — card view](screenshots/plc-list-card-view-light.png) | |
-| ![PLC detail](screenshots/plc-detail-dark.png) | |
+| [![PLC list — table view](screenshots/plc-list-table-view-light.png)](screenshots/plc-list-table-view-light.png) | [![PLC list — card view](screenshots/plc-list-card-view-dark.png)](screenshots/plc-list-card-view-dark.png) |
+| [![PLC list — card view](screenshots/plc-list-card-view-light.png)](screenshots/plc-list-card-view-light.png) | |
+| [![PLC detail](screenshots/plc-detail-dark.png)](screenshots/plc-detail-dark.png) | |
 
 ### Settings
 
 | Light Mode | Dark Mode |
 |---|---|
-| ![Settings](screenshots/settings-light.png) | ![Settings](screenshots/settings-dark.png) |
+| [![Settings](screenshots/settings-light.png)](screenshots/settings-light.png) | [![Settings](screenshots/settings-dark.png)](screenshots/settings-dark.png) |
 
 ---
 
 ## Key Features
 
+### Motor Starters
 - **Motor starter management** — full CRUD, search, batch edit, statistics
+- **Voice search** — speak to filter motor starters
+- **Blank template generation** — ready-to-fill Excel templates for motor starters and PLC I/O
+
+### PLC I/O Modules
 - **PLC I/O module management** — dedicated database and views
+
+### Backup & Sync
 - **Cloud backup/restore** — Google Drive & OneDrive via rclone (AES-256-GCM encrypted config)
 - **Local backup** — Excel & CSV export/import with scheduled backups
+
+### App
 - **In-app update** — auto-check & download from GitHub Releases
-- **Blank template generation** — ready-to-fill Excel templates for motor starters and PLC I/O
 - **Material You theming** — dynamic color, edge-to-edge
 - **Multilingual** — System/EN/FR/AR localization (auto-detect device language)
-- **Voice search** — speak to filter motor starters
 - **Security hardened** — FLAG_SECURE, encrypted rclone config, WebView URL allowlist, ProGuard log stripping
 
 ---
@@ -68,9 +91,11 @@ Android application for managing electrical motor starters and PLC I/O modules i
 
 | Category | Library | Version |
 |---|---|---|
-| **UI** | Jetpack Compose + Material 3 | BOM 2026.08.00 |
+| **UI** | Jetpack Compose + Material 3 | BOM 2026.09.00 |
+| **Activity** | Activity Compose | 1.13.0 |
+| **Lifecycle** | Lifecycle Runtime Compose | 2.11.0 |
 | **Async** | Kotlin Coroutines & Flow | 1.11.0 |
-| **Database** | Room | 2.8.4 |
+| **Database** | Room | 2.8.5 |
 | **Networking** | OkHttp | 5.5.0 |
 | **Cloud** | rclone (native binary, UPX compressed) | custom build |
 | **Excel** | Apache POI (shadow jar from centic9/poi-on-android) | 5.2.5 |
@@ -78,8 +103,10 @@ Android application for managing electrical motor starters and PLC I/O modules i
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
 | **Browser** | AndroidX Custom Tabs | 1.10.0 |
 | **Security** | AES-256-GCM (Android KeyStore), ProGuard, NSC | — |
-| **Build** | AGP 9.4.0, Kotlin 2.4.10, KSP 2.3.11 | — |
+| **Build** | AGP 9.4.0, Kotlin 2.4.10, KSP 2.3.12 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
+| **Quality** | Detekt CLI | 1.23.8 |
+| **Testing** | JUnit4, Room Testing, Coroutines Test | 4.13.2 / 2.8.5 / 1.11.0 |
 
 ### Security Features (v6.0)
 
@@ -92,6 +119,19 @@ Android application for managing electrical motor starters and PLC I/O modules i
 | **Network security** | Cleartext blocked (NSC), localhost exception only for rclone OAuth |
 | **Backup disabled** | `allowBackup="false"` |
 | **MTE** | `memtagMode="sync"` enabled in manifest |
+
+### Permissions
+
+- `INTERNET`, `ACCESS_NETWORK_STATE` — cloud backup (rclone) and update check
+- `POST_NOTIFICATIONS` — backup progress and update status
+- `REQUEST_INSTALL_PACKAGES` — in-app update install
+
+Entry points: `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `FileProvider` (`${applicationId}.fileprovider`).
+
+### CI & Quality
+
+- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, Dependabot
+- Detekt: `./gradlew detekt` (config `config/detekt/detekt.yml`)
 
 ---
 
@@ -231,59 +271,26 @@ The app bundles a custom-built rclone binary (`librclone.so`) with only the back
 
 **Important**: After rebuilding the rclone binary, you MUST compress it with UPX before copying it into the project. Without UPX, the APK will be ~17 MB larger.
 
-#### Step 1: Build for arm64
+Rebuilds are scripted — do not run manual `go build` commands (they would
+produce a full, untrimmed binary). The single entry point is:
 
 ```bash
-export GOROOT=/tmp/go && export PATH=$GOROOT/bin:$PATH
-export ANDROID_NDK_HOME=$ANDROID_SDK_HOME/ndk/26.1.10909125
-export PATH=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
-
-cd /tmp/rclone
-GOOS=android GOARCH=arm64 CGO_ENABLED=1 \
-  CC=aarch64-linux-android34-clang \
-  CXX=aarch64-linux-android34-clang++ \
-  go build -ldflags="-s -w" -trimpath -o /tmp/librclone_arm64.so .
+./tools/rclone/build-librclone.sh [--version vX.Y.Z]
 ```
 
-#### Step 2: Compress with UPX
+The script clones the pinned tag (see `tools/rclone/pinned-version.txt`),
+builds the trimmed module (`tools/rclone/main.go`: backends
+`local`/`drive`/`onedrive`, contract commands in
+`tools/rclone/contract.md`) for `arm64-v8a` + `x86_64` (clang
+`android29`, see `tools/rclone/toolchain.lock`), UPX-compresses the release
+ABI, runs the contract smoke test, copies the binaries into
+`app/src/main/jniLibs/`, and syncs the version into `THIRD_PARTY.md`.
 
-```bash
-/tmp/upx-4.2.4-amd64_linux/upx --best /tmp/librclone_arm64.so
-```
+Prerequisites: Go (see `toolchain.lock`), Android NDK, UPX. In CI the
+`.github/workflows/rclone.yml` workflow does the same monthly and opens a
+bump PR — merging it requires the device OAuth gate in `contract.md`.
 
-This compresses the binary from ~23 MB to ~6.7 MB (71% reduction).
-
-#### Step 3: Copy into the project
-
-```bash
-cp /tmp/librclone_arm64.so app/src/main/jniLibs/arm64-v8a/librclone.so
-```
-
-#### Step 4: Build the APK
-
-```bash
-cd ElecPilot
-./gradlew clean assembleRelease
-```
-
-### Rebuild for emulator (x86_64)
-
-To test on the x86_64 emulator, build for amd64 and add `"x86_64"` to `abiFilters` in `app/build.gradle.kts`:
-
-```bash
-GOOS=android GOARCH=amd64 CGO_ENABLED=1 \
-  CC=x86_64-linux-android34-clang \
-  CXX=x86_64-linux-android34-clang++ \
-  go build -ldflags="-s -w" -trimpath -o /tmp/librclone_x86_64.so .
-```
-
-Then add `"x86_64"` to `abiFilters` in `app/build.gradle.kts`:
-
-```kotlin
-abiFilters += listOf("arm64-v8a", "x86_64")
-```
-
-> **Note**: Release builds only target `arm64-v8a`. The debug build includes both `arm64-v8a` and `x86_64` for emulator testing.
+> **Note**: Release builds only target `arm64-v8a`. The debug build includes both `arm64-v8a` and `x86_64` for emulator testing. The `x86_64` binary is intentionally NOT UPX-compressed.
 
 ---
 
@@ -317,6 +324,7 @@ The release APK is signed with a keystore. To build a release APK:
 
 ```properties
 RELEASE_STORE_FILE=/path/to/your/release.keystore
+RELEASE_KEY_ALIAS=[REDACTED]
 RELEASE_STORE_PASSWORD=your_store_password
 RELEASE_KEY_PASSWORD=your_key_password
 ```
@@ -396,3 +404,8 @@ Security audit fixes (OWASP MASVS 2.1):
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This project is licensed under the **GNU General Public License v3.0** — see the [LICENSE](LICENSE) file for details.
+
+## Related Docs
+
+- [Contributing](CONTRIBUTING.md) · [Third-Party Components](THIRD_PARTY.md) · [Security](SECURITY.md)
+- [Privacy Policy](docs/privacy/) · [Terms](docs/terms/)

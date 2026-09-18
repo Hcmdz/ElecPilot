@@ -1,0 +1,3 @@
+arm64-v8a/librclone.so bytes=7448268 upx=yes
+x86_64/librclone.so bytes=27559024 upx=no
+apk-release bytes~20971520 note=README approx, refresh after next release build

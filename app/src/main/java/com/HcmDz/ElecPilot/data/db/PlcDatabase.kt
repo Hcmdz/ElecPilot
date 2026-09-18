@@ -16,7 +16,7 @@ abstract class PlcDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: PlcDatabase? = null
 
-        // ponytail: idempotent so it survives either v1 history (with or without the favorite column)
+        // debt: idempotent so it survives either v1 history (with or without the favorite column)
         internal val MIGRATION_1_2 = Migration(1, 2) { db ->
             val columns = mutableSetOf<String>()
             db.query("PRAGMA table_info(plc_io)").use { c ->

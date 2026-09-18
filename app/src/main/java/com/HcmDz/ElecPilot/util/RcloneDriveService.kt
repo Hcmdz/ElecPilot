@@ -420,7 +420,8 @@ object RcloneDriveService {
         val error: List<String>
     )
 
-    private fun parseTime(timeStr: String): Long {
+    // Visible for contract tests (tools/rclone/contract.md): golden samples in RcloneDriveServiceTest.
+    internal fun parseTime(timeStr: String): Long {
         if (timeStr.isBlank()) return 0L
         return try {
             val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
@@ -449,7 +450,7 @@ object RcloneDriveService {
         }
     }
 
-    private fun parseProgressJson(jsonLine: String): Triple<Float, Long, Long>? {
+    internal fun parseProgressJson(jsonLine: String): Triple<Float, Long, Long>? {
         return try {
             val json = org.json.JSONObject(jsonLine)
             val stats = json.optJSONObject("stats") ?: return null

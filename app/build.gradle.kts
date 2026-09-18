@@ -8,14 +8,14 @@ android {
     namespace = "com.HcmDz.ElecPilot"
     compileSdk = 37
     base.archivesName = "ElecPilot"
-    buildToolsVersion = "36.1.0"
+    buildToolsVersion = "37.0.0"
 
     defaultConfig {
         applicationId = "com.HcmDz.ElecPilot"
         minSdk = 29
         targetSdk = 36
-        versionCode = 30
-        versionName = "6.5"
+        versionCode = 31
+        versionName = "6.5.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         ndk {
         }
@@ -27,7 +27,7 @@ android {
             if (storeFilePath.isNotEmpty()) {
                 storeFile = file(storeFilePath)
                 storePassword = providers.gradleProperty("RELEASE_STORE_PASSWORD").get()
-                keyAlias = "HcmDz"
+                keyAlias = providers.gradleProperty("RELEASE_KEY_ALIAS").getOrElse("")
                 keyPassword = providers.gradleProperty("RELEASE_KEY_PASSWORD").get()
                 enableV3Signing = true
             }
@@ -129,10 +129,9 @@ dependencies {
     // Cloud Backup (rclone)
     implementation(libs.okhttp)
 
-    implementation(libs.browser)
-
     // Tests
     testImplementation(libs.junit)
+    testImplementation(libs.json) // real org.json: android.jar stubs throw in JVM unit tests
     testImplementation(libs.coroutines.test)
     testImplementation(libs.core.testing)
 
