@@ -1,0 +1,13 @@
+# Locked build toolchain for the trimmed rclone binary.
+# Bump only deliberately; a new rclone release may require a newer Go
+# (see rclone RELEASE.md / go.mod `go` directive).
+GO_VERSION=1.26.0
+NDK_VERSION=26.1.10909125
+# android-29 clang prefix keeps the binary runnable on all devices the app
+# supports (minSdk 29). Never use an android34+ clang prefix here.
+ANDROID_API_LEVEL=29
+UPX_VERSION=4.2.4
+# Pinned GitHub release asset (do not use mirrors):
+# https://github.com/upx/upx/releases/download/v4.2.4/upx-4.2.4-amd64_linux.tar.xz
+# Authenticity: download via the GitHub API / pinned URL only, then assert
+# `upx --version` reports UPX_VERSION before use (see build-librclone.sh).
