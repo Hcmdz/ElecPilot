@@ -53,6 +53,6 @@ Test-only dependencies (not shipped in the APK):
 
 - `poishadow-all.jar` is a fat JAR merging Apache POI and its transitive dependencies.
 - `librclone.so` is a pre-built Go shared library compiled for arm64-v8a.
-  Recorded version is 1.70.3; confirm on device via `rclone version` —
+  Recorded version is 1.75.1; confirm on device via `rclone version` —
   no version marker is embedded elsewhere in the repo.
 - All Apache 2.0 dependencies include their respective license files in the AAR/APK.
