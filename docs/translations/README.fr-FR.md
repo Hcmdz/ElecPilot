@@ -1,5 +1,6 @@
-<!-- Sync with EN rev a360a66 (2026-09-19) -->
+<!-- Sync with EN rev a83a570 (2026-09-19) -->
 # ElecPilot
+<a id="readme-top"></a>
 
 [![ElecPilot](../../docs/assets/feature-graphic.png)](https://github.com/Hcmdz/ElecPilot/releases/latest)
 
@@ -29,6 +30,39 @@ Sur le terrain, les données moteurs vivent sur papier ou dans des tableurs épa
 
 ---
 
+<p align="center">
+  <a href="#captures-décran">Voir la démo</a>
+  ·
+  <a href="https://github.com/Hcmdz/ElecPilot/issues/new?labels=bug">Signaler un bug</a>
+  ·
+  <a href="https://github.com/Hcmdz/ElecPilot/issues/new?labels=enhancement">Proposer une fonctionnalité</a>
+</p>
+
+<details>
+<summary>Table des matières</summary>
+
+- [📦 Téléchargements](#-téléchargements)
+- [Captures d'écran](#captures-décran)
+- [Fonctionnalités clés](#fonctionnalités-clés)
+- [Stack technique et architecture](#stack-technique-et-architecture)
+- [Démarrage](#démarrage)
+- [Tests](#tests)
+- [Structure du projet](#structure-du-projet)
+- [Apache POI Shadow Jar](#apache-poi-shadow-jar)
+- [Binaire Rclone personnalisé](#binaire-rclone-personnalisé)
+- [Sauvegarde Cloud](#sauvegarde-cloud)
+- [Signature](#signature)
+- [Taille de l'APK](#taille-de-lapk)
+- [Changelog](#changelog-v57--v651)
+- [Mentions légales](#mentions-légales)
+- [Licence](#licence)
+- [Roadmap](#️-roadmap)
+- [Docs associées](#docs-associées)
+- [Contact](#-contact)
+</details>
+
+---
+
 ## 📦 Téléchargements
 
 Obtenez ElecPilot sur GitHub : **[Dernière release](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`, ~21 MB, `arm64-v8a`).
@@ -38,6 +72,8 @@ Obtenez ElecPilot sur GitHub : **[Dernière release](https://github.com/Hcmdz/El
 - Nécessite Android 9+ (API 29) avec **arm64-v8a** ; autorisez *Installer des applications inconnues* pour votre navigateur si demandé.
 - Vérifiez l'intégrité : `sha256sum -c ElecPilot-release.apk.sha256` (fichier sidecar à côté de l'APK).
 - ⚠️ Si vous venez d'une version ≤ 6.5 : réinstallation manuelle requise (nouvelle clé de signature depuis 6.5.1 — sauvegardez, désinstallez, installez, restaurez).
+
+<p align="right">(<a href="#readme-top">haut de page</a>)</p>
 
 ---
 
@@ -71,6 +107,8 @@ Sauvegarde, langue et mises à jour — tout est configurable au même endroit.
 |---|---|
 | [![Settings](../../screenshots/settings-light.png)](../../screenshots/settings-light.png) | [![Settings](../../screenshots/settings-dark.png)](../../screenshots/settings-dark.png) |
 
+<p align="right">(<a href="#readme-top">haut de page</a>)</p>
+
 ---
 
 ## Fonctionnalités clés
@@ -92,6 +130,8 @@ Sauvegarde, langue et mises à jour — tout est configurable au même endroit.
 - **Comme à la maison.** Thème Material You avec couleur dynamique, edge-to-edge.
 - **Parle votre langue.** Localisation Système/EN/FR/AR avec détection auto de la langue de l'appareil.
 - **Durcie par défaut.** FLAG_SECURE, config rclone chiffrée, allowlist d'URL WebView, suppression des logs ProGuard.
+
+<p align="right">(<a href="#readme-top">haut de page</a>)</p>
 
 ---
 
@@ -147,8 +187,11 @@ Points d'entrée : `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `Fil
 
 ### CI et qualité
 
-- GitHub Actions : `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, Dependabot
+- GitHub Actions : `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, `rclone.yml` (PR mensuelle de bump rclone), Dependabot
 - Detekt : `./gradlew detekt` (config `config/detekt/detekt.yml`)
+- Noms de variables CI requises (les valeurs restent dans les secrets du repo/environnement, jamais commitées) : identifiants du keystore release (`RELEASE_STORE_FILE`, `RELEASE_STORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`)
+
+<p align="right">(<a href="#readme-top">haut de page</a>)</p>
 
 ---
 
@@ -156,11 +199,11 @@ Points d'entrée : `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `Fil
 
 ### Prérequis
 
-- **Android Studio** : dernière stable (Meerkat ou plus récent)
-- **JDK** : 17
-- **Android SDK** : compileSdk 37
-- **NDK** : 26.1.10909125
-- **Go** : 1.22+ (pour le build rclone personnalisé)
+- **Android Studio** : dernière stable (Meerkat ou plus récent) — IDE ([doc](https://developer.android.com/studio))
+- **JDK** : 17 — toolchain Gradle ([doc](https://docs.gradle.org/current/userguide/build_java_projects.html))
+- **Android SDK** : compileSdk 37 ([installation](https://developer.android.com/studio#downloads))
+- **NDK** : 26.1.10909125 — builds du binaire natif rclone ([doc](https://developer.android.com/ndk/downloads))
+- **Go** : 1.22+ — build rclone personnalisé uniquement ([doc](https://go.dev/dl/))
 
 ### Build APK
 
@@ -171,6 +214,14 @@ cd "ElecPilot"
 
 Sortie : `app/build/outputs/apk/release/ElecPilot-release.apk`
 
+### Utilisation quotidienne
+
+```bash
+./gradlew installDebug   # run on device
+./gradlew test           # unit tests
+./gradlew lintDebug      # static analysis
+```
+
 ### Lancer sur appareil
 
 1. Ouvrez le projet dans **Android Studio**.
@@ -180,6 +231,8 @@ Sortie : `app/build/outputs/apk/release/ElecPilot-release.apk`
    ```bash
    ./gradlew installDebug
    ```
+
+<p align="right">(<a href="#readme-top">haut de page</a>)</p>
 
 ---
 
@@ -360,7 +413,14 @@ Techniques de réduction appliquées :
 
 ---
 
-## Changelog (v5.7 → v6.5)
+## Changelog (v5.7 → v6.5.1)
+
+Les versions suivent [semver](https://semver.org/) ; l'historique complet est dans les [GitHub Releases](https://github.com/Hcmdz/ElecPilot/releases).
+
+### v6.5.1
+
+- **Rclone 1.75.1 allégé** — backends local/Drive/OneDrive uniquement
+- **Nouvelle clé de signature** — réinstallation manuelle requise (sauvegardez, désinstallez, installez, restaurez)
 
 ### v6.5
 
@@ -398,6 +458,8 @@ Correctifs d'audit sécurité (OWASP MASVS 2.1) :
 | 9 | BASSE | Logs d'erreur expurgés des chemins de fichiers et détails d'opérations |
 | 10 | BASSE | ProGuard supprime `Log.e/w` avec objets d'exception en release |
 
+<p align="right">(<a href="#readme-top">haut de page</a>)</p>
+
 ---
 
 ## Mentions légales
@@ -413,10 +475,20 @@ Correctifs d'audit sécurité (OWASP MASVS 2.1) :
 
 Ce projet est sous **GNU General Public License v3.0** — voir le fichier [LICENSE](../../LICENSE) pour les détails.
 
+## 🗺️ Roadmap
+
+Le travail prévu est suivi dans les [tickets ouverts](https://github.com/Hcmdz/ElecPilot/issues) — proposez-y vos fonctionnalités.
+
 ## Docs associées
 
 - [Contributing](../../CONTRIBUTING.md) · [Composants tiers](../../THIRD_PARTY.md) · [Sécurité](../../SECURITY.md)
 - [Politique de confidentialité](../../docs/privacy/) · [Conditions](../../docs/terms/)
+
+## 📬 Contact
+
+HcmDZ — [@Hcmdz](https://github.com/Hcmdz)
+
+Lien du projet : [https://github.com/Hcmdz/ElecPilot](https://github.com/Hcmdz/ElecPilot)
 
 ---
 

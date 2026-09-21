@@ -1,5 +1,6 @@
-<!-- Sync with EN rev a360a66 (2026-09-19) -->
+<!-- Sync with EN rev a83a570 (2026-09-19) -->
 # ElecPilot
+<a id="readme-top"></a>
 
 [![ElecPilot](../../docs/assets/feature-graphic.png)](https://github.com/Hcmdz/ElecPilot/releases/latest)
 
@@ -33,6 +34,43 @@
 
 ---
 
+<div dir="ltr">
+
+<p align="center">
+  <a href="#لقطات-الشاشة">عرض الديمو</a>
+  ·
+  <a href="https://github.com/Hcmdz/ElecPilot/issues/new?labels=bug">الإبلاغ عن خطأ</a>
+  ·
+  <a href="https://github.com/Hcmdz/ElecPilot/issues/new?labels=enhancement">اقتراح ميزة</a>
+</p>
+
+</div>
+
+<details>
+<summary>جدول المحتويات</summary>
+
+- [📦 التنزيلات](#-التنزيلات)
+- [لقطات الشاشة](#لقطات-الشاشة)
+- [المزايا الرئيسية](#المزايا-الرئيسية)
+- [التقنيات والبنية](#التقنيات-والبنية)
+- [البدء](#البدء)
+- [الاختبارات](#الاختبارات)
+- [بنية المشروع](#بنية-المشروع)
+- [Apache POI Shadow Jar](#apache-poi-shadow-jar)
+- [ثنائي Rclone مخصص](#ثنائي-rclone-مخصص)
+- [النسخ السحابي](#النسخ-السحابي)
+- [التوقيع](#التوقيع)
+- [حجم APK](#حجم-apk)
+- [سجل التغييرات](#سجل-التغييرات-v57--v651)
+- [قانوني](#قانوني)
+- [الرخصة](#الرخصة)
+- [خارطة الطريق](#️-خارطة-الطريق)
+- [مستندات ذات صلة](#مستندات-ذات-صلة)
+- [تواصل](#-تواصل)
+</details>
+
+---
+
 ## 📦 التنزيلات
 
 احصل على ElecPilot من GitHub: **[أحدث إصدار](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`، ~21 MB، `arm64-v8a`).
@@ -42,6 +80,8 @@
 - يتطلب Android 9+ (API 29) مع **arm64-v8a**؛ اسمح بـ *تثبيت التطبيقات غير المعروفة* للمتصفح عند الطلب.
 - تحقق من السلامة: `sha256sum -c ElecPilot-release.apk.sha256` (ملف sidecar بجانب APK).
 - ⚠️ إذا كنت قادمًا من نسخة ≤ 6.5: يلزم إعادة تثبيت يدوية (مفتاح توقيع جديد منذ 6.5.1 — انسخ احتياطيًا، ألغِ التثبيت، ثبّت، استعد).
+
+<p align="right">(<a href="#readme-top">العودة للأعلى</a>)</p>
 
 ---
 
@@ -75,6 +115,8 @@
 |---|---|
 | [![Settings](../../screenshots/settings-light.png)](../../screenshots/settings-light.png) | [![Settings](../../screenshots/settings-dark.png)](../../screenshots/settings-dark.png) |
 
+<p align="right">(<a href="#readme-top">العودة للأعلى</a>)</p>
+
 ---
 
 ## المزايا الرئيسية
@@ -96,6 +138,8 @@
 - **يبدو في بيته.** سمة Material You بلون ديناميكي، edge-to-edge.
 - **يتحدث لغتك.** توطين النظام/EN/FR/AR مع اكتشاف تلقائي للغة الجهاز.
 - **محصّن افتراضيًا.** FLAG_SECURE، إعداد rclone مشفر، قائمة URL مسموحة لـ WebView، تجريد سجلات ProGuard.
+
+<p align="right">(<a href="#readme-top">العودة للأعلى</a>)</p>
 
 ---
 
@@ -151,8 +195,11 @@
 
 ### CI والجودة
 
-- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`)، `codeql.yml`، Dependabot
+- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`)، `codeql.yml`، `rclone.yml` (PR شهري لرفع rclone)، Dependabot
 - Detekt: `./gradlew detekt` (الإعداد `config/detekt/detekt.yml`)
+- أسماء متغيرات CI المطلوبة (القيم تبقى في أسرار المستودع/البيئة ولا تُحفظ في الـ commits أبدًا): بيانات اعتماد keystore الـ release (`RELEASE_STORE_FILE`، `RELEASE_STORE_PASSWORD`، `RELEASE_KEY_ALIAS`، `RELEASE_KEY_PASSWORD`)
+
+<p align="right">(<a href="#readme-top">العودة للأعلى</a>)</p>
 
 ---
 
@@ -160,11 +207,11 @@
 
 ### المتطلبات
 
-- **Android Studio**: الأحدث المستقر (Meerkat أو أحدث)
-- **JDK**: 17
-- **Android SDK**: compileSdk 37
-- **NDK**: 26.1.10909125
-- **Go**: 1.22+ (لبناء rclone المخصص)
+- **Android Studio**: الأحدث المستقر (Meerkat أو أحدث) — IDE ([doc](https://developer.android.com/studio))
+- **JDK**: 17 — Gradle toolchain ([doc](https://docs.gradle.org/current/userguide/build_java_projects.html))
+- **Android SDK**: compileSdk 37 ([التثبيت](https://developer.android.com/studio#downloads))
+- **NDK**: 26.1.10909125 — لبناء ثنائي rclone الأصلي ([doc](https://developer.android.com/ndk/downloads))
+- **Go**: 1.22+ — للبناء المخصص لـ rclone فقط ([doc](https://go.dev/dl/))
 
 ### بناء APK
 
@@ -175,6 +222,14 @@ cd "ElecPilot"
 
 الناتج: `app/build/outputs/apk/release/ElecPilot-release.apk`
 
+### الاستخدام اليومي
+
+```bash
+./gradlew installDebug   # run on device
+./gradlew test           # unit tests
+./gradlew lintDebug      # static analysis
+```
+
 ### التشغيل على جهاز
 
 1. افتح المشروع في **Android Studio**.
@@ -184,6 +239,8 @@ cd "ElecPilot"
    ```bash
    ./gradlew installDebug
    ```
+
+<p align="right">(<a href="#readme-top">العودة للأعلى</a>)</p>
 
 ---
 
@@ -364,7 +421,14 @@ RELEASE_KEY_[REDACTED:password]
 
 ---
 
-## سجل التغييرات (v5.7 → v6.5)
+## سجل التغييرات (v5.7 → v6.5.1)
+
+تتبع النسخ [semver](https://semver.org/)؛ السجل الكامل في [GitHub Releases](https://github.com/Hcmdz/ElecPilot/releases).
+
+### v6.5.1
+
+- **rclone 1.75.1 مخفف** — backends local/Drive/OneDrive فقط
+- **مفتاح توقيع جديد** — يلزم إعادة تثبيت يدوية (انسخ احتياطيًا، ألغِ التثبيت، ثبّت، استعد)
 
 ### v6.5
 
@@ -402,6 +466,8 @@ RELEASE_KEY_[REDACTED:password]
 | 9 | منخفضة | سجلات الأخطاء منقاة من مسارات الملفات وتفاصيل العمليات |
 | 10 | منخفضة | ProGuard يزيل `Log.e/w` مع كائنات الاستثناء في release |
 
+<p align="right">(<a href="#readme-top">العودة للأعلى</a>)</p>
+
 ---
 
 ## قانوني
@@ -417,10 +483,20 @@ RELEASE_KEY_[REDACTED:password]
 
 هذا المشروع تحت **GNU General Public License v3.0** — انظر ملف [LICENSE](../../LICENSE) للتفاصيل.
 
+## 🗺️ خارطة الطريق
+
+يُتتبع العمل المخطط في [التذاكر المفتوحة](https://github.com/Hcmdz/ElecPilot/issues) — اقترح المزايا هناك.
+
 ## مستندات ذات صلة
 
 - [Contributing](../../CONTRIBUTING.md) · [مكونات الطرف الثالث](../../THIRD_PARTY.md) · [الأمان](../../SECURITY.md)
 - [سياسة الخصوصية](../../docs/privacy/) · [الشروط](../../docs/terms/)
+
+## 📬 تواصل
+
+HcmDZ — [@Hcmdz](https://github.com/Hcmdz)
+
+رابط المشروع: [https://github.com/Hcmdz/ElecPilot](https://github.com/Hcmdz/ElecPilot)
 
 ---
 
