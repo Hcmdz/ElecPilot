@@ -61,7 +61,7 @@ jobs:
           echo "upx=$UPX_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v7
         with:
           go-version: ${{ steps.pins.outputs.go }}
 
@@ -72,7 +72,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
       - name: Install Android NDK
         run: |
