@@ -1,4 +1,5 @@
 # ElecPilot
+<a id="readme-top"></a>
 
 [![ElecPilot](docs/assets/feature-graphic.png)](https://github.com/Hcmdz/ElecPilot/releases/latest)
 
@@ -28,6 +29,39 @@ In the field, motor data lives on paper or scattered spreadsheets — lost, outd
 
 ---
 
+<p align="center">
+  <a href="#screenshots">View Demo</a>
+  ·
+  <a href="https://github.com/Hcmdz/ElecPilot/issues/new?labels=bug">Report Bug</a>
+  ·
+  <a href="https://github.com/Hcmdz/ElecPilot/issues/new?labels=enhancement">Request Feature</a>
+</p>
+
+<details>
+<summary>Table of Contents</summary>
+
+- [📦 Downloads](#-downloads)
+- [Screenshots](#screenshots)
+- [Key Features](#key-features)
+- [Tech Stack & Architecture](#tech-stack--architecture)
+- [Getting Started](#getting-started)
+- [Testing](#testing)
+- [Project Structure](#project-structure)
+- [Apache POI Shadow Jar](#apache-poi-shadow-jar)
+- [Custom Rclone Binary](#custom-rclone-binary)
+- [Cloud Backup](#cloud-backup)
+- [Signing](#signing)
+- [APK Size](#apk-size)
+- [Changelog](#changelog-v57--v651)
+- [Legal](#legal)
+- [License](#license)
+- [Roadmap](#️-roadmap)
+- [Related Docs](#related-docs)
+- [Contact](#-contact)
+</details>
+
+---
+
 ## 📦 Downloads
 
 Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`, ~21 MB, `arm64-v8a`).
@@ -37,6 +71,8 @@ Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/r
 - Requires Android 9+ (API 29) with **arm64-v8a**; allow *Install unknown apps* for your browser when prompted.
 - Verify integrity: `sha256sum -c ElecPilot-release.apk.sha256` (sidecar next to the APK).
 - ⚠️ Coming from ≤ 6.5: manual reinstall required (new signing key since 6.5.1 — back up, uninstall, install, restore).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -70,6 +106,8 @@ Backup, language, and updates — everything configurable in one place.
 |---|---|
 | [![Settings](screenshots/settings-light.png)](screenshots/settings-light.png) | [![Settings](screenshots/settings-dark.png)](screenshots/settings-dark.png) |
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ---
 
 ## Key Features
@@ -91,6 +129,8 @@ Backup, language, and updates — everything configurable in one place.
 - **Looks at home.** Material You theming with dynamic color, edge-to-edge.
 - **Speaks your language.** System/EN/FR/AR localization with auto-detect of the device language.
 - **Hardened by default.** FLAG_SECURE, encrypted rclone config, WebView URL allowlist, ProGuard log stripping.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -146,8 +186,11 @@ Entry points: `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `FileProv
 
 ### CI & Quality
 
-- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, Dependabot
+- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, `rclone.yml` (monthly rclone bump PR), Dependabot
 - Detekt: `./gradlew detekt` (config `config/detekt/detekt.yml`)
+- Required CI variable **names** (values stay in repo/environment secrets, never committed): release keystore credentials (`RELEASE_STORE_FILE`, `RELEASE_STORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -155,11 +198,11 @@ Entry points: `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `FileProv
 
 ### Prerequisites
 
-- **Android Studio**: Latest stable (Meerkat or newer)
-- **JDK**: 17
-- **Android SDK**: compileSdk 37
-- **NDK**: 26.1.10909125
-- **Go**: 1.22+ (for rclone custom build)
+- **Android Studio**: Latest stable (Meerkat or newer) — IDE ([doc](https://developer.android.com/studio))
+- **JDK**: 17 — Gradle toolchain ([doc](https://docs.gradle.org/current/userguide/build_java_projects.html))
+- **Android SDK**: compileSdk 37 ([install](https://developer.android.com/studio#downloads))
+- **NDK**: 26.1.10909125 — rclone native binary builds ([doc](https://developer.android.com/ndk/downloads))
+- **Go**: 1.22+ — rclone custom build only ([doc](https://go.dev/dl/))
 
 ### Build APK
 
@@ -170,6 +213,14 @@ cd "ElecPilot"
 
 Output: `app/build/outputs/apk/release/ElecPilot-release.apk`
 
+### Everyday Use
+
+```bash
+./gradlew installDebug   # run on device
+./gradlew test           # unit tests
+./gradlew lintDebug      # static analysis
+```
+
 ### Run on Device
 
 1. Open the project in **Android Studio**.
@@ -179,6 +230,8 @@ Output: `app/build/outputs/apk/release/ElecPilot-release.apk`
    ```bash
    ./gradlew installDebug
    ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -368,7 +421,14 @@ Size reduction techniques applied:
 
 ---
 
-## Changelog (v5.7 → v6.5)
+## Changelog (v5.7 → v6.5.1)
+
+Versions follow [semver](https://semver.org/); full history lives in [GitHub Releases](https://github.com/Hcmdz/ElecPilot/releases).
+
+### v6.5.1
+
+- **Trimmed rclone 1.75.1** — local/Drive/OneDrive backends only
+- **New signing key** — manual reinstall required (back up, uninstall, install, restore)
 
 ### v6.5
 
@@ -406,6 +466,8 @@ Security audit fixes (OWASP MASVS 2.1):
 | 9 | LOW | Error logs stripped of file paths and operation details |
 | 10 | LOW | ProGuard strips `Log.e/w` with exception objects in release |
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ---
 
 ## Legal
@@ -421,10 +483,20 @@ Security audit fixes (OWASP MASVS 2.1):
 
 This project is licensed under the **GNU General Public License v3.0** — see the [LICENSE](LICENSE) file for details.
 
+## 🗺️ Roadmap
+
+Planned work is tracked in the [open issues](https://github.com/Hcmdz/ElecPilot/issues) — propose features there.
+
 ## Related Docs
 
 - [Contributing](CONTRIBUTING.md) · [Third-Party Components](THIRD_PARTY.md) · [Security](SECURITY.md)
 - [Privacy Policy](docs/privacy/) · [Terms](docs/terms/)
+
+## 📬 Contact
+
+HcmDZ — [@Hcmdz](https://github.com/Hcmdz)
+
+Project link: [https://github.com/Hcmdz/ElecPilot](https://github.com/Hcmdz/ElecPilot)
 
 ---
 
