@@ -185,7 +185,6 @@ object RcloneDriveService {
         onProgress: ((percent: Float, speedBytesPerSec: Long, etaSeconds: Long) -> Unit)? = null
     ): CloudBackupFileInfo = withContext(Dispatchers.IO) {
         val remote = getRemoteName(context)
-        val remotePath = "$remote:/$folderName/"
 
         val tempFile = File.createTempFile("upload_", ".tmp", context.cacheDir)
         try {
