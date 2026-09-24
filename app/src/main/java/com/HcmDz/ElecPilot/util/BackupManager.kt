@@ -297,7 +297,8 @@ object BackupManager {
                 val ext = fileInfo.name.substringAfterLast('.', "")
                 val newFile = File(getBackupDir(context), "$newName.$ext")
                 if (newFile.exists()) return false
-                oldFile.renameTo(newFile)
+                if (!oldFile.renameTo(newFile)) return false
+                true
             } else {
                 val prefs = context.getBackupPreferences()
                 val treeDoc = getTreeDocumentFile(context, prefs.backupTreeUri)
