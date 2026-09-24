@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.BufferedReader
@@ -32,6 +33,15 @@ object RcloneDriveService {
     private var rcloneBinary: String = ""
     private var confStorePath: String = ""
     private var appContext: Context? = null
+
+    // Pinning covers graph.microsoft.com (OneDrive drive lookup, bearer in
+    // flight). Primary pin = issuing intermediate, backup pin = root;
+    // rotation procedure: refresh both pins from the live chain before the
+    // intermediate expires.
+    internal val graphPinner = CertificatePinner.Builder()
+        .add("graph.microsoft.com", "sha256/Wec45nQiFwKvHtuHxSAMGkt19k+uPSw9JlEkxhvYPHk=")
+        .add("graph.microsoft.com", "sha256/i7WTqTvh0OioIruIfFR4kMPnBqrS2rdiVPl/s2uC/CY=")
+        .build()
 
     fun init(context: Context) {
         val ctx = context.applicationContext
@@ -175,7 +185,6 @@ object RcloneDriveService {
         onProgress: ((percent: Float, speedBytesPerSec: Long, etaSeconds: Long) -> Unit)? = null
     ): CloudBackupFileInfo = withContext(Dispatchers.IO) {
         val remote = getRemoteName(context)
-        val remotePath = "$remote:/$folderName/"
 
         val tempFile = File.createTempFile("upload_", ".tmp", context.cacheDir)
         try {
@@ -298,6 +307,7 @@ object RcloneDriveService {
             val tokenObj = org.json.JSONObject(tokenJson)
             val accessToken = tokenObj.getString("access_token")
             val client = OkHttpClient.Builder()
+                .certificatePinner(graphPinner)
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .build()

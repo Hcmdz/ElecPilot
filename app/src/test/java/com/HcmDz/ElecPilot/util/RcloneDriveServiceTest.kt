@@ -55,4 +55,13 @@ class RcloneDriveServiceTest {
         assertNull(RcloneDriveService.parseProgressJson("""{"level":"notice"}"""))
         assertNotNull(RcloneDriveService.parseProgressJson("""{"stats":{}}"""))
     }
+
+    // Pin guard: intermediate primary + root backup, both scoped to the host.
+    @Test
+    fun graphPinner_pinsMicrosoftGraphWithBackup() {
+        val pins = RcloneDriveService.graphPinner.pins
+        assertEquals(2, pins.size)
+        assertTrue(pins.all { it.matchesHostname("graph.microsoft.com") })
+        assertTrue(pins.all { it.hashAlgorithm == "sha256" })
+    }
 }
