@@ -527,7 +527,6 @@ fun PlcScreen(
                     fDesignation -> { p -> p.copy(designation = value) }
                     else -> { p -> p }
                 }
-                val count = batchEditCount
                 val originals = batchEditPlc.map { it.copy() }
                 val updated = batchEditPlc.map { updateField(it) }
                 viewModel.updatePlcs(updated)

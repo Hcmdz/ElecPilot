@@ -218,6 +218,15 @@ class RcloneAuthActivity : Activity() {
                 }
 
                 val finished = process.waitFor(180, java.util.concurrent.TimeUnit.SECONDS)
+                if (!finished) {
+                    process.destroy()
+                    handler.post {
+                        statusText!!.text = "Authentication timed out"
+                        setResult(RESULT_CANCELED)
+                        finish()
+                    }
+                    return@Thread
+                }
                 val rawToken = stdoutBuffer.toString().trim()
                 val cleanToken = rawToken
                     .replace(Regex(".*--->\\s*"), "")

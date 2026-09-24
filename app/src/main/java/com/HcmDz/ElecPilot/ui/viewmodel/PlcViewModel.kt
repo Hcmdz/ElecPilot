@@ -358,7 +358,7 @@ class PlcViewModel(application: Application) : AndroidViewModel(application) {
                 if (it.id in _favoriteIds.value) it.copy(favorite = true) else it.copy(favorite = false)
             }
             if (all.isNotEmpty()) {
-                val (index, smartResults) = withContext(Dispatchers.Default) {
+                val (_, smartResults) = withContext(Dispatchers.Default) {
                     val idx = getIndex(all)
                     idx to voiceSearchEngine.smartSearch(idx, rawText, 8)
                 }
