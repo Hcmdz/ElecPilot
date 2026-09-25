@@ -144,7 +144,7 @@ class MainActivity : ComponentActivity() {
     override fun attachBaseContext(newBase: Context) {
         val storedLang = newBase.getSharedPreferences("settings", Context.MODE_PRIVATE)
             .getString("app_language", "system") ?: "system"
-        val resolvedLang = resolveLanguage(storedLang)
+        val resolvedLang = resolveLanguage(storedLang, newBase.resources.configuration.locales[0].language)
         val locale = Locale.forLanguageTag(resolvedLang)
         Locale.setDefault(locale)
         val config = Configuration(newBase.resources.configuration)
@@ -358,7 +358,7 @@ class MainActivity : ComponentActivity() {
     private fun exportTemplateBoth() {
         excelExportQueue.clear()
         val storedLang = getSharedPreferences("settings", Context.MODE_PRIVATE).getString("app_language", "system") ?: "system"
-        val lang = resolveLanguage(storedLang)
+        val lang = resolveLanguage(storedLang, resources.configuration.locales[0].language)
         excelExportQueue.add(getString(R.string.template_filename_departs, lang) to { uri ->
             lifecycleScope.launch(Dispatchers.IO) {
                 try {
