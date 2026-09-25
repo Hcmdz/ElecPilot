@@ -25,7 +25,7 @@ Application Android de gestion des démarreurs de moteurs électriques et des mo
 Sur le terrain, les données moteurs vivent sur papier ou dans des tableurs éparpillés — perdues, obsolètes, introuvables. ElecPilot est le carnet de terrain offline-first : chaque démarreur et chaque module PLC enregistré une fois, retrouvé en quelques secondes, sauvegardé chiffré.
 
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.5.1 (versionCode 31)
+- **Version**: 6.5.2 (versionCode 32)
 - **Author**: HcmDZ &lt;[REDACTED]&gt;
 
 ---
@@ -413,9 +413,13 @@ Techniques de réduction appliquées :
 
 ---
 
-## Changelog (v5.7 → v6.5.1)
+## Changelog (v5.7 → v6.5.2)
 
 Les versions suivent [semver](https://semver.org/) ; l'historique complet est dans les [GitHub Releases](https://github.com/Hcmdz/ElecPilot/releases).
+
+### v6.5.2
+
+- **La langue système s'applique sans redémarrage** — revenir à l'option *Système* suit désormais la langue système actuelle au lieu de la langue précédemment sélectionnée
 
 ### v6.5.1
 

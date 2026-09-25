@@ -24,7 +24,7 @@ Android application for managing electrical motor starters and PLC I/O modules i
 In the field, motor data lives on paper or scattered spreadsheets — lost, outdated, unsearchable. ElecPilot is the offline-first field notebook: every starter and PLC module recorded once, found in seconds, backed up encrypted.
 
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.5.1 (versionCode 31)
+- **Version**: 6.5.2 (versionCode 32)
 - **Author**: HcmDZ &lt;HcmDz.Dev@gmail.com&gt;
 
 ---
@@ -421,9 +421,13 @@ Size reduction techniques applied:
 
 ---
 
-## Changelog (v5.7 → v6.5.1)
+## Changelog (v5.7 → v6.5.2)
 
 Versions follow [semver](https://semver.org/); full history lives in [GitHub Releases](https://github.com/Hcmdz/ElecPilot/releases).
+
+### v6.5.2
+
+- **System language applies without restart** — switching the app language back to *System* now follows the current system language instead of the previously selected one
 
 ### v6.5.1
 
