@@ -27,6 +27,10 @@ jobs:
       pinned: ${{ steps.v.outputs.pinned }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # this job only reads a pin file and queries a release; it never
+          # pushes, so the checkout keeps no credential on disk
+          persist-credentials: false
       - id: v
         env:
           GH_TOKEN: ${{ github.token }}
@@ -61,7 +65,7 @@ jobs:
           echo "upx=$UPX_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Set up Go
-        uses: actions/setup-go@v7
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
         with:
           go-version: ${{ steps.pins.outputs.go }}
 
@@ -72,7 +76,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v4
+        uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4
 
       - name: Install Android NDK
         run: |
