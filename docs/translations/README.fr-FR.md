@@ -1,4 +1,4 @@
-<!-- Sync with EN rev a83a570 (2026-09-19) -->
+<!-- Sync with EN rev 792beb6 (2026-10-12) -->
 # ElecPilot
 <a id="readme-top"></a>
 
