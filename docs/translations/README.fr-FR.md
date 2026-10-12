@@ -1,4 +1,4 @@
-<!-- Sync with EN rev a83a570 (2026-09-19) -->
+<!-- Sync with EN rev 792beb6 (2026-10-12) -->
 # ElecPilot
 <a id="readme-top"></a>
 
@@ -55,16 +55,16 @@ Sur le terrain, les données moteurs vivent sur papier ou dans des tableurs épa
 - [📦 Téléchargements](#-téléchargements)
 - [Captures d'écran](#captures-décran)
 - [Fonctionnalités clés](#fonctionnalités-clés)
-- [Stack technique et architecture](#stack-technique-et-architecture)
-- [Démarrage](#démarrage)
-- [Tests](#tests)
-- [Structure du projet](#structure-du-projet)
+- [Stack technique et architecture](#️-stack-technique-et-architecture)
+- [Démarrage](#-démarrage)
+- [Tests](#-tests)
+- [Structure du projet](#-structure-du-projet)
 - [Apache POI Shadow Jar](#apache-poi-shadow-jar)
 - [Binaire Rclone personnalisé](#binaire-rclone-personnalisé)
 - [Sauvegarde Cloud](#sauvegarde-cloud)
 - [Signature](#signature)
 - [Taille de l'APK](#taille-de-lapk)
-- [Changelog](#changelog-v57--v651)
+- [Changelog](#changelog-v57--v652)
 - [Mentions légales](#mentions-légales)
 - [Licence](#licence)
 - [Roadmap](#️-roadmap)
@@ -169,9 +169,8 @@ Sauvegarde, langue et mises à jour — tout est configurable au même endroit.
 | **Excel** | Apache POI (shadow jar de centic9/poi-on-android) | 5.2.5 |
 | **Scheduling** | WorkManager | 2.11.2 |
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
-| **Browser** | AndroidX Custom Tabs | 1.10.0 |
 | **Security** | AES-256-GCM (Android KeyStore), ProGuard, NSC | — |
-| **Build** | AGP 9.4.0, Kotlin 2.4.10, KSP 2.3.12 | — |
+| **Build** | AGP 9.4.1, Kotlin 2.4.10, KSP 2.3.12 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
 | **Quality** | Detekt CLI | 1.23.8 |
 | **Testing** | JUnit4, Room Testing, Coroutines Test | 4.13.2 / 2.8.5 / 1.11.0 |

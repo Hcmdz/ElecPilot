@@ -1,4 +1,4 @@
-<!-- Sync with EN rev a83a570 (2026-09-19) -->
+<!-- Sync with EN rev 792beb6 (2026-10-12) -->
 # ElecPilot
 <a id="readme-top"></a>
 
@@ -63,16 +63,16 @@
 - [📦 التنزيلات](#-التنزيلات)
 - [لقطات الشاشة](#لقطات-الشاشة)
 - [المزايا الرئيسية](#المزايا-الرئيسية)
-- [التقنيات والبنية](#التقنيات-والبنية)
-- [البدء](#البدء)
-- [الاختبارات](#الاختبارات)
-- [بنية المشروع](#بنية-المشروع)
+- [التقنيات والبنية](#️-التقنيات-والبنية)
+- [البدء](#-البدء)
+- [الاختبارات](#-الاختبارات)
+- [بنية المشروع](#-بنية-المشروع)
 - [Apache POI Shadow Jar](#apache-poi-shadow-jar)
 - [ثنائي Rclone مخصص](#ثنائي-rclone-مخصص)
 - [النسخ السحابي](#النسخ-السحابي)
 - [التوقيع](#التوقيع)
 - [حجم APK](#حجم-apk)
-- [سجل التغييرات](#سجل-التغييرات-v57--v651)
+- [سجل التغييرات](#سجل-التغييرات-v57--v652)
 - [قانوني](#قانوني)
 - [الرخصة](#الرخصة)
 - [خارطة الطريق](#️-خارطة-الطريق)
@@ -177,9 +177,8 @@
 | **Excel** | Apache POI (shadow jar من centic9/poi-on-android) | 5.2.5 |
 | **Scheduling** | WorkManager | 2.11.2 |
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
-| **Browser** | AndroidX Custom Tabs | 1.10.0 |
 | **Security** | AES-256-GCM (Android KeyStore), ProGuard, NSC | — |
-| **Build** | AGP 9.4.0, Kotlin 2.4.10, KSP 2.3.12 | — |
+| **Build** | AGP 9.4.1, Kotlin 2.4.10, KSP 2.3.12 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
 | **Quality** | Detekt CLI | 1.23.8 |
 | **Testing** | JUnit4, Room Testing, Coroutines Test | 4.13.2 / 2.8.5 / 1.11.0 |
