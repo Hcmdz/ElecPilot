@@ -63,7 +63,7 @@ In the field, motor data lives on paper or scattered spreadsheets — lost, outd
 - [Cloud Backup](#cloud-backup)
 - [Signing](#signing)
 - [APK Size](#apk-size)
-- [Changelog](#changelog-v57--v651)
+- [Changelog](#changelog-v57--v652)
 - [Legal](#legal)
 - [License](#license)
 - [Roadmap](#️-roadmap)
@@ -168,9 +168,8 @@ Backup, language, and updates — everything configurable in one place.
 | **Excel** | Apache POI (shadow jar from centic9/poi-on-android) | 5.2.5 |
 | **Scheduling** | WorkManager | 2.11.2 |
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
-| **Browser** | AndroidX Custom Tabs | 1.10.0 |
 | **Security** | AES-256-GCM (Android KeyStore), ProGuard, NSC | — |
-| **Build** | AGP 9.4.0, Kotlin 2.4.10, KSP 2.3.12 | — |
+| **Build** | AGP 9.4.1, Kotlin 2.4.10, KSP 2.3.12 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
 | **Quality** | Detekt CLI | 1.23.8 |
 | **Testing** | JUnit4, Room Testing, Coroutines Test | 4.13.2 / 2.8.5 / 1.11.0 |
