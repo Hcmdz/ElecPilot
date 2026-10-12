@@ -52,10 +52,19 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Run gitleaks
+        # v3 never reads GITLEAKS_CONFIG and never passes --config: the action
+        # invokes `gitleaks` with its own flags, so the ruleset here is the
+        # built-in one. The line that used to name .gitleaks.toml was read by no
+        # version of this action and left a setting that looked live and did
+        # nothing. That file stays a LOCAL gate -- its own header says so, and
+        # it covers rules (generic passwords, google_api_key, firebase keys)
+        # that this scan does not. If the repo ever wants these rules in CI,
+        # the action has to grow a config input or the step has to call the
+        # gitleaks CLI directly; do not reintroduce the env var expecting it to
+        # work.
         uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_CONFIG: .gitleaks.toml
       - name: No sensitive filenames tracked
         run: |
           # The list is the same file the generic gate and the audit engine read,
