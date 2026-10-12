@@ -52,7 +52,7 @@ In the field, motor data lives on paper or scattered spreadsheets — lost, outd
 - [Cloud Backup](#cloud-backup)
 - [Signing](#signing)
 - [APK Size](#apk-size)
-- [Changelog](#changelog-v57--v651)
+- [Changelog](#changelog-v57--v652)
 - [Legal](#legal)
 - [License](#license)
 - [Roadmap](#️-roadmap)
