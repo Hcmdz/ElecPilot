@@ -13,7 +13,7 @@
 If you discover a security vulnerability in ElecPilot, please report it responsibly:
 
 1. **Do NOT open a public GitHub issue** for security vulnerabilities
-2. **Email:** [REDACTED] (replace with your contact)
+2. **Email:** HcmDz.Dev@gmail.com
 3. **Include:**
    - Description of the vulnerability
    - Steps to reproduce
