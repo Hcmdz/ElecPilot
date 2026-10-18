@@ -79,9 +79,6 @@
 -dontwarn org.tukaani.xz.SingleXZInputStream
 -dontwarn org.tukaani.xz.XZInputStream
 
-# ── rclone (native binary) ──────────────────────────────
--keep class com.HcmDz.ElecPilot.util.RcloneDriveService { *; }
-
 # ── javax / Apache HTTP (missing classes) ────────────────
 -dontwarn org.ietf.jgss.**
 -dontwarn org.apache.http.**

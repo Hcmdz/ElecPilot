@@ -317,45 +317,6 @@
     <string name="backup_delete_selected">Delete</string>
     <string name="backup_delete_batch_confirm">Delete %d backup(s)?\nThis action is irreversible.</string>
 
-    <!-- Cloud Backup -->
-    <string name="menu_cloud_backup">Cloud Backup</string>
-    <string name="cloud_provider">Cloud Provider</string>
-    <string name="cloud_backup_settings_title">Cloud Backup Settings</string>
-    <string name="cloud_backup_enable">Enable cloud backup</string>
-    <string name="cloud_backup_frequency">Frequency</string>
-    <string name="cloud_backup_format">Format</string>
-    <string name="cloud_backup_constraints">Constraints</string>
-    <string name="cloud_backup_wifi_only">Wi-Fi only</string>
-    <string name="cloud_backup_metered">Allow metered network</string>
-    <string name="cloud_backup_charging">Only when charging</string>
-    <string name="cloud_backup_signed_in">Signed in as %s</string>
-    <string name="cloud_backup_not_signed_in">Not signed in</string>
-    <string name="cloud_backup_sign_in_google">Sign in with Google</string>
-    <string name="cloud_backup_sign_out">Sign out</string>
-    <string name="cloud_backup_now">Backup</string>
-    <string name="cloud_backup_browse">Backups</string>
-    <string name="cloud_backup_loading">Loading cloud backups…</string>
-    <string name="cloud_backup_no_files">No cloud backups found</string>
-    <string name="cloud_backup_last_backup">Last cloud backup: %s</string>
-    <string name="cloud_backup_files_uploaded">%d file(s) uploaded</string>
-    <string name="cloud_backup_status_success">Success</string>
-    <string name="cloud_backup_status_failed">Failed</string>
-    <string name="cloud_backup_status_in_progress">In progress…</string>
-    <string name="cloud_backup_success">Cloud backup complete: %1$d departures, %2$d PLC(s)</string>
-    <string name="cloud_backup_error">Cloud backup failed</string>
-    <string name="cloud_backup_restore">Restore from cloud</string>
-    <string name="cloud_backup_restore_confirm">Restore this cloud backup?</string>
-    <string name="cloud_backup_restore_warning">⚠ This will REPLACE all existing data with the backup contents. This action cannot be undone.</string>
-    <string name="cloud_backup_delete">Delete</string>
-    <string name="cloud_backup_delete_confirm">Delete this cloud backup?</string>
-    <string name="cloud_backup_selected_count">%d selected</string>
-    <string name="cloud_backup_select_all">All</string>
-    <string name="cloud_backup_deselect_all">None</string>
-    <string name="cloud_backup_delete_selected">Delete</string>
-    <string name="cloud_backup_delete_batch_confirm">Delete %d cloud backup(s)?\nThis action is irreversible.</string>
-    <string name="cloud_backup_freq_hours">%dh</string>
-    <string name="cloud_backup_freq_days">%dd</string>
-
     <!-- Notifications -->
     <string name="notif_channel_name">Cloud Backup</string>
     <string name="notif_channel_desc">Notifications for cloud backup operations</string>
@@ -366,12 +327,6 @@
     <string name="notif_backup_deleted_title">Backup Deleted</string>
     <string name="notif_backup_deleted_body">%s deleted from cloud</string>
     <string name="notif_backup_deleted_batch_body">%d backup(s) deleted from cloud</string>
-
-    <!-- Generic error messages (no user-facing details) -->
-    <string name="cloud_operation_error_generic">Cloud operation failed</string>
-    <string name="auth_error_generic">Authentication failed. Please try again.</string>
-    <string name="notif_backup_progress_title">Cloud Backup</string>
-    <string name="notif_backup_progress_body">%1$d%% — %2$d KB/s</string>
 
     <!-- App Update -->
     <string name="update_available_title">Update Available</string>

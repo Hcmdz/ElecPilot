@@ -317,45 +317,6 @@
     <string name="backup_delete_selected">Supprimer</string>
     <string name="backup_delete_batch_confirm">Supprimer %d sauvegarde(s) ?\nCette action est irréversible.</string>
 
-    <!-- Cloud Backup -->
-    <string name="menu_cloud_backup">Sauvegarde Cloud</string>
-    <string name="cloud_provider">Fournisseur cloud</string>
-    <string name="cloud_backup_settings_title">Paramètres sauvegarde Cloud</string>
-    <string name="cloud_backup_enable">Activer la sauvegarde cloud</string>
-    <string name="cloud_backup_frequency">Fréquence</string>
-    <string name="cloud_backup_format">Format</string>
-    <string name="cloud_backup_constraints">Contraintes</string>
-    <string name="cloud_backup_wifi_only">Wi-Fi uniquement</string>
-    <string name="cloud_backup_metered">Autoriser le réseau à données mobiles</string>
-    <string name="cloud_backup_charging">Uniquement en charge</string>
-    <string name="cloud_backup_signed_in">Connecté en tant que %s</string>
-    <string name="cloud_backup_not_signed_in">Non connecté</string>
-    <string name="cloud_backup_sign_in_google">Se connecter avec Google</string>
-    <string name="cloud_backup_sign_out">Se déconnecter</string>
-    <string name="cloud_backup_now">Sauvegarder</string>
-    <string name="cloud_backup_browse">Sauvegardes</string>
-    <string name="cloud_backup_loading">Chargement des sauvegardes cloud…</string>
-    <string name="cloud_backup_no_files">Aucune sauvegarde cloud trouvée</string>
-    <string name="cloud_backup_last_backup">Dernière sauvegarde cloud : %s</string>
-    <string name="cloud_backup_files_uploaded">%d fichier(s) uploadé(s)</string>
-    <string name="cloud_backup_status_success">Succès</string>
-    <string name="cloud_backup_status_failed">Échoué</string>
-    <string name="cloud_backup_status_in_progress">En cours…</string>
-    <string name="cloud_backup_success">Sauvegarde cloud terminée : %1$d départs, %2$d PLC(s)</string>
-    <string name="cloud_backup_error">Échec de la sauvegarde cloud</string>
-    <string name="cloud_backup_restore">Restaurer depuis le cloud</string>
-    <string name="cloud_backup_restore_confirm">Restaurer cette sauvegarde cloud ?\nLes données existantes ne seront pas dupliquées.</string>
-    <string name="cloud_backup_restore_warning">⚠ Cela REMPLACERA toutes les données existantes par le contenu de la sauvegarde. Cette action est irréversible.</string>
-    <string name="cloud_backup_delete">Supprimer</string>
-    <string name="cloud_backup_delete_confirm">Supprimer cette sauvegarde cloud ?</string>
-    <string name="cloud_backup_selected_count">%d sélectionné(s)</string>
-    <string name="cloud_backup_select_all">Tous</string>
-    <string name="cloud_backup_deselect_all">Aucun</string>
-    <string name="cloud_backup_delete_selected">Sup</string>
-    <string name="cloud_backup_delete_batch_confirm">Supprimer %d sauvegarde(s) cloud ?\nCette action est irréversible.</string>
-    <string name="cloud_backup_freq_hours">%dh</string>
-    <string name="cloud_backup_freq_days">%dj</string>
-
     <!-- Notifications -->
     <string name="notif_channel_name">Sauvegarde Cloud</string>
     <string name="notif_channel_desc">Notifications pour les opérations de sauvegarde cloud</string>
@@ -366,12 +327,6 @@
     <string name="notif_backup_deleted_title">Sauvegarde supprimée</string>
     <string name="notif_backup_deleted_body">%s supprimé du cloud</string>
     <string name="notif_backup_deleted_batch_body">%d sauvegarde(s) supprimée(s) du cloud</string>
-
-    <!-- Generic error messages (no user-facing details) -->
-    <string name="cloud_operation_error_generic">Opération cloud échouée</string>
-    <string name="auth_error_generic">Échec de l\'authentification. Réessayez.</string>
-    <string name="notif_backup_progress_title">Sauvegarde Cloud</string>
-    <string name="notif_backup_progress_body">%1$d%% — %2$d Ko/s</string>
 
     <!-- App Update -->
     <string name="update_available_title">Mise à jour disponible</string>

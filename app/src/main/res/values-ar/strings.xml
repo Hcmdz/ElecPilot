@@ -317,45 +317,6 @@
     <string name="backup_delete_selected">حذف</string>
     <string name="backup_delete_batch_confirm">حذف %d نسخة احتياطية؟\nهذا الإجراء لا رجعة فيه.</string>
 
-    <!-- Cloud Backup -->
-    <string name="menu_cloud_backup">النسخ الاحتياطي السحابي</string>
-    <string name="cloud_provider">مزود السحابة</string>
-    <string name="cloud_backup_settings_title">إعدادات النسخ الاحتياطي السحابي</string>
-    <string name="cloud_backup_enable">تفعيل النسخ الاحتياطي السحابي</string>
-    <string name="cloud_backup_frequency">التكرار</string>
-    <string name="cloud_backup_format">التنسيق</string>
-    <string name="cloud_backup_constraints">القيود</string>
-    <string name="cloud_backup_wifi_only">Wi-Fi فقط</string>
-    <string name="cloud_backup_metered">السماح بالشبكة المحدودة</string>
-    <string name="cloud_backup_charging">عند الشحن فقط</string>
-    <string name="cloud_backup_signed_in">مسجل الدخول كـ %s</string>
-    <string name="cloud_backup_not_signed_in">غير مسجل الدخول</string>
-    <string name="cloud_backup_sign_in_google">تسجيل الدخول بـ Google</string>
-    <string name="cloud_backup_sign_out">تسجيل الخروج</string>
-    <string name="cloud_backup_now">نسخ احتياطي</string>
-    <string name="cloud_backup_browse">النسخ الاحتياطية</string>
-    <string name="cloud_backup_loading">جاري تحميل النسخ الاحتياطية السحابية…</string>
-    <string name="cloud_backup_no_files">لا توجد نسخ احتياطية سحابية</string>
-    <string name="cloud_backup_last_backup">آخر نسخة احتياطية سحابية: %s</string>
-    <string name="cloud_backup_files_uploaded">تم رفع %d ملف(ات)</string>
-    <string name="cloud_backup_status_success">نجاح</string>
-    <string name="cloud_backup_status_failed">فشل</string>
-    <string name="cloud_backup_status_in_progress">جاري…</string>
-    <string name="cloud_backup_success">اكتملت النسخة الاحتياطية السحابية: %1$d مغادرة، %2$d PLC</string>
-    <string name="cloud_backup_error">فشلت النسخة الاحتياطية السحابية</string>
-    <string name="cloud_backup_restore">استعادة من السحابة</string>
-    <string name="cloud_backup_restore_confirm">استعادة هذه النسخة الاحتياطية السحابية؟\nلن يتم تكرار البيانات الموجودة.</string>
-    <string name="cloud_backup_restore_warning">⚠ سيؤدي هذا إلى استبدال جميع البيانات الموجودة بمحتوى النسخة الاحتياطية. لا يمكن التراجع عن هذا الإجراء.</string>
-    <string name="cloud_backup_delete">حذف</string>
-    <string name="cloud_backup_delete_confirm">حذف هذه النسخة الاحتياطية السحابية؟</string>
-    <string name="cloud_backup_selected_count">%d محدد</string>
-    <string name="cloud_backup_select_all">الكل</string>
-    <string name="cloud_backup_deselect_all">لا شيء</string>
-    <string name="cloud_backup_delete_selected">حذف</string>
-    <string name="cloud_backup_delete_batch_confirm">حذف %d نسخة احتياطية سحابية؟\nهذا الإجراء لا رجعة فيه.</string>
-    <string name="cloud_backup_freq_hours">%d س</string>
-    <string name="cloud_backup_freq_days">%d ي</string>
-
     <!-- Notifications -->
     <string name="notif_channel_name">النسخ الاحتياطي السحابي</string>
     <string name="notif_channel_desc">إشعارات عمليات النسخ الاحتياطي السحابي</string>
@@ -366,12 +327,6 @@
     <string name="notif_backup_deleted_title">تم حذف النسخة الاحتياطية</string>
     <string name="notif_backup_deleted_body">تم حذف %s من السحابة</string>
     <string name="notif_backup_deleted_batch_body">تم حذف %d نسخة(ات) احتياطية من السحابة</string>
-
-    <!-- Generic error messages (no user-facing details) -->
-    <string name="cloud_operation_error_generic">فشلت العملية السحابية</string>
-    <string name="auth_error_generic">فشلت المصادقة. حاول مرة أخرى.</string>
-    <string name="notif_backup_progress_title">النسخ الاحتياطي السحابي</string>
-    <string name="notif_backup_progress_body">%1$d%% — %2$d كيلوبايت/ثانية</string>
 
     <!-- App Update -->
     <string name="update_available_title">تحديث متاح</string>

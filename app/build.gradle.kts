@@ -126,7 +126,7 @@ dependencies {
     // DocumentFile (SAF)
     implementation(libs.documentfile)
 
-    // Cloud Backup (rclone)
+    // UpdateManager (GitHub API)
     implementation(libs.okhttp)
 
     // Tests
