@@ -35,7 +35,7 @@ Android application for managing electrical motor starters and PLC I/O modules i
 In the field, motor data lives on paper or scattered spreadsheets — lost, outdated, unsearchable. ElecPilot is the offline-first field notebook: every starter and PLC module recorded once, found in seconds, backed up locally.
 
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.5.2 (versionCode 32)
+- **Version**: 6.5.3 (versionCode 33)
 - **Author**: HcmDZ &lt;HcmDz.Dev@gmail.com&gt;
 
 ---
@@ -61,7 +61,7 @@ In the field, motor data lives on paper or scattered spreadsheets — lost, outd
 - [Apache POI Shadow Jar](#apache-poi-shadow-jar)
 - [Signing](#signing)
 - [APK Size](#apk-size)
-- [Changelog](#changelog-v57--v652)
+- [Changelog](#changelog-v57--v653)
 - [Legal](#legal)
 - [License](#license)
 - [Roadmap](#️-roadmap)
@@ -354,9 +354,14 @@ Size reduction techniques applied:
 
 ---
 
-## Changelog (v5.7 → v6.5.2)
+## Changelog (v5.7 → v6.5.3)
 
 Versions follow [semver](https://semver.org/); full history lives in [GitHub Releases](https://github.com/Hcmdz/ElecPilot/releases).
+
+### v6.5.3
+
+- **Cloud backup removed** — Google Drive/OneDrive sync via rclone removed due to Google requiring per-app OAuth projects (no longer works with shared rclone project)
+- **APK size reduced** — ~13 MB (removed rclone native binary ~6.5 MB)
 
 ### v6.5.2
 
