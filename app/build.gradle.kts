@@ -21,6 +21,7 @@ android {
         }
     }
 
+
     signingConfigs {
         create("release") {
             val storeFilePath = providers.gradleProperty("RELEASE_STORE_FILE").getOrElse("")
