@@ -32,7 +32,7 @@
 <body>
     <header>
         <h1>Privacy Policy</h1>
-        <p>Last updated: October 17, 2026 &middot; for App: ElecPilot</p>
+        <p>Last updated: October 18, 2026 &middot; for App: ElecPilot</p>
     </header>
     <nav>
         <ul>
@@ -52,7 +52,7 @@
             <section id="summary">
                 <h2>Summary</h2>
                 <div class="highlight">
-                    <p><strong>ElecPilot is designed to work entirely on your device.</strong> The developer collects no analytics, runs no ads, and operates no server. Your data stays on your device, with one exception you control: if you switch on the optional cloud backup, your files are uploaded straight to the cloud account you connect yourself (see <a href="#backup">Cloud Backup</a>).</p>
+                    <p><strong>ElecPilot is designed to work entirely on your device.</strong> The developer collects no analytics, runs no ads, and operates no server. Your data stays on your device.</p>
                 </div>
             </section>
 
@@ -79,12 +79,11 @@
                 <p>You can export your data as Excel (.xlsx) or CSV (.csv) files to a folder you choose on your device, including cloud storage connected to your device. That data is handled by Android and the storage provider you select, not sent to a server run by the developer.</p>
 
                 <h3>Cloud Backup</h3>
-                <p>ElecPilot offers optional cloud backup via rclone (Google Drive &amp; OneDrive). When you connect a cloud service:</p>
+                <p>Cloud backup was removed in version 6.5.3. Earlier versions could connect a cloud storage provider directly from the app; that feature no longer exists, and the current version requests no cloud account access and makes no cloud connection.</p>
+                <p>Two notes for people upgrading from an earlier version:</p>
                 <ul>
-                    <li>An OAuth token is obtained through your cloud provider's authentication flow</li>
-                    <li>The token is encrypted using AES-256-GCM and stored locally on your device</li>
-                    <li>Backup files are uploaded directly to your cloud storage &mdash; the developer never has access to your cloud account or files</li>
-                    <li>You can disconnect and revoke access at any time from the app settings</li>
+                    <li>Backup files you created with an earlier version remain where they are &mdash; in the cloud account you connected at the time &mdash; and stay readable there. This app no longer reads or modifies them.</li>
+                    <li>The encrypted credential file that earlier versions wrote into the app's private storage may still be present after upgrading. The current version never reads it and never transmits it. Uninstalling the app removes it, and clearing the app's storage from Android Settings removes it too.</li>
                 </ul>
             </section>
 
@@ -92,9 +91,9 @@
                 <h2>Permissions</h2>
                 <p>ElecPilot requests the following permissions:</p>
                 <ul>
-                    <li><strong>Internet</strong> &mdash; for optional cloud backup via rclone, and for checking/downloading app updates from GitHub Releases</li>
+                    <li><strong>Internet</strong> &mdash; for checking and downloading app updates from GitHub Releases</li>
                     <li><strong>Access Network State</strong> &mdash; to check connectivity before network calls</li>
-                    <li><strong>Post Notifications</strong> &mdash; for cloud backup status notifications</li>
+                    <li><strong>Post Notifications</strong> &mdash; declared in the manifest but not used by the current version; the app shows no notifications</li>
                     <li><strong>Request Install Packages</strong> &mdash; needed only to install in-app updates that you explicitly accept</li>
                 </ul>
                 <p>The app does not request access to your camera, contacts, location, or any other sensitive data.</p>
@@ -102,18 +101,16 @@
 
             <section id="third-party">
                 <h2>Third-Party Services</h2>
-                <p>The only third-party service integrated in ElecPilot is <strong>rclone</strong>, used for optional cloud backup to Google Drive and/or OneDrive. rclone communicates directly with your cloud provider. The developer does not operate any server that processes your data.</p>
-                <p>ElecPilot also contacts the <strong>GitHub API</strong> to check for app updates (comparing the latest release on GitHub with your installed version). This version check sends no personal data. If you accept an update, the new APK is downloaded directly from GitHub Releases.</p>
-                <p>If you use cloud backup, your cloud provider (Google or Microsoft) may apply their own privacy policies. We encourage you to review them.</p>
+                <p>The only third-party service ElecPilot contacts is <strong>GitHub</strong>, to check for app updates (comparing the latest release with your installed version) and, if you accept an update, to download the new APK from GitHub Releases. These requests carry no personal data. The developer does not operate any server that processes your data.</p>
+                <p>Storage providers you select yourself when exporting or restoring a backup &mdash; including a cloud storage app connected to your device &mdash; are chosen and controlled by you, and Android mediates the transfer. Their own privacy policies apply to them, not to ElecPilot.</p>
             </section>
 
             <section id="security">
                 <h2>Security</h2>
                 <ul>
-                    <li>Cloud backup tokens are encrypted using <strong>AES-256-GCM</strong></li>
                     <li>All data is stored locally in your device's app-private storage</li>
                     <li>No data is transmitted to the developer's servers (the developer operates no servers)</li>
-                    <li>Network security configuration blocks cleartext (HTTP) traffic to every host except the device's own loopback address, which the optional cloud backup needs to complete its sign-in</li>
+                    <li>Network security configuration blocks cleartext (HTTP) traffic to every host</li>
                 </ul>
             </section>
 
@@ -129,7 +126,6 @@
                     <li><strong>Access</strong> &mdash; all your data is visible within the app</li>
                     <li><strong>Deletion</strong> &mdash; you can delete any data from within the app, or uninstall the app to remove all data</li>
                     <li><strong>Export</strong> &mdash; you can export your data at any time via local backup</li>
-                    <li><strong>Cloud disconnect</strong> &mdash; you can disconnect cloud backup and revoke access at any time</li>
                 </ul>
                 <p>Since all data is stored locally on your device, the developer has no access to your data and cannot delete it on your behalf &mdash; you manage it directly through the app or by uninstalling.</p>
             </section>
