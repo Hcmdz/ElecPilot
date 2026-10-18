@@ -32,7 +32,7 @@
 
 Android application for managing electrical motor starters and PLC I/O modules in industrial environments.
 
-In the field, motor data lives on paper or scattered spreadsheets — lost, outdated, unsearchable. ElecPilot is the offline-first field notebook: every starter and PLC module recorded once, found in seconds, backed up encrypted.
+In the field, motor data lives on paper or scattered spreadsheets — lost, outdated, unsearchable. ElecPilot is the offline-first field notebook: every starter and PLC module recorded once, found in seconds, backed up locally.
 
 - **Package**: `com.HcmDz.ElecPilot`
 - **Version**: 6.5.2 (versionCode 32)
@@ -59,8 +59,6 @@ In the field, motor data lives on paper or scattered spreadsheets — lost, outd
 - [Testing](#testing)
 - [Project Structure](#project-structure)
 - [Apache POI Shadow Jar](#apache-poi-shadow-jar)
-- [Custom Rclone Binary](#custom-rclone-binary)
-- [Cloud Backup](#cloud-backup)
 - [Signing](#signing)
 - [APK Size](#apk-size)
 - [Changelog](#changelog-v57--v652)
@@ -132,8 +130,8 @@ Backup, language, and updates — everything configurable in one place.
 - **Every module on record.** Dedicated database and views for PLC I/O modules.
 
 ### Backup & Sync
-- **Your data survives the phone.** Cloud backup/restore via Google Drive & OneDrive with rclone (AES-256-GCM encrypted config).
-- **Paper trail on demand.** Local backup with Excel & CSV export/import and scheduled backups.
+- **Your data survives the phone.** Local backup with Excel & CSV export/import and scheduled backups.
+- **Encrypted at rest.** Backup config secured with AES-256-GCM via Android KeyStore.
 
 ### App
 - **Always up to date.** In-app update with auto-check & download from GitHub Releases.
@@ -152,7 +150,7 @@ Backup, language, and updates — everything configurable in one place.
 - **Single-module** app with `MainActivity` + Jetpack Compose navigation
 - Data layer: Room databases + Repository pattern
 - ViewModels with StateFlow
-- WorkManager for scheduled backups (local + cloud)
+- WorkManager for scheduled local backups
 
 ### Core Libraries & Tools
 
@@ -164,7 +162,6 @@ Backup, language, and updates — everything configurable in one place.
 | **Async** | Kotlin Coroutines & Flow | 1.11.0 |
 | **Database** | Room | 2.8.5 |
 | **Networking** | OkHttp | 5.5.0 |
-| **Cloud** | rclone (native binary, UPX compressed) | custom build |
 | **Excel** | Apache POI (shadow jar from centic9/poi-on-android) | 5.2.5 |
 | **Scheduling** | WorkManager | 2.11.2 |
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
@@ -178,25 +175,25 @@ Backup, language, and updates — everything configurable in one place.
 
 | Control | Implementation |
 |---|---|
-| **Encryption at rest** | AES-256-GCM via Android KeyStore (StrongBox+TEE fallback) for rclone config and cloud cache |
+| **Encryption at rest** | AES-256-GCM via Android KeyStore (StrongBox+TEE fallback) for backup config |
 | **Screenshot protection** | `FLAG_SECURE` on MainActivity |
 | **WebView hardening** | URL allowlist (OAuth providers only), `allowFileAccess=false`, `mixedContent=NEVER_ALLOW` |
 | **Log stripping** | ProGuard strips `Log.d/v/i/e/w` (including exception stack traces) in release builds |
-| **Network security** | Cleartext blocked (NSC), localhost exception only for rclone OAuth |
+| **Network security** | Cleartext blocked (NSC) |
 | **Backup disabled** | `allowBackup="false"` |
 | **MTE** | `memtagMode="sync"` enabled in manifest |
 
 ### Permissions
 
-- `INTERNET`, `ACCESS_NETWORK_STATE` — cloud backup (rclone) and update check
-- `POST_NOTIFICATIONS` — backup progress and update status
+- `INTERNET`, `ACCESS_NETWORK_STATE` — update check
+- `POST_NOTIFICATIONS` — update status
 - `REQUEST_INSTALL_PACKAGES` — in-app update install
 
-Entry points: `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `FileProvider` (`${applicationId}.fileprovider`).
+Entry points: `MainActivity` (launcher), `FileProvider` (`${applicationId}.fileprovider`).
 
 ### CI & Quality
 
-- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, `rclone.yml` (monthly rclone bump PR), Dependabot
+- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, Dependabot
 - Detekt: `./gradlew detekt` (config `config/detekt/detekt.yml`)
 - Required CI variable **names** (values stay in repo/environment secrets, never committed): release keystore credentials (`RELEASE_STORE_FILE`, `RELEASE_STORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`)
 
@@ -211,8 +208,6 @@ Entry points: `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `FileProv
 - **Android Studio**: Latest stable (Meerkat or newer) — IDE ([doc](https://developer.android.com/studio))
 - **JDK**: 17 — Gradle toolchain ([doc](https://docs.gradle.org/current/userguide/build_java_projects.html))
 - **Android SDK**: compileSdk 37 ([install](https://developer.android.com/studio#downloads))
-- **NDK**: 26.1.10909125 — rclone native binary builds ([doc](https://developer.android.com/ndk/downloads))
-- **Go**: 1.22+ — rclone custom build only ([doc](https://go.dev/dl/))
 
 ### Build APK
 
@@ -262,9 +257,7 @@ app/src/main/java/com/HcmDz/ElecPilot/
 ├── data/
 │   ├── db/                      # Room databases (Motor + PLC)
 │   ├── repository/              # Data repositories
-│   ├── BackupPreferences.kt     # Local backup settings models
-│   ├── CloudBackupPreferences.kt # Cloud backup settings models
-│   └── CloudBackupFileInfo.kt   # Cloud file metadata
+│   └── BackupPreferences.kt     # Local backup settings models
 ├── ui/
 │   ├── screens/                 # Compose screens (Main, MotorDetail, dialogs)
 │   ├── viewmodel/               # ViewModels
@@ -273,19 +266,13 @@ app/src/main/java/com/HcmDz/ElecPilot/
 │   └── views/plc/               # PLC-specific views
 ├── util/
 │   ├── BackupManager.kt         # Local backup (Excel/CSV)
-│   ├── CloudBackupManager.kt    # Cloud backup orchestration
-│   ├── RcloneDriveService.kt    # rclone CLI wrapper
-│   ├── RcloneAuthActivity.kt    # OAuth WebView flow
 │   ├── CryptoManager.kt         # AES-256-GCM encryption
 │   ├── ExcelUtil.kt             # Apache POI export/import + templates
 │   ├── UpdateManager.kt         # In-app update (GitHub Releases)
 │   ├── ContextUtils.kt          # Locale-aware context helpers
-│   ├── NotificationHelper.kt    # Backup notifications
-│   ├── BackupScheduler.kt       # WorkManager: local backup schedule
-│   └── CloudBackupScheduler.kt  # WorkManager: cloud backup schedule
+│   └── BackupScheduler.kt       # WorkManager: local backup schedule
 └── worker/
-    ├── BackupWorker.kt          # WorkManager: local backup
-    └── CloudBackupWorker.kt     # WorkManager: cloud backup
+    └── BackupWorker.kt          # WorkManager: local backup
 ```
 
 ---
@@ -332,68 +319,6 @@ The master branch of centic9/poi-on-android uses POI 5.5.1. The pre-built releas
 
 ---
 
-## Custom Rclone Binary
-
-The app bundles a custom-built rclone binary (`librclone.so`) with only the backends and commands needed for cloud backup. This keeps the binary small.
-
-### Backends included
-
-- `local` — local filesystem (required for upload/download)
-- `drive` — Google Drive
-- `onedrive` — OneDrive
-
-### Commands included
-
-- `authorize`, `config`, `copyto`, `delete`, `deletefile`, `listremotes`, `lsf`, `mkdir`
-
-### Rebuild rclone
-
-**Important**: After rebuilding the rclone binary, you MUST compress it with UPX before copying it into the project. Without UPX, the APK will be ~17 MB larger.
-
-Rebuilds are scripted — do not run manual `go build` commands (they would
-produce a full, untrimmed binary). The single entry point is:
-
-```bash
-./tools/rclone/build-librclone.sh [--version vX.Y.Z]
-```
-
-The script clones the pinned tag (see `tools/rclone/pinned-version.txt`),
-builds the trimmed module (`tools/rclone/main.go`: backends
-`local`/`drive`/`onedrive`, contract commands in
-`tools/rclone/contract.md`) for `arm64-v8a` + `x86_64` (clang
-`android29`, see `tools/rclone/toolchain.lock`), UPX-compresses the release
-ABI, runs the contract smoke test, copies the binaries into
-`app/src/main/jniLibs/`, and syncs the version into `THIRD_PARTY.md`.
-
-Prerequisites: Go (see `toolchain.lock`), Android NDK, UPX. In CI the
-`.github/workflows/rclone.yml` workflow does the same monthly and opens a
-bump PR — merging it requires the device OAuth gate in `contract.md`.
-
-> **Note**: Release builds only target `arm64-v8a`. The debug build includes both `arm64-v8a` and `x86_64` for emulator testing. The `x86_64` binary is intentionally NOT UPX-compressed.
-
----
-
-## Cloud Backup
-
-Cloud backup uses rclone as a CLI executable (via `ProcessBuilder`). OAuth tokens are stored encrypted (AES-256-GCM via Android KeyStore) in `rclone.conf.enc` in the app's internal storage. The app communicates with rclone through stdout/stderr of the process.
-
-### OAuth Flow
-
-1. `RcloneAuthActivity` starts rclone `authorize` in background
-2. rclone outputs a local auth URL on stderr
-3. The WebView loads the URL (allowlisted hosts only)
-4. User authenticates with Google/Microsoft
-5. Token is captured from rclone stdout and saved encrypted
-
-### Security
-
-- Config file encrypted at rest with AES-256-GCM (Android KeyStore)
-- Temp config files are owner-only readable (`setReadable(true, true)`)
-- WebView URL allowlist restricts OAuth flow to known providers only
-- Cloud backup disk cache is encrypted before writing to disk
-
----
-
 ## Signing
 
 The release APK is signed with a keystore. To build a release APK:
@@ -414,17 +339,15 @@ RELEASE_KEY_PASSWORD=your_key_password
 
 ## APK Size
 
-Current release APK size: **~20 MB** (arm64 only, R8 enabled).
+Current release APK size: **~13 MB** (arm64 only, R8 enabled).
 
 | Component | Size |
 |---|---|
-| `librclone.so` (UPX compressed) | ~6.5 MB |
 | POI shadow jar classes (after R8) | ~3 MB |
 | Compose + AndroidX | ~5 MB |
-| Other (Room, OkHttp, etc.) | ~5.5 MB |
+| Other (Room, OkHttp, etc.) | ~5 MB |
 
 Size reduction techniques applied:
-- UPX compression on the rclone native binary
 - POI shadow jar + R8 to strip unused Apache POI/xmlbeans classes
 - `abiFilters` restricted to `arm64-v8a` for release builds
 - `isMinifyEnabled = true` + `isShrinkResources = true` with ProGuard rules from centic9/poi-on-android
@@ -441,14 +364,13 @@ Versions follow [semver](https://semver.org/); full history lives in [GitHub Rel
 
 ### v6.5.1
 
-- **Trimmed rclone 1.75.1** — local/Drive/OneDrive backends only
 - **New signing key** — manual reinstall required (back up, uninstall, install, restore)
 
 ### v6.5
 
-- **Cancellation-safe background work** — `CancellationException` rethrown in cloud/local backup, update check and import paths (no more false failure notification or retry after cancel)
+- **Cancellation-safe background work** — `CancellationException` rethrown in local backup, update check and import paths (no more false failure notification or retry after cancel)
 - **Snapshot writes on Main** — backup dialogs assign UI state back on the main thread
-- **ASCII backup filenames** — export/cloud timestamps use `Locale.US` (no more non-Latin digits under Arabic locale)
+- **ASCII backup filenames** — export timestamps use `Locale.US` (no more non-Latin digits under Arabic locale)
 - **PLC card polish** — favorite star size aligned with motor cards (18.dp)
 - **Build** — AGP 9.4.0, OkHttp 5.5.0, WorkManager 2.11.2
 
@@ -471,9 +393,7 @@ Security audit fixes (OWASP MASVS 2.1):
 
 | # | Severity | Fix |
 |---|---|---|
-| 1 | CRITICAL | Rclone temp config file: owner-only readable permissions |
 | 2 | HIGH | WebView OAuth URL allowlist to prevent phishing |
-| 4 | MEDIUM | Cloud backup disk cache encrypted (AES-256-GCM) |
 | 5 | MEDIUM | `FLAG_SECURE` on MainActivity (screenshot/recording protection) |
 | 7 | LOW | HOME env fallback uses `filesDir` instead of hardcoded path |
 | 8 | LOW | SharedPreferences `MODE_PRIVATE` explicit usage |
