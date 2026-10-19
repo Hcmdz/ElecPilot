@@ -75,7 +75,7 @@ In the field, motor data lives on paper or scattered spreadsheets — lost, outd
 
 ## 📦 Downloads
 
-Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`, ~21 MB, `arm64-v8a`).
+Get ElecPilot on GitHub: **[Latest release](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`, ~13.3 MB, `arm64-v8a`).
 
 [![Download](https://img.shields.io/badge/Download-Latest_Release-green.svg?logo=android)](https://github.com/Hcmdz/ElecPilot/releases/latest)
 

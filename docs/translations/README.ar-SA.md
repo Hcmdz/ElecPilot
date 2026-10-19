@@ -84,7 +84,7 @@
 
 ## 📦 التنزيلات
 
-احصل على ElecPilot من GitHub: **[أحدث إصدار](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`، ~21 MB، `arm64-v8a`).
+احصل على ElecPilot من GitHub: **[أحدث إصدار](https://github.com/Hcmdz/ElecPilot/releases/latest)** (`ElecPilot-release.apk`، ~13.3 MB، `arm64-v8a`).
 
 [![Download](https://img.shields.io/badge/Download-Latest_Release-green.svg?logo=android)](https://github.com/Hcmdz/ElecPilot/releases/latest)
 
