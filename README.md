@@ -10,10 +10,10 @@
 
 <div align="center">
    <a href="https://github.com/Hcmdz/ElecPilot/releases">
-      <img src="get-it-on-github.png" width="170">
+      <img src="get-it-on-github.png" height="50">
    </a>
    <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/Hcmdz/ElecPilot/">
-      <img src="get-it-on-obtainium.png" width="170">
+      <img src="get-it-on-obtainium.png" height="50">
    </a>
 </div>
 
