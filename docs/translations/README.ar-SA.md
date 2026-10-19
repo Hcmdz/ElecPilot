@@ -40,7 +40,7 @@
 في الميدان، بيانات المحركات تعيش على الورق أو في جداول مبعثرة — ضائعة، قديمة، غير قابلة للبحث. ElecPilot هو دفتر الميدان الذي يعمل دون اتصال: كل مقلع وكل وحدة PLC مسجلة مرة واحدة، تُوجد خلال ثوانٍ، وتُحفظ نسختها مشفرة.
 
 - **Package**: `com.HcmDz.ElecPilot`
-- **Version**: 6.5.2 (versionCode 32)
+- **Version**: 6.5.4 (versionCode 34)
 - **Author**: HcmDZ &lt;[REDACTED]&gt;
 
 ---
@@ -68,11 +68,9 @@
 - [الاختبارات](#-الاختبارات)
 - [بنية المشروع](#-بنية-المشروع)
 - [Apache POI Shadow Jar](#apache-poi-shadow-jar)
-- [ثنائي Rclone مخصص](#ثنائي-rclone-مخصص)
-- [النسخ السحابي](#النسخ-السحابي)
 - [التوقيع](#التوقيع)
 - [حجم APK](#حجم-apk)
-- [سجل التغييرات](#سجل-التغييرات-v57--v652)
+- [سجل التغييرات](#سجل-التغييرات-v57--v654)
 - [قانوني](#قانوني)
 - [الرخصة](#الرخصة)
 - [خارطة الطريق](#️-خارطة-الطريق)
@@ -153,14 +151,14 @@
 - **كل وحدة مسجلة.** قاعدة بيانات وعروض مخصصة لوحدات PLC.
 
 ### النسخ الاحتياطي والمزامنة
-- **بياناتك تنجو من الهاتف.** نسخ احتياطي/استعادة سحابي عبر Google Drive وOneDrive مع rclone (إعداد مشفر AES-256-GCM).
+- **بياناتك تنجو من الهاتف.** نسخ احتياطي محلي مجدول إلى مجلد تختاره، إضافة إلى نسخ احتياطي يدوي في أي وقت.
 - **أثر ورقي عند الطلب.** نسخ محلي مع تصدير/استيراد Excel وCSV ونسخ مجدولة.
 
 ### التطبيق
 - **محدث دائمًا.** تحديث داخل التطبيق مع فحص تلقائي وتنزيل من GitHub Releases.
 - **يبدو في بيته.** سمة Material You بلون ديناميكي، edge-to-edge.
 - **يتحدث لغتك.** توطين النظام/EN/FR/AR مع اكتشاف تلقائي للغة الجهاز.
-- **محصّن افتراضيًا.** FLAG_SECURE، إعداد rclone مشفر، قائمة URL مسموحة لـ WebView، تجريد سجلات ProGuard.
+- **محصّن افتراضيًا.** FLAG_SECURE، حظر cleartext، تعطيل نسخ Android الاحتياطية، تجريد سجلات ProGuard.
 
 <p align="right">(<a href="#readme-top">العودة للأعلى</a>)</p>
 
@@ -185,12 +183,11 @@
 | **Async** | Kotlin Coroutines & Flow | 1.11.0 |
 | **Database** | Room | 2.8.5 |
 | **Networking** | OkHttp | 5.5.0 |
-| **Cloud** | rclone (ثنائي أصلي، مضغوط UPX) | custom build |
 | **Excel** | Apache POI (shadow jar من centic9/poi-on-android) | 5.2.5 |
-| **Scheduling** | WorkManager | 2.11.2 |
+| **Scheduling** | WorkManager | 2.12.0 |
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
-| **Security** | AES-256-GCM (Android KeyStore), ProGuard, NSC | — |
-| **Build** | AGP 9.4.1, Kotlin 2.4.10, KSP 2.3.12 | — |
+| **Security** | ProGuard, إعداد أمان الشبكة | — |
+| **Build** | AGP 9.4.1, Kotlin 2.4.21, KSP 2.3.12 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
 | **Quality** | Detekt CLI | 1.23.8 |
 | **Testing** | JUnit4, Room Testing, Coroutines Test | 4.13.2 / 2.8.5 / 1.11.0 |
@@ -199,21 +196,19 @@
 
 | الضبط | التنفيذ |
 |---|---|
-| **التشفير at rest** | AES-256-GCM عبر Android KeyStore (StrongBox+TEE كبديل) لإعداد rclone والكاش السحابي |
 | **حماية لقطات الشاشة** | `FLAG_SECURE` على MainActivity |
-| **تحصين WebView** | قائمة URL مسموحة (موفرو OAuth فقط)، `allowFileAccess=false`، `mixedContent=NEVER_ALLOW` |
 | **تجريد السجلات** | ProGuard يزيل `Log.d/v/i/e/w` (بما فيها stack traces) في نسخ release |
-| **أمان الشبكة** | Cleartext محظور (NSC)، استثناء localhost فقط لـ rclone OAuth |
+| **أمان الشبكة** | Cleartext محظور (`network_security_config.xml`)، شهادات النظام فقط |
 | **النسخ الاحتياطي معطل** | `allowBackup="false"` |
 | **MTE** | `memtagMode="sync"` مفعّل في manifest |
 
 ### الأذونات
 
-- `INTERNET`، `ACCESS_NETWORK_STATE` — النسخ السحابي (rclone) والتحقق من التحديثات
+- `INTERNET`، `ACCESS_NETWORK_STATE` — التحقق من التحديثات وتنزيلها
 - `POST_NOTIFICATIONS` — تقدم النسخ وحالة التحديثات
 - `REQUEST_INSTALL_PACKAGES` — تثبيت التحديثات داخل التطبيق
 
-نقاط الدخول: `MainActivity` (launcher)، `RcloneAuthActivity` (OAuth)، `FileProvider` (`${applicationId}.fileprovider`).
+نقاط الدخول: `MainActivity` (launcher)، `FileProvider` (`${applicationId}.fileprovider`).
 
 ### CI والجودة
 
@@ -232,8 +227,6 @@
 - **Android Studio**: الأحدث المستقر (Meerkat أو أحدث) — IDE ([doc](https://developer.android.com/studio))
 - **JDK**: 17 — Gradle toolchain ([doc](https://docs.gradle.org/current/userguide/build_java_projects.html))
 - **Android SDK**: compileSdk 37 ([التثبيت](https://developer.android.com/studio#downloads))
-- **NDK**: 26.1.10909125 — لبناء ثنائي rclone الأصلي ([doc](https://developer.android.com/ndk/downloads))
-- **Go**: 1.22+ — للبناء المخصص لـ rclone فقط ([doc](https://go.dev/dl/))
 
 ### بناء APK
 
@@ -294,10 +287,6 @@ app/src/main/java/com/HcmDz/ElecPilot/
 │   └── views/plc/               # PLC-specific views
 ├── util/
 │   ├── BackupManager.kt         # Local backup (Excel/CSV)
-│   ├── CloudBackupManager.kt    # Cloud backup orchestration
-│   ├── RcloneDriveService.kt    # rclone CLI wrapper
-│   ├── RcloneAuthActivity.kt    # OAuth WebView flow
-│   ├── CryptoManager.kt         # AES-256-GCM encryption
 │   ├── ExcelUtil.kt             # Apache POI export/import + templates
 │   ├── UpdateManager.kt         # In-app update (GitHub Releases)
 │   ├── ContextUtils.kt          # Locale-aware context helpers
@@ -305,7 +294,7 @@ app/src/main/java/com/HcmDz/ElecPilot/
 │   ├── BackupScheduler.kt       # WorkManager: local backup schedule
 │   └── CloudBackupScheduler.kt  # WorkManager: cloud backup schedule
 └── worker/
-    ├── BackupWorker.kt          # WorkManager: local backup
+    └── BackupWorker.kt          # WorkManager: local backup
     └── CloudBackupWorker.kt     # WorkManager: cloud backup
 ```
 
@@ -353,59 +342,6 @@ cp poishadow/build/libs/poishadow-all.jar <path-to-ElecPilot>/app/libs/
 
 ---
 
-## ثنائي Rclone مخصص
-
-يضمّن التطبيق ثنائي rclone مخصصًا (`librclone.so`) بالـ backends والأوامر اللازمة فقط للنسخ السحابي. هذا يُبقي الثنائي صغيرًا.
-
-### Backends المشمولة
-
-- `local` — نظام الملفات المحلي (لازم للرفع/التنزيل)
-- `drive` — Google Drive
-- `onedrive` — OneDrive
-
-### الأوامر المشمولة
-
-- `authorize`، `config`، `copyto`، `delete`، `deletefile`، `listremotes`، `lsf`، `mkdir`
-
-### إعادة بناء rclone
-
-**مهم**: بعد إعادة بناء ثنائي rclone، يجب ضغطه بـ UPX قبل نسخه إلى المشروع. بدون UPX سيكون APK أكبر بـ ~17 MB.
-
-إعادة البناء مكتوبة بسكربت — لا تشغّل أوامر `go build` يدوية (ستنتج ثنائيًا كاملًا غير مخفف). نقطة الدخول الوحيدة هي:
-
-```bash
-./tools/rclone/build-librclone.sh [--version vX.Y.Z]
-```
-
-يستنسخ السكربت الـ tag المثبت (انظر `tools/rclone/pinned-version.txt`)، ويبني الوحدة المخففة (`tools/rclone/main.go`: الـ backends `local`/`drive`/`onedrive`، أوامر العقد في `tools/rclone/contract.md`) لـ `arm64-v8a` + `x86_64` (clang `android29`، انظر `tools/rclone/toolchain.lock`)، ويضغط UPX ثنائي الـ release، ويشغّل smoke test العقد، وينسخ الثنائيات إلى `app/src/main/jniLibs/`، ويزامن النسخة في `THIRD_PARTY.md`.
-
-المتطلبات: Go (انظر `toolchain.lock`)، Android NDK، UPX.
-
-> **ملاحظة**: builds الـ release تستهدف `arm64-v8a` فقط. build الـ debug يشمل `arm64-v8a` و`x86_64` لاختبارات المحاكي. ثنائي `x86_64` غير مضغوط بـ UPX عمدًا.
-
----
-
-## النسخ السحابي
-
-يستخدم النسخ السحابي rclone كمنفذ CLI (عبر `ProcessBuilder`). تُخزن رموز OAuth مشفرة (AES-256-GCM عبر Android KeyStore) في `rclone.conf.enc` في التخزين الداخلي للتطبيق. يتواصل التطبيق مع rclone عبر stdout/stderr للعملية.
-
-### مسار OAuth
-
-1. يبدأ `RcloneAuthActivity` أمر rclone `authorize` في الخلفية
-2. يعرض rclone رابط مصادقة محليًا على stderr
-3. تحمّل WebView الرابط (المضيفون المسموحون فقط)
-4. يصادق المستخدم مع Google/Microsoft
-5. يُلتقط الرمز من stdout الخاص بـ rclone ويُحفظ مشفرًا
-
-### الأمان
-
-- ملف الإعداد مشفر at rest بـ AES-256-GCM (Android KeyStore)
-- ملفات الإعداد المؤقتة قابلة للقراءة من المالك فقط (`setReadable(true, true)`)
-- قائمة URL مسموحة لـ WebView تحصر مسار OAuth في الموفرين المعروفين
-- الكاش القرصي للنسخ السحابي مشفر قبل الكتابة
-
----
-
 ## التوقيع
 
 APK الـ release موقّع بـ keystore. لبناء APK release:
@@ -426,26 +362,39 @@ RELEASE_KEY_[REDACTED:password]
 
 ## حجم APK
 
-حجم APK الـ release الحالي: **~20 MB** (arm64 فقط، R8 مفعّل).
+حجم APK الـ release الحالي: **13.3 MB** (13 948 290 بايت، `arm64-v8a` فقط، R8 مفعّل) — مقيس على ملف v6.5.3 المنشور.
 
-| المكون | الحجم |
-|---|---|
-| `librclone.so` (مضغوط UPX) | ~6.5 MB |
-| أصناف POI shadow jar (بعد R8) | ~3 MB |
-| Compose + AndroidX | ~5 MB |
-| أخرى (Room، OkHttp، إلخ) | ~5.5 MB |
+| المحتوى | غير مضغوط | النسبة |
+|---|---|---|
+| كود التطبيق (dex، R8 + Compose + Room + OkHttp) | ~11.6 MB | 76 % |
+| موارد Apache POI / xmlbeans | ~3.0 MB | 20 % |
+| موارد وأصول أخرى | ~0.6 MB | 4 % |
+| مكتبات أصلية | ~10 KB | <1 % |
 
 تقنيات التقليل المطبقة:
-- ضغط UPX على ثنائي rclone الأصلي
 - POI shadow jar مع R8 لإزالة أصناف Apache POI/xmlbeans غير المستخدمة
 - `abiFilters` مقيد بـ `arm64-v8a` لـ builds الـ release
 - `isMinifyEnabled = true` مع `isShrinkResources = true` وقواعد ProGuard من centic9/poi-on-android
 
+كان حجم APK 20.3 MB قبل v6.5.3؛ إزالة ثنائي rclone الأصلي أزالت نحو 7 MB منه.
+
 ---
 
-## سجل التغييرات (v5.7 → v6.5.2)
+## سجل التغييرات (v5.7 → v6.5.4)
 
 تتبع النسخ [semver](https://semver.org/)؛ السجل الكامل في [GitHub Releases](https://github.com/Hcmdz/ElecPilot/releases).
+
+### v6.5.4
+
+- **اكتمل حذف النسخ السحابي** — أُزيلت الملفات المتبقية ونقطة دخول OAuth واستثناء الشبكة المحلية
+- **تصحيح التوثيق** — قائمة المزايا وجدول الأمان والأذونات وحجم APK تصف الآن ما يفعله التطبيق فعليًا
+- موقّع بنفس شهادة v6.5.3، لذا التثبيت تحديث عادي في المكان
+
+### v6.5.3
+
+- **حذف النسخ السحابي** — يطلب Google الآن من كل تطبيق استخدام مشروع Cloud خاص به لـ OAuth، ولم يعد المشروع المشترك الذي اعتمد عليه rclone مقبولًا
+- **حجم APK من 20.3 MB إلى 13.3 MB** — أُزيل الثنائي الأصلي لـ rclone المضمّن
+- دون تغيير: النسخ المحلي المجدول، الاستيراد/التصدير CSV/Excel، البحث، المرشحات، الإحصاءات، البحث الصوتي، التحديث داخل التطبيق، EN/FR/AR
 
 ### v6.5.2
 

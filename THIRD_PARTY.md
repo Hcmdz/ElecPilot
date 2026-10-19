@@ -14,27 +14,18 @@ This project includes third-party software components with their respective lice
 - **Usage:** Excel template export (XLSX format)
 - **Required notice:** Includes software developed by The Apache Software Foundation (http://www.apache.org/)
 
-### rclone
-
-- **Project:** [rclone/rclone](https://github.com/rclone/rclone)
-- **Version:** 1.75.1
-- **License:** MIT License
-- **SPDX:** `MIT`
-- **File:** `app/src/main/jniLibs/arm64-v8a/librclone.so`
-- **Usage:** Cloud backup to Google Drive / OneDrive via CLI
-
 ## Dependency Licenses
 
 Shipped dependencies (declared in `gradle/libs.versions.toml`):
 
 | Library | Version | License | SPDX |
 |---|---|---|---|
-| Kotlin stdlib | 2.4.10 | Apache 2.0 | `Apache-2.0` |
+| Kotlin stdlib | 2.4.21 | Apache 2.0 | `Apache-2.0` |
 | Jetpack Compose (BOM) | 2026.09.00 | Apache 2.0 | `Apache-2.0` |
 | Activity-Compose | 1.13.0 | Apache 2.0 | `Apache-2.0` |
 | Lifecycle-runtime | 2.11.0 | Apache 2.0 | `Apache-2.0` |
 | Room | 2.8.5 | Apache 2.0 | `Apache-2.0` |
-| WorkManager | 2.11.2 | Apache 2.0 | `Apache-2.0` |
+| WorkManager | 2.12.0 | Apache 2.0 | `Apache-2.0` |
 | OkHttp | 5.5.0 | Apache 2.0 | `Apache-2.0` |
 | DocumentFile | 1.1.0 | Apache 2.0 | `Apache-2.0` |
 | Kotlin Coroutines (transitive) | 1.11.0 | Apache 2.0 | `Apache-2.0` |
@@ -52,7 +43,7 @@ Test-only dependencies (not shipped in the APK):
 ## Notes
 
 - `poishadow-all.jar` is a fat JAR merging Apache POI and its transitive dependencies.
-- `librclone.so` is a pre-built Go shared library compiled for arm64-v8a.
-  Recorded version is 1.75.1; confirm on device via `rclone version` —
-  no version marker is embedded elsewhere in the repo.
 - All Apache 2.0 dependencies include their respective license files in the AAR/APK.
+- rclone was bundled as a native library until v6.5.3, when cloud backup was
+  removed. It is no longer shipped in the APK. The build script that produced
+  it remains under `tools/rclone/` for anyone who needs the binary.
