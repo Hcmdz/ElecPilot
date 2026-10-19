@@ -196,7 +196,7 @@ Entry points: `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `FileProv
 
 ### CI & Quality
 
-- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, `rclone.yml` (monthly rclone bump PR), Dependabot
+- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, Dependabot
 - Detekt: `./gradlew detekt` (config `config/detekt/detekt.yml`)
 - Required CI variable **names** (values stay in repo/environment secrets, never committed): release keystore credentials (`RELEASE_STORE_FILE`, `RELEASE_STORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`)
 
@@ -365,9 +365,9 @@ builds the trimmed module (`tools/rclone/main.go`: backends
 ABI, runs the contract smoke test, copies the binaries into
 `app/src/main/jniLibs/`, and syncs the version into `THIRD_PARTY.md`.
 
-Prerequisites: Go (see `toolchain.lock`), Android NDK, UPX. In CI the
-`.github/workflows/rclone.yml` workflow does the same monthly and opens a
-bump PR — merging it requires the device OAuth gate in `contract.md`.
+Prerequisites: Go (see `toolchain.lock`), Android NDK, UPX. The monthly
+CI bump workflow that used to do this was removed when cloud backup was
+dropped in v6.5.3; the build script remains for anyone who needs the binary.
 
 > **Note**: Release builds only target `arm64-v8a`. The debug build includes both `arm64-v8a` and `x86_64` for emulator testing. The `x86_64` binary is intentionally NOT UPX-compressed.
 
