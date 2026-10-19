@@ -97,7 +97,7 @@ Find any starter in seconds, light or dark — lists, details, and settings at a
 |---|---|
 | [![Motor list — table view](screenshots/motor-list-table-view-light.png)](screenshots/motor-list-table-view-light.png) | [![Motor list — table view](screenshots/motor-list-table-view-dark.png)](screenshots/motor-list-table-view-dark.png) |
 | [![Motor list — card view](screenshots/motor-list-card-view-light.png)](screenshots/motor-list-card-view-light.png) | |
-| [![Motor detail](screenshots/motor-detail-dark.png)](screenshots/motor-detail-dark.png) | |
+| | [![Motor detail](screenshots/motor-detail-dark.png)](screenshots/motor-detail-dark.png) |
 
 ### PLC I/O Modules
 
@@ -105,9 +105,9 @@ Every module on record — table or card view, with full detail per module.
 
 | Light Mode | Dark Mode |
 |---|---|
-| [![PLC list — table view](screenshots/plc-list-table-view-light.png)](screenshots/plc-list-table-view-light.png) | [![PLC list — card view](screenshots/plc-list-card-view-dark.png)](screenshots/plc-list-card-view-dark.png) |
-| [![PLC list — card view](screenshots/plc-list-card-view-light.png)](screenshots/plc-list-card-view-light.png) | |
-| [![PLC detail](screenshots/plc-detail-dark.png)](screenshots/plc-detail-dark.png) | |
+| [![PLC list — table view](screenshots/plc-list-table-view-light.png)](screenshots/plc-list-table-view-light.png) | |
+| [![PLC list — card view](screenshots/plc-list-card-view-light.png)](screenshots/plc-list-card-view-light.png) | [![PLC list — card view](screenshots/plc-list-card-view-dark.png)](screenshots/plc-list-card-view-dark.png) |
+| | [![PLC detail](screenshots/plc-detail-dark.png)](screenshots/plc-detail-dark.png) |
 
 ### Settings
 

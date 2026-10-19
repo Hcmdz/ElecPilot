@@ -98,7 +98,7 @@ Retrouvez n'importe quel démarreur en quelques secondes, en clair ou en sombre 
 |---|---|
 | [![Motor list — table view](../../screenshots/motor-list-table-view-light.png)](../../screenshots/motor-list-table-view-light.png) | [![Motor list — table view](../../screenshots/motor-list-table-view-dark.png)](../../screenshots/motor-list-table-view-dark.png) |
 | [![Motor list — card view](../../screenshots/motor-list-card-view-light.png)](../../screenshots/motor-list-card-view-light.png) | |
-| [![Motor detail](../../screenshots/motor-detail-dark.png)](../../screenshots/motor-detail-dark.png) | |
+| | [![Motor detail](../../screenshots/motor-detail-dark.png)](../../screenshots/motor-detail-dark.png) |
 
 ### Modules d'E/S PLC
 
@@ -106,9 +106,9 @@ Chaque module est enregistré — vue tableau ou cartes, avec le détail complet
 
 | Mode clair | Mode sombre |
 |---|---|
-| [![PLC list — table view](../../screenshots/plc-list-table-view-light.png)](../../screenshots/plc-list-table-view-light.png) | [![PLC list — card view](../../screenshots/plc-list-card-view-dark.png)](../../screenshots/plc-list-card-view-dark.png) |
-| [![PLC list — card view](../../screenshots/plc-list-card-view-light.png)](../../screenshots/plc-list-card-view-light.png) | |
-| [![PLC detail](../../screenshots/plc-detail-dark.png)](../../screenshots/plc-detail-dark.png) | |
+| [![PLC list — table view](../../screenshots/plc-list-table-view-light.png)](../../screenshots/plc-list-table-view-light.png) | |
+| [![PLC list — card view](../../screenshots/plc-list-card-view-light.png)](../../screenshots/plc-list-card-view-light.png) | [![PLC list — card view](../../screenshots/plc-list-card-view-dark.png)](../../screenshots/plc-list-card-view-dark.png) |
+| | [![PLC detail](../../screenshots/plc-detail-dark.png)](../../screenshots/plc-detail-dark.png) |
 
 ### Réglages
 
