@@ -41,7 +41,7 @@
 
 - **Package**: `com.HcmDz.ElecPilot`
 - **Version**: 6.5.4 (versionCode 34)
-- **Author**: HcmDZ &lt;[REDACTED]&gt;
+- **Author**: HcmDZ — [@Hcmdz](https://github.com/Hcmdz)
 
 ---
 
@@ -347,14 +347,15 @@ cp poishadow/build/libs/poishadow-all.jar <path-to-ElecPilot>/app/libs/
 APK الـ release موقّع بـ keystore. لبناء APK release:
 
 1. أنشئ ملف `gradle.properties` في جذر المشروع (متجاهَل من git أصلًا)
-2. أضف الخصائص التالية:
+2. أضف خاصيتي المسار أدناه، إضافةً إلى خاصيتي كلمة المرور بالاسم نفسه:
 
 ```properties
 RELEASE_STORE_FILE=/path/to/your/release.keystore
-RELEASE_KEY_ALIAS=ALIAS
-RELEASE_STORE_[REDACTED:password]
-RELEASE_KEY_[REDACTED:password]
+RELEASE_KEY_ALIAS
 ```
+
+خاصيتا كلمة المرور هما `RELEASE_STORE_PASSWORD` و`RELEASE_KEY_PASSWORD`.
+امنحهما قيمتهما محليًا، أو وفّرها من بيئة العمل. لا تُودع أي قيمة هنا.
 
 3. شغّل `./gradlew assembleRelease`
 

@@ -37,7 +37,7 @@ Sur le terrain, les données moteurs vivent sur papier ou dans des tableurs épa
 
 - **Package**: `com.HcmDz.ElecPilot`
 - **Version**: 6.5.4 (versionCode 34)
-- **Author**: HcmDZ &lt;[REDACTED]&gt;
+- **Author**: HcmDZ — [@Hcmdz](https://github.com/Hcmdz)
 
 ---
 
@@ -339,14 +339,17 @@ La branche master de centic9/poi-on-android utilise POI 5.5.1. La release préco
 L'APK release est signé avec un keystore. Pour construire un APK release :
 
 1. Créez un fichier `gradle.properties` à la racine du projet (déjà gitignoré)
-2. Ajoutez les propriétés suivantes :
+2. Ajoutez les deux propriétés de chemin ci-dessous, plus les deux propriétés
+   de mot de passe portant les mêmes noms :
 
 ```properties
 RELEASE_STORE_FILE=/path/to/your/release.keystore
-RELEASE_KEY_ALIAS=ALIAS
-RELEASE_STORE_[REDACTED:password]
-RELEASE_KEY_[REDACTED:password]
+RELEASE_KEY_ALIAS
 ```
+
+Les propriétés de mot de passe sont `RELEASE_STORE_PASSWORD` et
+`RELEASE_KEY_PASSWORD`. Donnez-leur leur valeur en local, ou fournissez-la
+depuis l'environnement. Ne commitez jamais de valeur ici.
 
 3. Lancez `./gradlew assembleRelease`
 

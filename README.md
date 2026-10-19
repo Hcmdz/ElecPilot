@@ -36,7 +36,7 @@ In the field, motor data lives on paper or scattered spreadsheets — lost, outd
 
 - **Package**: `com.HcmDz.ElecPilot`
 - **Version**: 6.5.4 (versionCode 34)
-- **Author**: HcmDZ &lt;HcmDz.Dev@gmail.com&gt;
+- **Author**: HcmDZ — [@Hcmdz](https://github.com/Hcmdz)
 
 ---
 
@@ -340,7 +340,7 @@ The release APK is signed with a keystore. To build a release APK:
 
 ```properties
 RELEASE_STORE_FILE=/path/to/your/release.keystore
-RELEASE_KEY_ALIAS=ALIAS
+RELEASE_KEY_ALIAS
 ```
 
 The password properties are `RELEASE_STORE_PASSWORD` and
