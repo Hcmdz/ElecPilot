@@ -197,7 +197,7 @@ Points d'entrée : `MainActivity` (launcher), `RcloneAuthActivity` (OAuth), `Fil
 
 ### CI et qualité
 
-- GitHub Actions : `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, `rclone.yml` (PR mensuelle de bump rclone), Dependabot
+- GitHub Actions : `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`), `codeql.yml`, Dependabot
 - Detekt : `./gradlew detekt` (config `config/detekt/detekt.yml`)
 - Noms de variables CI requises (les valeurs restent dans les secrets du repo/environnement, jamais commitées) : identifiants du keystore release (`RELEASE_STORE_FILE`, `RELEASE_STORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`)
 
@@ -359,7 +359,7 @@ Les rebuilds sont scriptés — ne lancez pas de `go build` manuel (cela produir
 
 Le script clone le tag épinglé (voir `tools/rclone/pinned-version.txt`), construit le module allégé (`tools/rclone/main.go` : backends `local`/`drive`/`onedrive`, commandes du contrat dans `tools/rclone/contract.md`) pour `arm64-v8a` + `x86_64` (clang `android29`, voir `tools/rclone/toolchain.lock`), compresse avec UPX l'ABI release, lance le smoke test du contrat, copie les binaires dans `app/src/main/jniLibs/`, et synchronise la version dans `THIRD_PARTY.md`.
 
-Prérequis : Go (voir `toolchain.lock`), Android NDK, UPX. En CI le workflow `.github/workflows/rclone.yml` fait de même chaque mois et ouvre une PR de bump — la fusionner exige la validation OAuth sur appareil décrite dans `contract.md`.
+Prérequis : Go (voir `toolchain.lock`), Android NDK, UPX. Le workflow CI mensuel qui faisait de même a été retiré avec la sauvegarde cloud en v6.5.3 ; le script de build reste disponible pour qui a besoin du binaire.
 
 > **Note** : les builds release ne ciblent que `arm64-v8a`. Le build debug inclut `arm64-v8a` et `x86_64` pour les tests sur émulateur. Le binaire `x86_64` n'est volontairement PAS compressé avec UPX.
 

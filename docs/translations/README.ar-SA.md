@@ -205,7 +205,7 @@
 
 ### CI والجودة
 
-- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`)، `codeql.yml`، `rclone.yml` (PR شهري لرفع rclone)، Dependabot
+- GitHub Actions: `.github/workflows/ci.yml` (`testDebugUnitTest` + `lintDebug`)، `codeql.yml`، Dependabot
 - Detekt: `./gradlew detekt` (الإعداد `config/detekt/detekt.yml`)
 - أسماء متغيرات CI المطلوبة (القيم تبقى في أسرار المستودع/البيئة ولا تُحفظ في الـ commits أبدًا): بيانات اعتماد keystore الـ release (`RELEASE_STORE_FILE`، `RELEASE_STORE_PASSWORD`، `RELEASE_KEY_ALIAS`، `RELEASE_KEY_PASSWORD`)
 
@@ -367,7 +367,7 @@ cp poishadow/build/libs/poishadow-all.jar <path-to-ElecPilot>/app/libs/
 
 يستنسخ السكربت الـ tag المثبت (انظر `tools/rclone/pinned-version.txt`)، ويبني الوحدة المخففة (`tools/rclone/main.go`: الـ backends `local`/`drive`/`onedrive`، أوامر العقد في `tools/rclone/contract.md`) لـ `arm64-v8a` + `x86_64` (clang `android29`، انظر `tools/rclone/toolchain.lock`)، ويضغط UPX ثنائي الـ release، ويشغّل smoke test العقد، وينسخ الثنائيات إلى `app/src/main/jniLibs/`، ويزامن النسخة في `THIRD_PARTY.md`.
 
-المتطلبات: Go (انظر `toolchain.lock`)، Android NDK، UPX. في CI يقوم workflow `.github/workflows/rclone.yml` بالشيء نفسه شهريًا ويفتح PR رفع — دمجها يتطلب بوابة OAuth على الجهاز في `contract.md`.
+المتطلبات: Go (انظر `toolchain.lock`)، Android NDK، UPX.
 
 > **ملاحظة**: builds الـ release تستهدف `arm64-v8a` فقط. build الـ debug يشمل `arm64-v8a` و`x86_64` لاختبارات المحاكي. ثنائي `x86_64` غير مضغوط بـ UPX عمدًا.
 
