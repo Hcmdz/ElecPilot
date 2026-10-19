@@ -93,29 +93,41 @@ Find any starter in seconds, light or dark — lists, details, and settings at a
 
 ### Motor Starters
 
-| Light Mode | Dark Mode |
+<div align="center">
+
+| Motor list — table view (light mode) | Motor list — table view (dark mode) |
 |---|---|
-| [![Motor list — table view](screenshots/motor-list-table-view-light.png)](screenshots/motor-list-table-view-light.png) | [![Motor list — table view](screenshots/motor-list-table-view-dark.png)](screenshots/motor-list-table-view-dark.png) |
-| [![Motor list — card view](screenshots/motor-list-card-view-light.png)](screenshots/motor-list-card-view-light.png) | |
-| | [![Motor detail](screenshots/motor-detail-dark.png)](screenshots/motor-detail-dark.png) |
+| <a href="screenshots/motor-list-table-view-light.png"><img src="screenshots/motor-list-table-view-light.png" width="270" alt="Motor list — table view, light mode"></a> | <a href="screenshots/motor-list-table-view-dark.png"><img src="screenshots/motor-list-table-view-dark.png" width="270" alt="Motor list — table view, dark mode"></a> |
+| Motor list — card view (light mode) | Motor detail (dark mode) |
+| <a href="screenshots/motor-list-card-view-light.png"><img src="screenshots/motor-list-card-view-light.png" width="270" alt="Motor list — card view, light mode"></a> | <a href="screenshots/motor-detail-dark.png"><img src="screenshots/motor-detail-dark.png" width="270" alt="Motor detail, dark mode"></a> |
+
+</div>
 
 ### PLC I/O Modules
 
 Every module on record — table or card view, with full detail per module.
 
-| Light Mode | Dark Mode |
+<div align="center">
+
+| PLC list — card view (light mode) | PLC list — card view (dark mode) |
 |---|---|
-| [![PLC list — table view](screenshots/plc-list-table-view-light.png)](screenshots/plc-list-table-view-light.png) | |
-| [![PLC list — card view](screenshots/plc-list-card-view-light.png)](screenshots/plc-list-card-view-light.png) | [![PLC list — card view](screenshots/plc-list-card-view-dark.png)](screenshots/plc-list-card-view-dark.png) |
-| | [![PLC detail](screenshots/plc-detail-dark.png)](screenshots/plc-detail-dark.png) |
+| <a href="screenshots/plc-list-card-view-light.png"><img src="screenshots/plc-list-card-view-light.png" width="270" alt="PLC list — card view, light mode"></a> | <a href="screenshots/plc-list-card-view-dark.png"><img src="screenshots/plc-list-card-view-dark.png" width="270" alt="PLC list — card view, dark mode"></a> |
+| PLC list — table view (light mode) | PLC detail (dark mode) |
+| <a href="screenshots/plc-list-table-view-light.png"><img src="screenshots/plc-list-table-view-light.png" width="270" alt="PLC list — table view, light mode"></a> | <a href="screenshots/plc-detail-dark.png"><img src="screenshots/plc-detail-dark.png" width="270" alt="PLC detail, dark mode"></a> |
+
+</div>
 
 ### Settings
 
 Backup, language, and updates — everything configurable in one place.
 
-| Light Mode | Dark Mode |
+<div align="center">
+
+| Settings (light mode) | Settings (dark mode) |
 |---|---|
-| [![Settings](screenshots/settings-light.png)](screenshots/settings-light.png) | [![Settings](screenshots/settings-dark.png)](screenshots/settings-dark.png) |
+| <a href="screenshots/settings-light.png"><img src="screenshots/settings-light.png" width="270" alt="Settings, light mode"></a> | <a href="screenshots/settings-dark.png"><img src="screenshots/settings-dark.png" width="270" alt="Settings, dark mode"></a> |
+
+</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

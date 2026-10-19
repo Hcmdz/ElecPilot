@@ -94,29 +94,41 @@ Retrouvez n'importe quel démarreur en quelques secondes, en clair ou en sombre 
 
 ### Démarreurs de moteurs
 
-| Mode clair | Mode sombre |
+<div align="center">
+
+| Liste des moteurs — vue tableau (mode clair) | Liste des moteurs — vue tableau (mode sombre) |
 |---|---|
-| [![Motor list — table view](../../screenshots/motor-list-table-view-light.png)](../../screenshots/motor-list-table-view-light.png) | [![Motor list — table view](../../screenshots/motor-list-table-view-dark.png)](../../screenshots/motor-list-table-view-dark.png) |
-| [![Motor list — card view](../../screenshots/motor-list-card-view-light.png)](../../screenshots/motor-list-card-view-light.png) | |
-| | [![Motor detail](../../screenshots/motor-detail-dark.png)](../../screenshots/motor-detail-dark.png) |
+| <a href="../../screenshots/motor-list-table-view-light.png"><img src="../../screenshots/motor-list-table-view-light.png" width="270" alt="Liste des moteurs — vue tableau, mode clair"></a> | <a href="../../screenshots/motor-list-table-view-dark.png"><img src="../../screenshots/motor-list-table-view-dark.png" width="270" alt="Liste des moteurs — vue tableau, mode sombre"></a> |
+| Liste des moteurs — vue cartes (mode clair) | Fiche moteur (mode sombre) |
+| <a href="../../screenshots/motor-list-card-view-light.png"><img src="../../screenshots/motor-list-card-view-light.png" width="270" alt="Liste des moteurs — vue cartes, mode clair"></a> | <a href="../../screenshots/motor-detail-dark.png"><img src="../../screenshots/motor-detail-dark.png" width="270" alt="Fiche moteur, mode sombre"></a> |
+
+</div>
 
 ### Modules d'E/S PLC
 
 Chaque module est enregistré — vue tableau ou cartes, avec le détail complet par module.
 
-| Mode clair | Mode sombre |
+<div align="center">
+
+| Liste des E/S PLC — vue cartes (mode clair) | Liste des E/S PLC — vue cartes (mode sombre) |
 |---|---|
-| [![PLC list — table view](../../screenshots/plc-list-table-view-light.png)](../../screenshots/plc-list-table-view-light.png) | |
-| [![PLC list — card view](../../screenshots/plc-list-card-view-light.png)](../../screenshots/plc-list-card-view-light.png) | [![PLC list — card view](../../screenshots/plc-list-card-view-dark.png)](../../screenshots/plc-list-card-view-dark.png) |
-| | [![PLC detail](../../screenshots/plc-detail-dark.png)](../../screenshots/plc-detail-dark.png) |
+| <a href="../../screenshots/plc-list-card-view-light.png"><img src="../../screenshots/plc-list-card-view-light.png" width="270" alt="Liste des E/S PLC — vue cartes, mode clair"></a> | <a href="../../screenshots/plc-list-card-view-dark.png"><img src="../../screenshots/plc-list-card-view-dark.png" width="270" alt="Liste des E/S PLC — vue cartes, mode sombre"></a> |
+| Liste des E/S PLC — vue tableau (mode clair) | Fiche E/S PLC (mode sombre) |
+| <a href="../../screenshots/plc-list-table-view-light.png"><img src="../../screenshots/plc-list-table-view-light.png" width="270" alt="Liste des E/S PLC — vue tableau, mode clair"></a> | <a href="../../screenshots/plc-detail-dark.png"><img src="../../screenshots/plc-detail-dark.png" width="270" alt="Fiche E/S PLC, mode sombre"></a> |
+
+</div>
 
 ### Réglages
 
 Sauvegarde, langue et mises à jour — tout est configurable au même endroit.
 
-| Mode clair | Mode sombre |
+<div align="center">
+
+| Réglages (mode clair) | Réglages (mode sombre) |
 |---|---|
-| [![Settings](../../screenshots/settings-light.png)](../../screenshots/settings-light.png) | [![Settings](../../screenshots/settings-dark.png)](../../screenshots/settings-dark.png) |
+| <a href="../../screenshots/settings-light.png"><img src="../../screenshots/settings-light.png" width="270" alt="Réglages, mode clair"></a> | <a href="../../screenshots/settings-dark.png"><img src="../../screenshots/settings-dark.png" width="270" alt="Réglages, mode sombre"></a> |
+
+</div>
 
 <p align="right">(<a href="#readme-top">haut de page</a>)</p>
 

@@ -102,29 +102,41 @@
 
 ### مقلعات المحركات
 
-| الوضع الفاتح | الوضع الداكن |
+<div align="center">
+
+| قائمة المقلعات — عرض الجدول (الوضع الفاتح) | قائمة المقلعات — عرض الجدول (الوضع الداكن) |
 |---|---|
-| [![Motor list — table view](../../screenshots/motor-list-table-view-light.png)](../../screenshots/motor-list-table-view-light.png) | [![Motor list — table view](../../screenshots/motor-list-table-view-dark.png)](../../screenshots/motor-list-table-view-dark.png) |
-| [![Motor list — card view](../../screenshots/motor-list-card-view-light.png)](../../screenshots/motor-list-card-view-light.png) | |
-| | [![Motor detail](../../screenshots/motor-detail-dark.png)](../../screenshots/motor-detail-dark.png) |
+| <a href="../../screenshots/motor-list-table-view-light.png"><img src="../../screenshots/motor-list-table-view-light.png" width="270" alt="قائمة المقلعات — عرض الجدول, الوضع الفاتح"></a> | <a href="../../screenshots/motor-list-table-view-dark.png"><img src="../../screenshots/motor-list-table-view-dark.png" width="270" alt="قائمة المقلعات — عرض الجدول, الوضع الداكن"></a> |
+| قائمة المقلعات — عرض البطاقات (الوضع الفاتح) | تفاصيل المقلع (الوضع الداكن) |
+| <a href="../../screenshots/motor-list-card-view-light.png"><img src="../../screenshots/motor-list-card-view-light.png" width="270" alt="قائمة المقلعات — عرض البطاقات, الوضع الفاتح"></a> | <a href="../../screenshots/motor-detail-dark.png"><img src="../../screenshots/motor-detail-dark.png" width="270" alt="تفاصيل المقلع, الوضع الداكن"></a> |
+
+</div>
 
 ### وحدات PLC للإدخال/الإخراج
 
 كل وحدة مسجلة — عرض جدول أو بطاقات، مع التفاصيل الكاملة لكل وحدة.
 
-| الوضع الفاتح | الوضع الداكن |
+<div align="center">
+
+| قائمة وحدات PLC — عرض البطاقات (الوضع الفاتح) | قائمة وحدات PLC — عرض البطاقات (الوضع الداكن) |
 |---|---|
-| [![PLC list — table view](../../screenshots/plc-list-table-view-light.png)](../../screenshots/plc-list-table-view-light.png) | |
-| [![PLC list — card view](../../screenshots/plc-list-card-view-light.png)](../../screenshots/plc-list-card-view-light.png) | [![PLC list — card view](../../screenshots/plc-list-card-view-dark.png)](../../screenshots/plc-list-card-view-dark.png) |
-| | [![PLC detail](../../screenshots/plc-detail-dark.png)](../../screenshots/plc-detail-dark.png) |
+| <a href="../../screenshots/plc-list-card-view-light.png"><img src="../../screenshots/plc-list-card-view-light.png" width="270" alt="قائمة وحدات PLC — عرض البطاقات, الوضع الفاتح"></a> | <a href="../../screenshots/plc-list-card-view-dark.png"><img src="../../screenshots/plc-list-card-view-dark.png" width="270" alt="قائمة وحدات PLC — عرض البطاقات, الوضع الداكن"></a> |
+| قائمة وحدات PLC — عرض الجدول (الوضع الفاتح) | تفاصيل وحدة PLC (الوضع الداكن) |
+| <a href="../../screenshots/plc-list-table-view-light.png"><img src="../../screenshots/plc-list-table-view-light.png" width="270" alt="قائمة وحدات PLC — عرض الجدول, الوضع الفاتح"></a> | <a href="../../screenshots/plc-detail-dark.png"><img src="../../screenshots/plc-detail-dark.png" width="270" alt="تفاصيل وحدة PLC, الوضع الداكن"></a> |
+
+</div>
 
 ### الإعدادات
 
 النسخ الاحتياطي واللغة والتحديثات — كل شيء قابل للضبط في مكان واحد.
 
-| الوضع الفاتح | الوضع الداكن |
+<div align="center">
+
+| الإعدادات (الوضع الفاتح) | الإعدادات (الوضع الداكن) |
 |---|---|
-| [![Settings](../../screenshots/settings-light.png)](../../screenshots/settings-light.png) | [![Settings](../../screenshots/settings-dark.png)](../../screenshots/settings-dark.png) |
+| <a href="../../screenshots/settings-light.png"><img src="../../screenshots/settings-light.png" width="270" alt="الإعدادات, الوضع الفاتح"></a> | <a href="../../screenshots/settings-dark.png"><img src="../../screenshots/settings-dark.png" width="270" alt="الإعدادات, الوضع الداكن"></a> |
+
+</div>
 
 <p align="right">(<a href="#readme-top">العودة للأعلى</a>)</p>
 
