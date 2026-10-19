@@ -23,3 +23,5 @@ gradle.properties
 *.keystore
 *.mobileprovision
 *.log
+
+.opencode/

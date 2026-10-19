@@ -80,8 +80,6 @@ import com.HcmDz.ElecPilot.ui.screens.MainScreen
 import com.HcmDz.ElecPilot.ui.screens.StatisticsDialog
 import com.HcmDz.ElecPilot.ui.screens.BackupBrowserDialog
 import com.HcmDz.ElecPilot.ui.screens.BackupSettingsDialog
-import com.HcmDz.ElecPilot.ui.screens.CloudBackupBrowserDialog
-import com.HcmDz.ElecPilot.ui.screens.CloudBackupSettingsDialog
 import com.HcmDz.ElecPilot.ui.screens.StatisticsData
 import com.HcmDz.ElecPilot.ui.screens.computePlcStatistics
 import com.HcmDz.ElecPilot.ui.screens.computeStatistics
@@ -93,17 +91,10 @@ import com.HcmDz.ElecPilot.util.ExcelUtil
 import com.HcmDz.ElecPilot.util.BackupScheduler
 import com.HcmDz.ElecPilot.util.BackupManager
 import com.HcmDz.ElecPilot.util.BackupResult
-import com.HcmDz.ElecPilot.util.CloudBackupManager
-import com.HcmDz.ElecPilot.util.CloudBackupResult
 import com.HcmDz.ElecPilot.util.NotificationHelper
-import com.HcmDz.ElecPilot.util.CloudBackupScheduler
-import com.HcmDz.ElecPilot.util.RcloneDriveService
 import com.HcmDz.ElecPilot.util.UpdateManager
 import com.HcmDz.ElecPilot.util.resolveLanguage
 import com.HcmDz.ElecPilot.data.getBackupPreferences
-import com.HcmDz.ElecPilot.data.getCloudBackupPreferences
-import com.HcmDz.ElecPilot.data.saveCloudBackupPreferences
-import com.HcmDz.ElecPilot.data.SyncStatus
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -126,10 +117,6 @@ class MainActivity : ComponentActivity() {
     private val plcViewModel: PlcViewModel by viewModels()
     private var currentModule = AppModule.DEPARTS
     private val _isRestoring = MutableStateFlow(false)
-    private val _isCloudRestoring = MutableStateFlow(false)
-    private val _restorePhase = MutableStateFlow("")
-    @Volatile
-    private var currentRestoreJob: Job? = null
 
     private enum class AppModule { DEPARTS, PLC }
 
@@ -426,7 +413,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        RcloneDriveService.init(this)
         if (savedInstanceState != null) {
             currentModule = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 savedInstanceState.getSerializable("currentModule", AppModule::class.java) ?: AppModule.DEPARTS
@@ -461,7 +447,6 @@ class MainActivity : ComponentActivity() {
         }
 
         BackupScheduler.rescheduleIfNeeded(this)
-        CloudBackupScheduler.rescheduleIfNeeded(this)
 
         setContent {
             val prefs = remember { applicationContext.getSharedPreferences("settings", Context.MODE_PRIVATE) }
@@ -480,9 +465,6 @@ class MainActivity : ComponentActivity() {
                 var showLangDialog by remember { mutableStateOf(false) }
                 var showBackupDialog by remember { mutableStateOf(false) }
                 var showBackupBrowser by remember { mutableStateOf(false) }
-
-                var showCloudBackupDialog by remember { mutableStateOf(false) }
-                var showCloudBackupBrowser by remember { mutableStateOf(false) }
 
                 var showUpdateDialog by remember { mutableStateOf(false) }
                 var updateInfo by remember { mutableStateOf<UpdateManager.UpdateInfo?>(null) }
@@ -574,14 +556,6 @@ class MainActivity : ComponentActivity() {
                                     onClick = {
                                         scope.launch { drawerState.close() }
                                         showBackupDialog = true
-                                    }
-                                )
-                                MenuItem(
-                                    icon = Icons.Default.Cloud,
-                                    text = stringResource(R.string.menu_cloud_backup),
-                                    onClick = {
-                                        scope.launch { drawerState.close() }
-                                        showCloudBackupDialog = true
                                     }
                                 )
                                 MenuItem(
@@ -1045,121 +1019,6 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
-                    if (showCloudBackupDialog) {
-                        CloudBackupSettingsDialog(
-                            onDismiss = { showCloudBackupDialog = false },
-                            onBackupNow = {
-                                showCloudBackupDialog = false
-                                lifecycleScope.launch {
-                                    val motors = viewModel.getCurrentMotors()
-                                    val plcs = plcViewModel.getCurrentPlcs()
-                                    val cloudPrefs = applicationContext.getCloudBackupPreferences()
-                                    val result = CloudBackupManager.performCloudBackup(
-                                        applicationContext, motors, plcs,
-                                        cloudPrefs.cloudFormat, cloudPrefs.cloudFolderName
-                                    )
-                                    when (result) {
-                                        is CloudBackupResult.Success -> {
-                                            applicationContext.saveCloudBackupPreferences(
-                                                cloudPrefs.copy(
-                                                    lastCloudBackupTime = System.currentTimeMillis(),
-                                                    lastCloudBackupFiles = result.fileCount,
-                                                    lastSyncStatus = SyncStatus.SUCCESS
-                                                )
-                                            )
-                                            viewModel.showSnackbar(
-                                                getString(R.string.cloud_backup_success, result.motorCount, result.plcCount)
-                                            )
-                                            NotificationHelper.showBackupSuccess(applicationContext, result.motorCount, result.plcCount)
-                                        }
-                                        is CloudBackupResult.Error -> {
-                                            val updatedPrefs = cloudPrefs.copy(
-                                                lastCloudBackupTime = System.currentTimeMillis(),
-                                                lastSyncStatus = SyncStatus.FAILED
-                                            )
-                                            applicationContext.saveCloudBackupPreferences(updatedPrefs)
-                                             viewModel.showSnackbar(
-                                                getString(R.string.cloud_backup_error)
-                                            )
-                                            NotificationHelper.showBackupError(applicationContext)
-                                        }
-                                    }
-                                }
-                            },
-                            onBrowse = {
-                                showCloudBackupDialog = false
-                                showCloudBackupBrowser = true
-                            }
-                        )
-                    }
-
-                    if (showCloudBackupBrowser) {
-                        CloudBackupBrowserDialog(
-                            onDismiss = {
-                                showCloudBackupBrowser = false
-                                showCloudBackupDialog = true
-                            },
-                            isRestoring = _isCloudRestoring.collectAsState().value,
-                            restorePhase = _restorePhase.collectAsState().value,
-                            onRestore = { fileInfo ->
-                                currentRestoreJob?.cancel()
-                                currentRestoreJob = lifecycleScope.launch {
-                                    val thisJob = this
-                                    _restorePhase.value = "Downloading..."
-                                    _isCloudRestoring.value = true
-                                    viewModel.setLoading(true)
-                                    plcViewModel.setLoading(true)
-                                    try {
-                                        val cloudPrefs = applicationContext.getCloudBackupPreferences()
-                                        val result = CloudBackupManager.performCloudRestore(
-                                            applicationContext, fileInfo.id, fileInfo.name,
-                                            onPhase = { phase -> _restorePhase.value = phase },
-                                            onProgress = { p ->
-                                                _restorePhase.value = "Downloading... ${p.percent.toInt()}% - ${p.speedBytesPerSec / 1024} KB/s"
-                                            }
-                                        )
-                                        when (result) {
-                                            is com.HcmDz.ElecPilot.util.CloudRestoreResult.Success -> {
-                                                applicationContext.saveCloudBackupPreferences(
-                                                    cloudPrefs.copy(
-                                                        lastCloudBackupTime = System.currentTimeMillis(),
-                                                        lastSyncStatus = SyncStatus.SUCCESS
-                                                    )
-                                                )
-                                                val msg = getString(R.string.backup_restore_success, result.motorsAdded, result.plcAdded)
-                                                viewModel.showSnackbar(msg)
-                                                plcViewModel.showSnackbar(msg)
-                                                viewModel.setSearchQuery("")
-                                                plcViewModel.setSearchQuery("")
-                                            }
-                                            is com.HcmDz.ElecPilot.util.CloudRestoreResult.Error -> {
-                                                val updatedPrefs = cloudPrefs.copy(
-                                                    lastSyncStatus = SyncStatus.FAILED
-                                                )
-                                                applicationContext.saveCloudBackupPreferences(updatedPrefs)
-                                                viewModel.showSnackbar(getString(R.string.backup_restore_error))
-                                            }
-                                        }
-                                    } catch (e: CancellationException) {
-                                        viewModel.showSnackbar(getString(R.string.cloud_operation_error_generic))
-                                        throw e
-                                    } catch (e: Exception) {
-                                        android.util.Log.e("CloudRestore", "Unexpected error", e)
-                                        viewModel.showSnackbar(getString(R.string.backup_restore_error))
-                                    } finally {
-                                        _isCloudRestoring.value = false
-                                        _restorePhase.value = ""
-                                        viewModel.setLoading(false)
-                                        plcViewModel.setLoading(false)
-                                        if (currentRestoreJob === thisJob) currentRestoreJob = null
-                                    }
-                                }
-                            },
-                            onCancelRestore = {
-                                currentRestoreJob?.cancel()
-                            }
-                        )
-                    }
                 }
             }
         }
@@ -1171,7 +1030,7 @@ class MainActivity : ComponentActivity() {
                     list.size * 31 + list.sumOf { it.hashCode() }
                 }
                 .collect {
-                    if (_isRestoring.value || _isCloudRestoring.value) return@collect
+                    if (_isRestoring.value) return@collect
                     val currentPrefs = applicationContext.getBackupPreferences()
                     if (currentPrefs.enabled && currentPrefs.frequencyHours == 0) {
                         BackupScheduler.triggerOneTime(applicationContext)

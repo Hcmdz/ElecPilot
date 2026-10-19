@@ -130,7 +130,7 @@
 
     <!-- Dialog - About -->
     <string name="dialog_about_title">حول التطبيق</string>
-    <string name="dialog_about_body">إلكبيلوت هو تطبيق مهني لإدارة المغادرات الكهربائية للمحركات ووحدات PLC I/O. يتيح لك استيراد وتصدير والبحث وترشيح وإدارة بيانات معداتك الكهربائية بكفاءة.\n\nمطور باستخدام تقنيات أندرويد الحديثة: Jetpack Compose و Room Database و Material You Design واستيراد/تصدير CSV و Excel. مدعوم بواسطة rclone للنسخ الاحتياطي السحابي.</string>
+    <string name="dialog_about_body">إلكبيلوت هو تطبيق مهني لإدارة المغادرات الكهربائية للمحركات ووحدات PLC I/O. يتيح لك استيراد وتصدير والبحث وترشيح وإدارة بيانات معداتك الكهربائية بكفاءة.\n\nمطور باستخدام تقنيات أندرويد الحديثة: Jetpack Compose و Room Database و Material You Design واستيراد/تصدير CSV و Excel.</string>
     <string name="dialog_about_developer">المطور: HcmDZ</string>
     <string name="dialog_about_version">الإصدار %s</string>
     <string name="drawer_developed_by">تم التطوير بواسطة HcmDz</string>

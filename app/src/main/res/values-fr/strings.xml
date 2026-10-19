@@ -130,7 +130,7 @@
 
     <!-- Dialog - About -->
     <string name="dialog_about_title">A propos de l\'application</string>
-    <string name="dialog_about_body">ElecPilot est une application professionnelle pour la gestion des départs moteurs électriques et des modules PLC I/O. Elle permet d\'importer, exporter, rechercher, filtrer et gérer efficacement vos données d\'équipement électrique.\n\nDéveloppée avec les technologies Android modernes : Jetpack Compose, Room Database, Material You Design, et import/export CSV/Excel. Propulsé par rclone pour la sauvegarde cloud.</string>
+    <string name="dialog_about_body">ElecPilot est une application professionnelle pour la gestion des départs moteurs électriques et des modules PLC I/O. Elle permet d\'importer, exporter, rechercher, filtrer et gérer efficacement vos données d\'équipement électrique.\n\nDéveloppée avec les technologies Android modernes : Jetpack Compose, Room Database, Material You Design, et import/export CSV/Excel.</string>
     <string name="dialog_about_developer">Développeur : HcmDZ</string>
     <string name="dialog_about_version">Version %s</string>
     <string name="drawer_developed_by">Développé par HcmDz</string>
