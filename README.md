@@ -9,16 +9,12 @@
 <!-- Localized app: values-fr/values-ar (+ldrtl) mirror README langs; supportsRtl verified. -->
 
 <div align="center">
-   <table>
-      <tr>
-         <td><a href="https://github.com/Hcmdz/ElecPilot/releases">
-            <img src="get-it-on-github-v2.png" width="168" height="50">
-         </a></td>
-         <td><a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/Hcmdz/ElecPilot/">
-            <img src="get-it-on-obtainium-v2.png" width="168" height="50">
-         </a></td>
-      </tr>
-   </table>
+   <a href="https://github.com/Hcmdz/ElecPilot/releases">
+      <img src="get-it-on-github-v2.png" width="168" height="50" alt="Get it on GitHub">
+   </a>
+   <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/Hcmdz/ElecPilot/">
+      <img src="get-it-on-obtainium-v2.png" width="168" height="50" alt="Get it on Obtainium">
+   </a>
 </div>
 
 <br />
