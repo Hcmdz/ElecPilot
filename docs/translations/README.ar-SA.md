@@ -343,22 +343,25 @@ cp poishadow/build/libs/poishadow-all.jar <path-to-ElecPilot>/app/libs/
 
 ## التوقيع
 
-APK الـ release موقّع بـ keystore. لبناء APK release:
+كيف تبني ملف APK موقّعًا. يبقى ملف keystore **خارج** المستودع، في
+`~/.gradle/gradle.properties`، ولا تُودع قيمه أبدًا. ضع هذه الخصائص
+الأربع هناك، خاصية واحدة في كل سطر:
 
-1. أنشئ ملف `gradle.properties` في جذر المشروع (متجاهَل من git أصلًا)
-2. أضف خاصيتي المسار أدناه، إضافةً إلى خاصيتي كلمة المرور بالاسم نفسه:
+- `RELEASE_STORE_FILE` - المسار إلى ملف keystore
+- `RELEASE_STORE_PASSWORD` - كلمة مرور ملف keystore
+- `RELEASE_KEY_ALIAS` - الاسم المستعار للمفتاح
+- `RELEASE_KEY_PASSWORD` - كلمة مرور المفتاح
 
-```properties
-RELEASE_STORE_FILE=/path/to/your/release.keystore
-RELEASE_KEY_ALIAS
+بدونها يبقى البناء ناجحًا ويُنتج ملف release غير موقّع. الشكل المعياري
+محدَّد في مهارة `android-github`، §Canonical Signing Form - one form in
+every repository.
+
+```bash
+./gradlew assembleRelease
 ```
 
-خاصيتا كلمة المرور هما `RELEASE_STORE_PASSWORD` و`RELEASE_KEY_PASSWORD`.
-امنحهما قيمتهما محليًا، أو وفّرها من بيئة العمل. لا تُودع أي قيمة هنا.
-
-3. شغّل `./gradlew assembleRelease`
-
 ---
+
 
 ## حجم APK
 

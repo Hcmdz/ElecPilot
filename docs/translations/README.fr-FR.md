@@ -335,24 +335,25 @@ La branche master de centic9/poi-on-android utilise POI 5.5.1. La release préco
 
 ## Signature
 
-L'APK release est signé avec un keystore. Pour construire un APK release :
+Comment construire un APK release signé. Le keystore reste **en dehors** du
+dépôt, dans `~/.gradle/gradle.properties`, et ses valeurs ne sont jamais
+commitées. Mettez-y ces quatre propriétés, une par ligne :
 
-1. Créez un fichier `gradle.properties` à la racine du projet (déjà gitignoré)
-2. Ajoutez les deux propriétés de chemin ci-dessous, plus les deux propriétés
-   de mot de passe portant les mêmes noms :
+- `RELEASE_STORE_FILE` - le chemin vers votre keystore
+- `RELEASE_STORE_PASSWORD` - le mot de passe du keystore
+- `RELEASE_KEY_ALIAS` - l'alias de la clé
+- `RELEASE_KEY_PASSWORD` - le mot de passe de la clé
 
-```properties
-RELEASE_STORE_FILE=/path/to/your/release.keystore
-RELEASE_KEY_ALIAS
+Sans elles, le build réussit quand même et produit une release non signée.
+La forme canonique est définie par le skill `android-github`, §Canonical
+Signing Form - one form in every repository.
+
+```bash
+./gradlew assembleRelease
 ```
 
-Les propriétés de mot de passe sont `RELEASE_STORE_PASSWORD` et
-`RELEASE_KEY_PASSWORD`. Donnez-leur leur valeur en local, ou fournissez-la
-depuis l'environnement. Ne commitez jamais de valeur ici.
-
-3. Lancez `./gradlew assembleRelease`
-
 ---
+
 
 ## Taille de l'APK
 

@@ -1,4 +1,5 @@
 *.apk
+*.aab
 *.tar.gz
 *.iml
 *.hprof
@@ -11,14 +12,20 @@ build/
 AGENTS.md
 local.properties
 app/release.keystore
+keystore.properties
+signing.properties
 gradle.properties
+hosts.yml
 
 # Secrets & credentials (never commit — audit 2026-09-10)
 .env
 .env.*
+*.secret
+*.secrets
 *.pem
 *.key
 *.p12
+*.pfx
 *.jks
 *.keystore
 *.mobileprovision
