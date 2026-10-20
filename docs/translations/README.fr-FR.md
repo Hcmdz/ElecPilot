@@ -62,7 +62,6 @@ Sur le terrain, les données moteurs vivent sur papier ou dans des tableurs épa
 - [Apache POI Shadow Jar](#apache-poi-shadow-jar)
 - [Signature](#signature)
 - [Taille de l'APK](#taille-de-lapk)
-- [Changelog](#changelog-v57--v654)
 - [Mentions légales](#mentions-légales)
 - [Licence](#licence)
 - [Roadmap](#️-roadmap)
@@ -375,71 +374,6 @@ L'APK pesait 20,3 Mo avant v6.5.3 ; le retrait du binaire natif rclone a supprim
 
 ---
 
-## Changelog (v5.7 → v6.5.4)
-
-Les versions suivent [semver](https://semver.org/) ; l'historique complet est dans les [GitHub Releases](https://github.com/Hcmdz/ElecPilot/releases).
-
-### v6.5.4
-
-- **Suppression du cloud backup terminée** — les fichiers restants, le point d'entrée OAuth et l'exception réseau locale sont supprimés
-- **Documentation corrigée** — la liste des fonctionnalités, le tableau de sécurité, les permissions et la taille de l'APK décrivent maintenant ce que l'application fait réellement
-- Signé avec le même certificat que v6.5.3 : mise à jour en place normale
-
-### v6.5.3
-
-- **Suppression du cloud backup** — Google exige désormais que chaque application utilise son propre projet Cloud pour OAuth ; le projet partagé utilisé par rclone n'est plus accepté
-- **Taille de l'APK 20,3 Mo → 13,3 Mo** — le binaire natif rclone embarqué est supprimé
-- Inchangé : sauvegarde locale planifiée, import-export CSV/Excel, recherche, filtres, statistiques, recherche vocale, mise à jour intégrée, EN/FR/AR
-
-### v6.5.2
-
-- **La langue système s'applique sans redémarrage** — revenir à l'option *Système* suit désormais la langue système actuelle au lieu de la langue précédemment sélectionnée
-
-### v6.5.1
-
-- **Rclone 1.75.1 allégé** — backends local/Drive/OneDrive uniquement
-- **Nouvelle clé de signature** — réinstallation manuelle requise (sauvegardez, désinstallez, installez, restaurez)
-
-### v6.5
-
-- **Tâches de fond annulables sans erreur** — `CancellationException` relancée dans les chemins sauvegarde cloud/locale, vérification de mise à jour et import (plus de fausse notification d'échec ni de retry après annulation)
-- **Écritures snapshot sur Main** — les dialogues de sauvegarde réassignent l'état UI sur le thread principal
-- **Noms de fichiers de sauvegarde ASCII** — horodatages export/cloud en `Locale.US` (plus de chiffres non latins sous locale arabe)
-- **Polish cartes PLC** — taille de l'étoile favori alignée sur les cartes moteurs (18.dp)
-- **Build** — AGP 9.4.0, OkHttp 5.5.0, WorkManager 2.11.2
-
-### v6.3
-
-- **Plus d'écran blanc au démarrage à froid** — l'écran complet est conditionné à `hasLoadedOnce` pour ne jamais dessiner le shell vide (header avec compteur « 0 ») avant le premier chargement
-- **Dernier module persistant** — l'app rouvre sur le dernier module actif (Départs / PLC I/O) après un redémarrage à froid
-
-### v6.2
-
-- **Mise à jour intégrée** — vérification auto des GitHub Releases, téléchargement et installation avec progression
-- **Génération de modèles vierges** — modèles Excel prêts à remplir (headers EN/FR)
-- **Option langue système** — détection auto de la langue de l'appareil à la première installation
-- **Corrections** — gestion CancellationException, assainissement des noms de fichiers, seuils de validation des headers, garde de file d'export
-- **Audit sécurité** — fonctionnalités mise à jour et modèles durcies (recommandation SHA-256, prévention path traversal)
-
-### v6.0 → v6.1
-
-Correctifs d'audit sécurité (OWASP MASVS 2.1) :
-
-| # | Sévérité | Correctif |
-|---|---|---|
-| 1 | CRITIQUE | Fichier temp de config rclone : permissions lisibles par le propriétaire uniquement |
-| 2 | HAUTE | Allowlist d'URL WebView OAuth contre le phishing |
-| 4 | MOYENNE | Cache disque sauvegarde cloud chiffré (AES-256-GCM) |
-| 5 | MOYENNE | `FLAG_SECURE` sur MainActivity (protection capture/enregistrement) |
-| 7 | BASSE | Repli env HOME utilise `filesDir` au lieu d'un chemin en dur |
-| 8 | BASSE | Usage explicite de SharedPreferences `MODE_PRIVATE` |
-| 9 | BASSE | Logs d'erreur expurgés des chemins de fichiers et détails d'opérations |
-| 10 | BASSE | ProGuard supprime `Log.e/w` avec objets d'exception en release |
-
-<p align="right">(<a href="#readme-top">haut de page</a>)</p>
-
----
-
 ## Mentions légales
 
 - [Conditions d'utilisation](https://hcmdz.github.io/ElecPilot/terms/)
@@ -459,7 +393,7 @@ Le travail prévu est suivi dans les [tickets ouverts](https://github.com/Hcmdz/
 
 ## Docs associées
 
-- [Contributing](../../CONTRIBUTING.md) · [Composants tiers](../../THIRD_PARTY.md) · [Sécurité](../../SECURITY.md)
+- [Changelog](../../CHANGELOG.md) · [Contributing](../../CONTRIBUTING.md) · [Composants tiers](../../THIRD_PARTY.md) · [Sécurité](../../SECURITY.md)
 - [Politique de confidentialité](../../docs/privacy/) · [Conditions](../../docs/terms/)
 
 ## 📬 Contact
