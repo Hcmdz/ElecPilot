@@ -177,7 +177,7 @@ Backup, language, and updates — everything configurable in one place.
 | **Scheduling** | WorkManager | 2.12.0 |
 | **File Access** | DocumentFile (SAF) | 1.1.0 |
 | **Security** | ProGuard, network security config | — |
-| **Build** | AGP 9.4.1, Kotlin 2.4.21, KSP 2.3.12 | — |
+| **Build** | AGP 9.5.0, Kotlin 2.4.21, KSP 2.3.12 | — |
 | **Lint** | Android Security Lint | 1.0.4 |
 | **Quality** | Detekt CLI | 1.23.8 |
 | **Testing** | JUnit4, Room Testing, Coroutines Test | 4.13.2 / 2.8.5 / 1.11.0 |
