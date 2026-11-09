@@ -390,7 +390,7 @@ Planned work is tracked in the [open issues](https://github.com/Hcmdz/ElecPilot/
 
 ## 📬 Contact
 
-HcmDZ — [@Hcmdz](https://github.com/Hcmdz)
+HcmDZ — [@Hcmdz](https://github.com/Hcmdz) — HcmDz.Dev@gmail.com
 
 Project link: [https://github.com/Hcmdz/ElecPilot](https://github.com/Hcmdz/ElecPilot)
 
