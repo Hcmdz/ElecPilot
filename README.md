@@ -3,11 +3,6 @@
 
 [![ElecPilot](docs/assets/feature-graphic.png)](https://github.com/Hcmdz/ElecPilot/releases/latest)
 
-**Read this in other languages**
-
-🇺🇸 [English](README.md) | 🇫🇷 [Français](docs/translations/README.fr-FR.md) | 🇸🇦 [العربية](docs/translations/README.ar-SA.md)
-<!-- Localized app: values-fr/values-ar (+ldrtl) mirror README langs; supportsRtl verified. -->
-
 <div align="center">
    <a href="https://github.com/Hcmdz/ElecPilot/releases">
       <img src="get-it-on-github-v2.png" width="168" height="50" alt="Get it on GitHub">
