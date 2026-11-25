@@ -26,7 +26,7 @@ Shipped dependencies (declared in `gradle/libs.versions.toml`):
 | Lifecycle-runtime | 2.11.0 | Apache 2.0 | `Apache-2.0` |
 | Room | 2.8.5 | Apache 2.0 | `Apache-2.0` |
 | WorkManager | 2.12.0 | Apache 2.0 | `Apache-2.0` |
-| OkHttp | 5.5.0 | Apache 2.0 | `Apache-2.0` |
+| OkHttp | 5.5.1 | Apache 2.0 | `Apache-2.0` |
 | DocumentFile | 1.1.0 | Apache 2.0 | `Apache-2.0` |
 | Kotlin Coroutines (transitive) | 1.11.0 | Apache 2.0 | `Apache-2.0` |
 
